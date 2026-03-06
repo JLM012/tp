@@ -18,7 +18,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/sun-heqiao)]
 [[portfolio](team/sun-heqiao.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Developer
 
 ### Jasher Lim
 
