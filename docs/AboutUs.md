@@ -51,10 +51,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### ZHOU JINGBIN
 
-<img src="images/Zhou_Jingbin.png" width="200px">
+<img src="images/zhou_jingbin.png" width="200px">
 
 [[github](http://github.com/jimai1228)]
-[[portfolio](team/Zhou_Jingbin.md)]
+[[portfolio](team/zhou_jingbin)]
 
 * Role: Developer
 * Responsibilities: UI
