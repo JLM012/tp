@@ -21,17 +21,27 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Developer
 
-### Jasher Lim
+### JASHER LIM
 
 <img src="images/jlm012.png" width="200px">
 
 [[github](http://github.com/jlm012)]
 [[portfolio](team/jasher.md)]
 
+* Role: Team Lead
+* Responsibilities: UI
+
+### SENTHIL VAIBHAVA RAM
+
+<img src="images/agukagorilla.png" width="200px">
+
+[[github](http://github.com/agukaGorilla)] 
+[[portfolio](team/ram.md)]
+
 * Role: Developer
 * Responsibilities:
 
-### Isaac Abraham
+### ISAAC ABRAHAM
 
 <img src="images/hack-zac.png" width="200px">
 
@@ -41,16 +51,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Operations Lead
 * Responsibilities: Debugging
 
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### ZHOU JINGBIN
 
