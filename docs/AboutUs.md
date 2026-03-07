@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### ZHOU JINGBIN
 
-<img src="images/zhou_jingbin.png" width="200px">
+<img src="images/jimai1228.png" width="200px">
 
 [[github](http://github.com/jimai1228)]
 [[portfolio](team/zhou_jingbin)]
