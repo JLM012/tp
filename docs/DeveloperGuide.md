@@ -317,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The provided details are in an invalid format (e.g., incorrect phone number, email, or date format).
+* 1a. The provided details are in an invalid format.
   * 1a1. GymContactsPro shows an error message indicating the required format.
 
   Use case resumes at step 1.
@@ -339,6 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. There are no members recorded in the system.
+    * 2a1. GymContactsPro shows an error message.
 
     Use case ends.
 
@@ -373,24 +374,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC05 : Find a gym member by name**
+**Use case: UC05 : Find a gym member**
 
 **MSS**
 
-1. Gym Manager requests to find a member by specifying search attribute and the search term (eg. -n Jacob, -id 4008A4))
+1. Gym Manager requests to find a member by specifying search attribute and the search term
 2. GymContactsPro displays a list of members matching the specifies criteria
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The Gym Manager does not provide a valid search criteria to search for.
+* 1a. The Gym Manager does not provide a valid search format.
 
-    * 1a1. GymContactsPro shows an error message prompting for a name.
+    * 1a1. GymContactsPro shows an error message.
 
   Use case resumes at step 1.
 
 * 2a. There are no members matching the provided criteria.
+    * 2a1. GymContactsPro shows an error message.
 
     Use case ends.
 
@@ -442,6 +444,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case resumes at step 1.
 
 * 2a. No members have memberships expiring within the specified timeframe.
+    * 2a1. GymContactsPro shows an error message.
 
   Use case ends.
 
@@ -461,9 +464,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. GymContactsPro shows an error message prompting for the correct format.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 * 2a. No member with the given membership ID exists in the system.
+    * 2a1. GymContactsPro shows an error message.
 
     Use case ends.
 
@@ -471,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Gym Manager requests to sort members by membership expiry in a specific order
+1. Gym Manager requests to sort members.
 2. GymContactsPro displays the list of members sorted in the requested order
 
     Use case ends.
@@ -482,19 +486,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. GymContactsPro shows an error message specifying the correct sort options.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 * 2a. There are no members available to sort.
+    * 2a1. GymContactsPro shows an error message specifying the correct sort options.
 
   Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The product should be optimized for gym managers who are comfortable typing commands, such that frequent operations can be completed entirely via keyboard without requiring mouse interaction.
+2. A new user with basic CLI familiarity should be able to learn the core commands by referring to the user guide.
+3. Should work on any _mainstream OS_ such as Windows and macOS as long as it has Java `17` or above installed.
+4. The product should respond to any valid command within 2 seconds when managing up to 1000 member records.
+5. Should be able to hold up to 1000 persons without a noticeable lag in performance for typical usage.
+6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+7. The application’s persistent data should be stored in a human-readable format such as JSON, so that data can be backed up, inspected, or migrated if needed.
+8. The product should be fully usable without an Internet connection after installation
+9. The application should be installable and usable by a single manager without requiring a database server, external hosting, or Internet access.
+10. Invalid commands or inputs should not cause the application to crash. The system should display an informative error message and continue running.
+11. The product is intended for single-user desktop use and is not required to support concurrent editing by multiple staff members.
 
-*{More to be added}*
+
 
 ### Glossary
 
