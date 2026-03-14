@@ -53,7 +53,7 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
-        normalizedValue = email.toLowerCase(Locale.ROOT);
+        normalizedValue = email.toLowerCase(Locale.ROOT).trim();
     }
 
     /**

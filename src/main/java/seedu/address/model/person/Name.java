@@ -32,7 +32,7 @@ public class Name {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
-        normalizedFullName = name.toLowerCase(Locale.ROOT);
+        normalizedFullName = name.toLowerCase(Locale.ROOT).trim();
     }
 
     /**

@@ -34,7 +34,8 @@ public class Address {
         // Normalize: lowercase, remove commas, and compress whitespace
         normalizedValue = address.toLowerCase(Locale.ROOT)
                 .replaceAll(",", "")
-                .replaceAll("\\s+", " ");
+                .replaceAll("\\s+", " ")
+                .trim();
     }
 
     /**
