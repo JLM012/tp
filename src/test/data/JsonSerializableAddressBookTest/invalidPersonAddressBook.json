@@ -1,9 +1,17 @@
 {
   "persons": [ {
-    "name": "Hans Muster",
+    "name": "Valid Person",
     "phone": "9482424",
-    "email": "invalid@email!3e",
+    "email": "hans@example.com",
     "address": "4th street",
-    "membershipId": "1000"
+    "membershipId": "1000",
+    "membershipExpiryDate": "2099-12-31"
+  }, {
+    "name": "Person With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "membershipId": "1001",
+    "membershipExpiryDate": "2099-12-31"
   } ]
 }
