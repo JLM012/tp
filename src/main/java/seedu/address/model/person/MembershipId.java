@@ -14,7 +14,7 @@ public class MembershipId {
     public static final String MESSAGE_CONSTRAINTS =
             "Membership ID must be a 4-digit integer from " + MIN_ID + " to " + MAX_ID;
 
-     public final int value;
+    public final int value;
 
     /**
     * Constructs a {@code MembershipId}.

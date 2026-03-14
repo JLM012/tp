@@ -26,11 +26,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
-//    {
-//        persons = new UniquePersonList();
-//        nextMembershipId = MembershipId.MIN_ID;
-//    }
+    //    {
+    //        persons = new UniquePersonList();
+    //        nextMembershipId = MembershipId.MIN_ID;
+    //    }
 
+    /**
+     * Constructs an empty {@code AddressBook}.
+     */
     public AddressBook() {
         persons = new UniquePersonList();
         nextMembershipId = MembershipId.MIN_ID;
