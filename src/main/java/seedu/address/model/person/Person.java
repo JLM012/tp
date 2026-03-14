@@ -83,7 +83,7 @@ public class Person {
             return false;
         }
 
-        return otherPerson.getPhone().toString().equalsIgnoreCase(getPhone().toString())
+        return otherPerson.getPhone().toString().equals(getPhone().toString())
                 || otherPerson.getEmail().equals(getEmail());
     }
 
