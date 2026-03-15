@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Locale;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
@@ -18,6 +20,7 @@ public class Address {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
+    private final String normalizedValue;
 
     /**
      * Constructs an {@code Address}.
@@ -28,6 +31,11 @@ public class Address {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+        // Normalize: lowercase, remove commas, and compress whitespace
+        normalizedValue = address.toLowerCase(Locale.ROOT)
+                .replaceAll(",", "")
+                .replaceAll("\\s+", " ")
+                .trim();
     }
 
     /**
@@ -54,12 +62,12 @@ public class Address {
         }
 
         Address otherAddress = (Address) other;
-        return value.equals(otherAddress.value);
+        return normalizedValue.equals(otherAddress.normalizedValue);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return normalizedValue.hashCode();
     }
 
 }
