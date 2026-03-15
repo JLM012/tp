@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MembershipExpiryDate;
 import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -28,12 +29,14 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final Integer membershipId;
+    private final String membershipExpiryDate; // ADD THIS
 
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("membershipId") Integer membershipId) {
+                             @JsonProperty("membershipId") Integer membershipId,
+                             @JsonProperty("membershipExpiryDate") String membershipExpiryDate) { // ADD THIS
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -42,6 +45,7 @@ class JsonAdaptedPerson {
             this.tags.addAll(tags);
         }
         this.membershipId = membershipId;
+        this.membershipExpiryDate = membershipExpiryDate;
     }
 
     public JsonAdaptedPerson(Person source) {
@@ -53,6 +57,7 @@ class JsonAdaptedPerson {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
         membershipId = source.getMembershipId().value;
+        membershipExpiryDate = source.getMembershipExpiryDate().toString(); // ADD THIS
     }
 
     public Person toModelType() throws IllegalValueException {
@@ -98,16 +103,24 @@ class JsonAdaptedPerson {
 
         if (membershipId == null) {
             throw new IllegalValueException(String.format(
-                MISSING_FIELD_MESSAGE_FORMAT,
-                MembershipId.class.getSimpleName()
-            ));
+                MISSING_FIELD_MESSAGE_FORMAT, MembershipId.class.getSimpleName()));
         }
-
         if (!MembershipId.isValidMembershipId(membershipId)) {
             throw new IllegalValueException(MembershipId.MESSAGE_CONSTRAINTS);
         }
         final MembershipId modelMembershipId = new MembershipId(membershipId);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMembershipId);
+        // ADD THIS BLOCK
+        if (membershipExpiryDate == null) {
+            throw new IllegalValueException(String.format(
+                MISSING_FIELD_MESSAGE_FORMAT, MembershipExpiryDate.class.getSimpleName()));
+        }
+        if (!MembershipExpiryDate.isValidExpiryDate(membershipExpiryDate)) {
+            throw new IllegalValueException(MembershipExpiryDate.MESSAGE_CONSTRAINTS);
+        }
+        final MembershipExpiryDate modelMembershipExpiryDate = new MembershipExpiryDate(membershipExpiryDate);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+            modelTags, modelMembershipId, modelMembershipExpiryDate);
     }
 }

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MembershipExpiryDate;
 import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -21,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_MEMBERSHIP_EXPIRY_DATE = "2026-12-31"; // ADD THIS
 
     private Name name;
     private Phone phone;
@@ -28,6 +30,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private MembershipId membershipId;
+    private MembershipExpiryDate membershipExpiryDate; // ADD THIS
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +42,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         membershipId = new MembershipId(MembershipId.MIN_ID);
+        membershipExpiryDate = new MembershipExpiryDate(DEFAULT_MEMBERSHIP_EXPIRY_DATE); // ADD THIS
     }
 
     /**
@@ -50,7 +54,8 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        membershipId = personToCopy.getMembershipId(); // ADD THIS
+        membershipId = personToCopy.getMembershipId();
+        membershipExpiryDate = personToCopy.getMembershipExpiryDate(); // ADD THIS
     }
 
     /**
@@ -101,7 +106,15 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code MembershipExpiryDate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMembershipExpiryDate(String expiryDate) { // ADD THIS
+        this.membershipExpiryDate = new MembershipExpiryDate(expiryDate);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, membershipId);
+        return new Person(name, phone, email, address, tags, membershipId, membershipExpiryDate); // UPDATED
     }
 }
