@@ -27,18 +27,21 @@ public class Person {
 
     // Membership field
     private final MembershipId membershipId;
+    private final MembershipExpiryDate membershipExpiryDate;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, MembershipId membershipId) {
-        requireAllNonNull(name, phone, email, address, tags, membershipId);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, MembershipId membershipId,
+                  MembershipExpiryDate membershipExpiryDate) {
+        requireAllNonNull(name, phone, email, address, tags, membershipId, membershipExpiryDate);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.membershipId = membershipId;
+        this.membershipExpiryDate = membershipExpiryDate;
     }
 
     public Name getName() {
@@ -67,6 +70,10 @@ public class Person {
 
     public MembershipId getMembershipId() {
         return membershipId;
+    }
+
+    public MembershipExpiryDate getMembershipExpiryDate() {
+        return membershipExpiryDate;
     }
 
     /**
@@ -103,13 +110,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && membershipId.equals(otherPerson.membershipId);
+                && membershipId.equals(otherPerson.membershipId)
+                && membershipExpiryDate.equals(otherPerson.membershipExpiryDate);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, membershipId);
+        return Objects.hash(name, phone, email, address, tags, membershipId, membershipExpiryDate);
     }
 
     @Override
@@ -121,6 +129,7 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .add("membershipId", membershipId)
+                .add("membershipExpiryDate", membershipExpiryDate)
                 .toString();
     }
 
