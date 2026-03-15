@@ -26,44 +26,59 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-        .withPhone("94351253")
-        .withTags("friends").withMembershipId(MembershipId.MIN_ID).build();
+        .withPhone("94351253").withTags("friends")
+        .withMembershipId(MembershipId.MIN_ID)
+        .withMembershipExpiryDate("2026-12-31").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25")
         .withEmail("johnd@example.com").withPhone("98765432")
-        .withTags("owesMoney", "friends").withMembershipId(MembershipId.MIN_ID + 1).build();
+        .withTags("owesMoney", "friends")
+        .withMembershipId(MembershipId.MIN_ID + 1)
+        .withMembershipExpiryDate("2026-11-30").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-        .withEmail("heinz@example.com").withAddress("wall street").withMembershipId(MembershipId.MIN_ID + 2).build();
+        .withEmail("heinz@example.com").withAddress("wall street")
+        .withMembershipId(MembershipId.MIN_ID + 2)
+        .withMembershipExpiryDate("2026-10-31").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
         .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
-        .withMembershipId(MembershipId.MIN_ID + 3).build();
+        .withMembershipId(MembershipId.MIN_ID + 3)
+        .withMembershipExpiryDate("2026-09-30").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822240")
-        .withEmail("werner@example.com").withAddress("michegan ave").withMembershipId(MembershipId.MIN_ID + 4).build();
+        .withEmail("werner@example.com").withAddress("michegan ave")
+        .withMembershipId(MembershipId.MIN_ID + 4)
+        .withMembershipExpiryDate("2026-08-31").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824270")
-        .withEmail("lydia@example.com").withAddress("little tokyo").withMembershipId(MembershipId.MIN_ID + 5).build();
+        .withEmail("lydia@example.com").withAddress("little tokyo")
+        .withMembershipId(MembershipId.MIN_ID + 5)
+        .withMembershipExpiryDate("2026-07-31").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824420")
-        .withEmail("anna@example.com").withAddress("4th street").withMembershipId(MembershipId.MIN_ID + 6).build();
+        .withEmail("anna@example.com").withAddress("4th street")
+        .withMembershipId(MembershipId.MIN_ID + 6)
+        .withMembershipExpiryDate("2026-06-30").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84824240")
-            .withEmail("stefan@example.com").withAddress("little india")
-            .withMembershipId(MembershipId.MIN_ID + 7).build();
+        .withEmail("stefan@example.com").withAddress("little india")
+        .withMembershipId(MembershipId.MIN_ID + 7)
+        .withMembershipExpiryDate("2026-05-31").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("84821310")
-            .withEmail("hans@example.com").withAddress("chicago ave").withMembershipId(MembershipId.MIN_ID + 8).build();
+        .withEmail("hans@example.com").withAddress("chicago ave")
+        .withMembershipId(MembershipId.MIN_ID + 8)
+        .withMembershipExpiryDate("2026-04-30").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
-            .withMembershipId(MembershipId.MIN_ID + 9).build();
+        .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
+        .withMembershipId(MembershipId.MIN_ID + 9)
+        .withMembershipExpiryDate("2026-03-31").build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withMembershipId(MembershipId.MIN_ID + 10).build();
+        .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+        .withMembershipId(MembershipId.MIN_ID + 10)
+        .withMembershipExpiryDate("2026-02-28").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
-
-
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.

@@ -4,6 +4,8 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street",
-    "membershipId": "1000"
+    "tags": [ ],
+    "membershipId": 1000,
+    "membershipExpiryDate": "2099-12-31"
   } ]
 }
