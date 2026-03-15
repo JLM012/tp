@@ -48,9 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // Use placeholder membership ID - will be assigned by AddCommand
-        // Use placeholder expiry date - will be updated when add/edit commands support it
+        // Use default expiry date
         Person person = new Person(name, phone, email, address, tagList,
-                new MembershipId(MembershipId.MIN_ID), new MembershipExpiryDate("2099-12-31"));
+                new MembershipId(MembershipId.MIN_ID), new MembershipExpiryDate("2026-12-31"));
 
         return new AddCommand(person);
     }

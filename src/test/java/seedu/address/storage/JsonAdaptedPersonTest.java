@@ -26,7 +26,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final Integer INVALID_MEMBERSHIP_ID = MembershipId.MIN_ID - 1;
-    private static final String INVALID_MEMBERSHIP_EXPIRY_DATE = "32-13-2025"; // ADD THIS — invalid date
+    private static final String INVALID_MEMBERSHIP_EXPIRY_DATE = "32-13-2025";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -36,8 +36,7 @@ public class JsonAdaptedPersonTest {
         .map(JsonAdaptedTag::new)
         .collect(Collectors.toList());
     private static final Integer VALID_MEMBERSHIP_ID = BENSON.getMembershipId().value;
-    private static final String VALID_MEMBERSHIP_EXPIRY_DATE =
-        BENSON.getMembershipExpiryDate().toString(); // ADD THIS
+    private static final String VALID_MEMBERSHIP_EXPIRY_DATE = BENSON.getMembershipExpiryDate().toString();
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
