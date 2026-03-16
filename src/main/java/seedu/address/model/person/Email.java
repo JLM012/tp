@@ -52,9 +52,10 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
-        normalizedValue = email.toLowerCase(Locale.ROOT).trim();
+        String trimmedEmail = email.trim();
+        checkArgument(isValidEmail(trimmedEmail), MESSAGE_CONSTRAINTS);
+        value = trimmedEmail;
+        normalizedValue = trimmedEmail.toLowerCase(Locale.ROOT);
     }
 
     /**
