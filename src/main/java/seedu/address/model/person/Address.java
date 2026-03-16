@@ -32,7 +32,7 @@ public class Address {
         String trimmedAddress = address.trim().replaceAll("\\s+", " ");
         checkArgument(isValidAddress(trimmedAddress), MESSAGE_CONSTRAINTS);
         value = trimmedAddress;
-        // Normalize: lowercase, remove commas, and compress whitespace
+        // Normalize: lowercase, remove commas
         normalizedValue = trimmedAddress.toLowerCase(Locale.ROOT)
                 .replaceAll(",", "");
     }
