@@ -14,7 +14,7 @@ import java.time.format.DateTimeParseException;
 public class MembershipExpiryDate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Membership expiry date must be in the format YYYY-MM-DD and must be a valid date.";
+            "Membership expiry date must be in the format YYYY-MM-DD and and must be today or a future date.";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public final LocalDate value;
@@ -35,8 +35,8 @@ public class MembershipExpiryDate {
      */
     public static boolean isValidExpiryDate(String test) {
         try {
-            LocalDate.parse(test, DATE_FORMATTER);
-            return true;
+            LocalDate parsedDate = LocalDate.parse(test, DATE_FORMATTER);
+            return !parsedDate.isBefore(LocalDate.now());
         } catch (DateTimeParseException e) {
             return false;
         }

@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MembershipExpiryDate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -120,5 +121,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String expiryDate} into a {@code MembershipExpiryDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code expiryDate} is invalid.
+     */
+    public static MembershipExpiryDate parseMembershipExpiryDate(String expiryDate) throws ParseException {
+        requireNonNull(expiryDate);
+        String trimmedExpiryDate = expiryDate.trim();
+        if (!MembershipExpiryDate.isValidExpiryDate(trimmedExpiryDate)) {
+            throw new ParseException(MembershipExpiryDate.MESSAGE_CONSTRAINTS);
+        }
+        return new MembershipExpiryDate(trimmedExpiryDate);
     }
 }
