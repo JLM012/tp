@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBERSHIP_EXPIRY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -45,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_MEMBERSHIP_EXPIRY_DATE + "EXPIRY_DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -104,11 +106,11 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         // Membership ID cannot be edited - preserve original
         MembershipId membershipId = personToEdit.getMembershipId();
-        // Membership Expiry Date cannot be edited (at the moment) - preserve original
-        MembershipExpiryDate membershipExpiryDate = personToEdit.getMembershipExpiryDate();
+        MembershipExpiryDate upDatedMembershipExpiryDate = editPersonDescriptor.getMembershipExpiryDate()
+                .orElse(personToEdit.getMembershipExpiryDate());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, membershipId,
-                membershipExpiryDate);
+                upDatedMembershipExpiryDate);
     }
 
     @Override
@@ -145,6 +147,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private MembershipExpiryDate membershipExpiryDate;
 
         public EditPersonDescriptor() {}
 
@@ -157,6 +160,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setMembershipExpiryDate(toCopy.membershipExpiryDate);
             setTags(toCopy.tags);
         }
 
@@ -164,7 +168,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, membershipExpiryDate, tags);
         }
 
         public void setName(Name name) {
@@ -197,6 +201,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setMembershipExpiryDate(MembershipExpiryDate membershipExpiryDate) {
+            this.membershipExpiryDate = membershipExpiryDate;
+        }
+
+        public Optional<MembershipExpiryDate> getMembershipExpiryDate() {
+            return Optional.ofNullable(membershipExpiryDate);
         }
 
         /**
@@ -232,6 +244,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(membershipExpiryDate, otherEditPersonDescriptor.membershipExpiryDate)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -242,6 +255,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("membershipExpiryDate", membershipExpiryDate)
                     .add("tags", tags)
                     .toString();
         }
