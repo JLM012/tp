@@ -159,7 +159,7 @@ public class ParserUtilTest {
     @Test
     public void parseMembershipExpiryDate_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMembershipExpiryDate(INVALID_MEMBERSHIP_EXPIRY_DATE));
-     }
+    }
 
     @Test
     public void parseMembershipExpiryDate_validValueWithoutWhitespace_returnsMembershipExpiryDate() throws Exception {
