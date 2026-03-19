@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -15,8 +16,37 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2526s2-cs2103t-w08-4.github.io/tp/UserGuide.html";
+
+    public static final String HELP_MESSAGE =
+            "User Guide:\n" + USERGUIDE_URL + "\n\n"
+                    + "Command Summary:\n\n"
+
+                    + "add\n"
+                    + "Format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/YYYY-MM-DD\n\n"
+
+                    + "list\n"
+                    + "Format: list\n\n"
+
+                    + "delete\n"
+                    + "Format: delete id/MEMBERHSIP_ID\n\n"
+
+                    + "edit\n"
+                    + "Format: edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/YYYY-MM-DD]\n\n"
+
+                    + "find\n"
+                    + "Format: find NAME [MORE_NAMES]\n\n"
+
+                    + "help\n"
+                    + "Format: help\n\n"
+
+                    + "clear\n"
+                    + "Format: clear\n\n"
+
+                    + "exit\n"
+                    + "Format: exit\n\n"
+
+                    + "NOTE: Press esc to close this help window.";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -35,6 +65,13 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        helpMessage.setWrapText(true);
+
+        getRoot().getScene().setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                hide();
+            }
+        });
     }
 
     /**
