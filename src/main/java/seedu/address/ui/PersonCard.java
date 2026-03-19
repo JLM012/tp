@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -58,6 +62,11 @@ public class PersonCard extends UiPart<Region> {
         membershipId.setText("Membership ID: " + person.getMembershipId().value);
         membershipExpiryDate.setText("Membership Expiry: " + person.getMembershipExpiryDate().toString());
 
+        updateStatusLabel();
+        setupAutoStatusUpdate();
+    }
+
+    private void updateStatusLabel() {
         LocalDate expiryDate = person.getMembershipExpiryDate().value;
         LocalDate today = LocalDate.now();
         boolean isActive = expiryDate != null && !expiryDate.isBefore(today);
@@ -70,5 +79,33 @@ public class PersonCard extends UiPart<Region> {
                 + "-fx-background-radius: 8;"
                 + "-fx-font-weight: bold;"
         );
+    }
+
+    private void setupAutoStatusUpdate() {
+        // Calculate delay until next midnight
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nextMidnight = now.toLocalDate().plusDays(1).atStartOfDay();
+        long initialDelay = java.time.Duration.between(now, nextMidnight).toMillis();
+
+        // Run once at midnight
+        Timeline firstRun = new Timeline(
+            new KeyFrame(
+                javafx.util.Duration.millis(initialDelay),
+                e -> {
+                    updateStatusLabel();
+                    // After first run, start daily updates
+                    Timeline daily = new Timeline(
+                        new KeyFrame(
+                            javafx.util.Duration.hours(24),
+                            ev -> updateStatusLabel()
+                        )
+                    );
+                    daily.setCycleCount(Timeline.INDEFINITE);
+                    daily.play();
+                }
+            )
+        );
+        firstRun.setCycleCount(1); // only run once
+        firstRun.play();
     }
 }
