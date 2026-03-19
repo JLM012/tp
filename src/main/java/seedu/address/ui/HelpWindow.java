@@ -40,7 +40,7 @@ public class HelpWindow extends UiPart<Stage> {
                     + "help\n"
                     + "Format: help\n\n"
 
-                    +"clear\n"
+                    + "clear\n"
                     + "Format: clear\n\n"
 
                     + "exit\n"
