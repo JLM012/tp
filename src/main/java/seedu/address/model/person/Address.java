@@ -29,12 +29,15 @@ public class Address {
      */
     public Address(String address) {
         requireNonNull(address);
-        String trimmedAddress = address.trim().replaceAll("\\s+", " ");
+        String trimmedAddress = address.trim()
+                .replaceAll("\\s*,\\s*", ", ")
+                .replaceAll("\\s+", " ");
         checkArgument(isValidAddress(trimmedAddress), MESSAGE_CONSTRAINTS);
         value = trimmedAddress;
-        // Normalize: lowercase, remove commas, and compress whitespace
+        // Normalize: lowercase, then remove commas
         normalizedValue = trimmedAddress.toLowerCase(Locale.ROOT)
-                .replaceAll(",", "");
+                .replaceAll(",", " ")
+                .replaceAll("\\s+", " ");
     }
 
     /**
