@@ -56,9 +56,6 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         membershipId.setText("Membership ID: " + person.getMembershipId().value);
         membershipExpiryDate.setText("Membership Expiry: " + person.getMembershipExpiryDate().toString());
     }
