@@ -45,7 +45,6 @@ public class AddCommandTest {
         assertEquals(validPerson.getPhone(), addedPerson.getPhone());
         assertEquals(validPerson.getEmail(), addedPerson.getEmail());
         assertEquals(validPerson.getAddress(), addedPerson.getAddress());
-        assertEquals(validPerson.getTags(), addedPerson.getTags());
         // Verify membership ID was correctly generated
         assertEquals(MembershipId.MIN_ID, addedPerson.getMembershipId().value);
     }

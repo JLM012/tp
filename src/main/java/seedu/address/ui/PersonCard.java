@@ -1,11 +1,8 @@
 package seedu.address.ui;
 
 import java.time.LocalDate;
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
@@ -40,8 +37,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
-    @FXML
     private Label membershipId;
     @FXML
     private Label membershipExpiryDate;
@@ -59,9 +54,6 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         membershipId.setText("Membership ID: " + person.getMembershipId().value);
         membershipExpiryDate.setText("Membership Expiry: " + person.getMembershipExpiryDate().toString());
 

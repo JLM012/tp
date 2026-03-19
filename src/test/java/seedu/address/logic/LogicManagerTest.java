@@ -168,7 +168,7 @@ public class LogicManagerTest {
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + MEMBERSHIP_EXPIRY_DATE_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().withMembershipExpiryDate("2026-12-31").build();
+        Person expectedPerson = new PersonBuilder(AMY).withMembershipExpiryDate("2026-12-31").build();
         ModelManager expectedModel = new ModelManager();
         // Sync the membership ID counter - AddCommand will call getNextMembershipId()
         int nextId = expectedModel.getNextMembershipId();
