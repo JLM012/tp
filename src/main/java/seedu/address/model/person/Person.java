@@ -23,7 +23,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    //private final Set<Tag> tags = new HashSet<>();
 
     // Membership field
     private final MembershipId membershipId;
@@ -32,14 +32,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, MembershipId membershipId,
+    public Person(Name name, Phone phone, Email email, Address address, MembershipId membershipId,
                   MembershipExpiryDate membershipExpiryDate) {
-        requireAllNonNull(name, phone, email, address, tags, membershipId, membershipExpiryDate);
+        requireAllNonNull(name, phone, email, address, membershipId, membershipExpiryDate);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
         this.membershipId = membershipId;
         this.membershipExpiryDate = membershipExpiryDate;
     }
@@ -64,9 +63,6 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
 
     public MembershipId getMembershipId() {
         return membershipId;
