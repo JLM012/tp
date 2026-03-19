@@ -8,7 +8,7 @@ public class Prefix {
     private final String prefix;
 
     public Prefix(String prefix) {
-        this.prefix = prefix;
+        this.prefix = prefix.toLowerCase();
     }
 
     public String getPrefix() {
@@ -31,7 +31,6 @@ public class Prefix {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof Prefix)) {
             return false;
         }
