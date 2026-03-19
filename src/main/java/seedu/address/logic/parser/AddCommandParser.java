@@ -20,7 +20,6 @@ import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -51,10 +50,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         String expiryDateStr = argMultimap.getValue(PREFIX_MEMBERSHIP_EXPIRY_DATE).get();
         MembershipExpiryDate expiryDate = ParserUtil.parseMembershipExpiryDate(expiryDateStr);
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // Use placeholder membership ID - will be assigned by AddCommand
-        Person person = new Person(name, phone, email, address, tagList,
+        Person person = new Person(name, phone, email, address,
                 new MembershipId(MembershipId.MIN_ID), expiryDate);
 
         return new AddCommand(person);
