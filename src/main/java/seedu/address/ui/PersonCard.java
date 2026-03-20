@@ -3,8 +3,8 @@ package seedu.address.ui;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
