@@ -20,6 +20,12 @@ checkstyle {
     toolVersion = '11.0.0'
 }
 
+// Assertions are enabled for the application only
+application {
+    mainClassName = 'seedu.address.Main'
+    applicationDefaultJvmArgs = ['-ea']
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
