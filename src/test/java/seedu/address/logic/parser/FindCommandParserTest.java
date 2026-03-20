@@ -41,7 +41,8 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_onlyWhitespaceAfterPrefix_throwsParseException() {
-        assertParseFailure(parser, "find n/    ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "find n/    ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
 }
