@@ -77,29 +77,39 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private void setupAutoStatusUpdate() {
+        setupAutoDailyTask(this::updateStatusLabel);
+    }
 
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime nextMidnight = now.toLocalDate().plusDays(1).atStartOfDay();
-        long initialDelay = java.time.Duration.between(now, nextMidnight).toMillis();
+    private void setupAutoDailyTask(Runnable task) {
+        long initialDelay = millisUntilNextMidnight();
 
         Timeline firstRun = new Timeline(
             new KeyFrame(
                 javafx.util.Duration.millis(initialDelay),
                 e -> {
-                    updateStatusLabel();
-
-                    Timeline daily = new Timeline(
-                        new KeyFrame(
-                            javafx.util.Duration.hours(24),
-                            ev -> updateStatusLabel()
-                        )
-                    );
-                    daily.setCycleCount(Timeline.INDEFINITE);
-                    daily.play();
+                    task.run();
+                    startDailyLoop(task);
                 }
             )
         );
         firstRun.setCycleCount(1);
         firstRun.play();
+    }
+
+    private void startDailyLoop(Runnable task) {
+        Timeline daily = new Timeline(
+            new KeyFrame(
+                javafx.util.Duration.hours(24),
+                e -> task.run()
+            )
+        );
+        daily.setCycleCount(Timeline.INDEFINITE);
+        daily.play();
+    }
+
+    private long millisUntilNextMidnight() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nextMidnight = now.toLocalDate().plusDays(1).atStartOfDay();
+        return java.time.Duration.between(now, nextMidnight).toMillis();
     }
 }
