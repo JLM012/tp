@@ -65,6 +65,11 @@ public class PersonCard extends UiPart<Region> {
         setupAutoStatusUpdate();
     }
 
+    /**
+     * Updates the membership status label based on the expiry date.
+     * Sets the label text to "Active" if the expiry date is today or later,
+     * otherwise sets it to "Expired". Also updates the style class accordingly.
+     */
     private void updateStatusLabel() {
         LocalDate expiryDate = person.getMembershipExpiryDate().value;
         LocalDate today = LocalDate.now();
@@ -75,10 +80,18 @@ public class PersonCard extends UiPart<Region> {
         membershipStatus.getStyleClass().add(isActive ? "membership-active" : "membership-expired");
     }
 
+    /**
+     * Sets up automatic daily updates for the membership status label.
+     * Schedules the updateStatusLabel task to run at midnight and every subsequent day.
+     */
     private void setupAutoStatusUpdate() {
         setupAutoDailyTask(this::updateStatusLabel);
     }
 
+    /**
+     * Schedules a given task to run once at the next midnight, then daily thereafter.
+     * @param task The Runnable task to execute daily.
+     */
     private void setupAutoDailyTask(Runnable task) {
         long initialDelay = millisUntilNextMidnight();
 
@@ -95,6 +108,10 @@ public class PersonCard extends UiPart<Region> {
         firstRun.play();
     }
 
+    /**
+     * Starts a daily loop that executes the given task every 24 hours.
+     * @param task The Runnable task to execute daily.
+     */
     private void startDailyLoop(Runnable task) {
         Timeline daily = new Timeline(
             new KeyFrame(
@@ -106,6 +123,10 @@ public class PersonCard extends UiPart<Region> {
         daily.play();
     }
 
+    /**
+     * Calculates the number of milliseconds until the next midnight.
+     * @return Milliseconds until next midnight.
+     */
     private long millisUntilNextMidnight() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime nextMidnight = now.toLocalDate().plusDays(1).atStartOfDay();
