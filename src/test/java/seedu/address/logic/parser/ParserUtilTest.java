@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TestUtil.getDateNDaysRelativeToToday;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,7 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "12345678";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_MEMBERSHIP_EXPIRY_DATE = "2026-12-31";
+    private static final String VALID_MEMBERSHIP_EXPIRY_DATE = getDateNDaysRelativeToToday(285);
 
     private static final String WHITESPACE = " \t\r\n";
 
