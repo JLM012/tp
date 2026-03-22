@@ -31,6 +31,13 @@ public class MembershipExpiryDate {
     }
 
     /**
+     * Constructor for loading from JSON, bypasses validation.
+     */
+    public MembershipExpiryDate(LocalDate expiryDate) {
+        this.value = expiryDate;
+    }
+
+    /**
      * Returns true if a given string is a valid expiry date.
      */
     public static boolean isValidExpiryDate(String test) {
