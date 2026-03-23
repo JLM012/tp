@@ -134,7 +134,7 @@ Examples:
 
 ### Locating person(s) : `find`
 
-Finds person(s) whose attributes contain any of the given keywords.
+Finds person(s) whose attributes contain any of the given keywords and, returns them as a list.
 
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
