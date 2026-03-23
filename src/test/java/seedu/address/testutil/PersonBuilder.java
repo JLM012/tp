@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TestUtil.getDateNDaysRelativeToToday;
+
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipExpiryDate;
@@ -17,7 +19,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_MEMBERSHIP_EXPIRY_DATE = "2026-12-31"; // ADD THIS
+    public static final String DEFAULT_MEMBERSHIP_EXPIRY_DATE = getDateNDaysRelativeToToday(285);
 
     private Name name;
     private Phone phone;
@@ -35,7 +37,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         membershipId = new MembershipId(MembershipId.MIN_ID);
-        membershipExpiryDate = new MembershipExpiryDate(DEFAULT_MEMBERSHIP_EXPIRY_DATE); // ADD THIS
+        membershipExpiryDate = new MembershipExpiryDate(DEFAULT_MEMBERSHIP_EXPIRY_DATE);
     }
 
     /**

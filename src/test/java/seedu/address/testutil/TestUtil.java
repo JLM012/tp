@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
@@ -51,5 +53,13 @@ public class TestUtil {
      */
     public static Person getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns a date string for n days relative to today in yyyy-MM-dd format.
+     * n can be negative for days in the past.
+     */
+    public static String getDateNDaysRelativeToToday(int n) {
+        return LocalDate.now().plusDays(n).format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 }
