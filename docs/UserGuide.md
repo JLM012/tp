@@ -8,7 +8,7 @@
 
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-[Quick start](#quick-start)
+- [Quick start](#quick-start)
 - [Features](#features)
     - [Adding a person: `add`](#adding-a-person-add)
     - [Listing all persons: `list`](#listing-all-persons-list)
@@ -139,12 +139,12 @@ Finds persons whose attributes contain any of the given keywords.
 Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
 * Only 1 `PREFIX` is allowed in the command
-    * PREFIX `id/` for finding by Membership ID.
-    * PREFIX `n/` for finding by Name.
-    * PREFIX `p/` for finding by Phone number.
-    * PREFIX `e/` for finding by Email.
-    * PREFIX `a/` for finding by Address(Postal Code).
-    * PREFIX `m/` for finding by Membership Expiry Date.
+    * Prefix `id/` finds by Membership ID.
+    * Prefix `n/` finds by Name.
+    * Prefix `p/` finds by Phone number.
+    * Prefix `e/` finds by Email.
+    * Prefix `a/` finds by Address(Postal Code).
+    * Prefix `m/` finds by Membership Expiry Date.
 * At least 1 `KEYWORD` must be provided.
     * The keyword is case-insensitive. e.g `hans` will match `Hans`
     * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
