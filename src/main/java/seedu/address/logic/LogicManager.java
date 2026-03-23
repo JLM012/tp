@@ -8,10 +8,8 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ConfirmClearCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,7 +32,6 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
-    private boolean isAwaitingClearConfirmation = false;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -49,43 +46,9 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        String trimmedContextText = commandText.trim();
-
         CommandResult commandResult;
-
-        if (isAwaitingClearConfirmation) {
-            if (trimmedContextText.equalsIgnoreCase("y")) {
-                isAwaitingClearConfirmation = false;
-                Command confirmCommand = new ConfirmClearCommand();
-                commandResult = confirmCommand.execute(model);
-            } else if (trimmedContextText.equalsIgnoreCase("n")) {
-                isAwaitingClearConfirmation = false;
-                commandResult = new CommandResult(
-                        "Clear command cancelled.",
-                        false,
-                        false,
-                        false,
-                        true,
-                        "Deletion has been cancelled.");
-            } else {
-                commandResult = new CommandResult(
-                        "Please enter y to confirm deletion of each data, or n to cancel.",
-                        false,
-                        false,
-                        false,
-                        false,
-                        "Invalid input.\n\nPlease enter 'y' to confirm or 'n' to cancel."
-                );
-            }
-        } else {
-            Command command = addressBookParser.parseCommand(commandText);
-
-            if (command instanceof ClearCommand) {
-                isAwaitingClearConfirmation = true;
-            }
-
-            commandResult = command.execute(model);
-        }
+        Command command = addressBookParser.parseCommand(commandText);
+        commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());

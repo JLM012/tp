@@ -12,13 +12,16 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "All the data has been deleted successfully.";
-    public static final String MESSAGE_CONFIRMATION = "Please enter y to confirm deletion, or n to cancel.";
+    public static final String MESSAGE_CONFIRMATION = "Opened Warning window.";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
-        return new CommandResult(MESSAGE_CONFIRMATION, false, false, true, false, "Are you sure you want to delete all data?\n\nEnter 'y' to confirm or 'n' to cancel." );
+        return new CommandResult(MESSAGE_CONFIRMATION, false, false, true, false, "Warning!\n" +
+                "This command will clear all contacts.\n" +
+                "Press Y/N keys to confirm.\n\n" +
+                "Alternatively, click the buttons below.\n");
     }
 }

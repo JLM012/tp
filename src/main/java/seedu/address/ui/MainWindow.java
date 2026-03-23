@@ -2,13 +2,24 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
+import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -33,7 +44,13 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+    private CommandBox commandBox;
     private HelpWindow helpWindow;
+    private Stage clearConfirmationStage;
+    private Label clearConfirmationLabel;
+    private Button yesButton;
+    private Button noButton;
+    private boolean isProcessingClearConfirmation;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -119,7 +136,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -149,6 +166,120 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+    }
+
+    private void showClearConfirmationWindow(String message) {
+        if (clearConfirmationStage == null) {
+            clearConfirmationLabel = new Label();
+            clearConfirmationLabel.setWrapText(true);
+
+            yesButton = new Button("Yes");
+            noButton = new Button("No");
+
+            yesButton.setOnAction(event -> handleClearConfirmationYes());
+            noButton.setOnAction(event -> handleClearConfirmationNo());
+
+            HBox buttonBox = new HBox(10, yesButton, noButton);
+            VBox root = new VBox(15, clearConfirmationLabel, buttonBox);
+            root.setPrefWidth(360);
+            root.setPrefHeight(200);
+            root.setStyle("-fx-padding: 20;");
+
+            Scene scene = new Scene(root);
+
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                if (isProcessingClearConfirmation) {
+                    event.consume();
+                    return;
+                }
+
+                if (event.getCode() == KeyCode.Y) {
+                    event.consume();
+                    handleClearConfirmationYes();
+                } else if (event.getCode() == KeyCode.N) {
+                    event.consume();
+                    handleClearConfirmationNo();
+                }
+            });
+
+            scene.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+                String character = event.getCharacter();
+                if ("y".equalsIgnoreCase(character) || "n".equalsIgnoreCase(character)) {
+                    event.consume();
+                }
+            });
+
+            clearConfirmationStage = new Stage();
+            clearConfirmationStage.setTitle("Clear Confirmation");
+            clearConfirmationStage.getIcons().add(
+                    new Image(getClass().getResourceAsStream("/images/warning.png"))
+            );
+            clearConfirmationStage.initOwner(primaryStage);
+            clearConfirmationStage.initModality(Modality.APPLICATION_MODAL);
+            clearConfirmationStage.setResizable(false);
+            clearConfirmationStage.setScene(scene);
+        }
+
+        clearConfirmationLabel.setText(message);
+        yesButton.setDisable(false);
+        noButton.setDisable(false);
+        isProcessingClearConfirmation = false;
+
+        if (!clearConfirmationStage.isShowing()) {
+            commandBox.disableInput();
+            clearConfirmationStage.show();
+        }
+
+        Platform.runLater(() -> {
+            clearConfirmationStage.requestFocus();
+            clearConfirmationLabel.requestFocus();
+        });
+    }
+
+    private void handleClearConfirmationYes() {
+        if (isProcessingClearConfirmation) {
+            return;
+        }
+
+        isProcessingClearConfirmation = true;
+        yesButton.setDisable(true);
+        noButton.setDisable(true);
+
+        try {
+            CommandResult commandResult = logic.execute("confirmclear");
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            clearConfirmationLabel.setText("All data has been deleted successfully.");
+            closeClearConfirmationWindowAfterDelay();
+        } catch (CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            clearConfirmationLabel.setText(e.getMessage());
+            closeClearConfirmationWindowAfterDelay();
+        }
+    }
+
+    private void handleClearConfirmationNo() {
+        if (isProcessingClearConfirmation) {
+            return;
+        }
+
+        isProcessingClearConfirmation = true;
+
+        resultDisplay.setFeedbackToUser("Clear command cancelled.");
+        clearConfirmationLabel.setText("Deletion has been cancelled.");
+        yesButton.setDisable(true);
+        noButton.setDisable(true);
+        closeClearConfirmationWindowAfterDelay();
+    }
+
+    private void closeClearConfirmationWindowAfterDelay() {
+        if (clearConfirmationStage != null && clearConfirmationStage.isShowing()) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            delay.setOnFinished(event -> {
+                clearConfirmationStage.close();
+                commandBox.enableInput();
+            });
+            delay.play();
+        }
     }
 
     /**
@@ -184,6 +315,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowClearConfirmation()) {
+                showClearConfirmationWindow(commandResult.getClearConfirmationMessage());
             }
 
             return commandResult;

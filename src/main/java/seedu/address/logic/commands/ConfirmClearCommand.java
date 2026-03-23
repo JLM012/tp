@@ -9,6 +9,9 @@ import static java.util.Objects.requireNonNull;
  * Clears the address book after confirmation.
  */
 public class ConfirmClearCommand extends Command {
+
+    public static final String COMMAND_WORD = "confirmclear";
+
     public final String MESSAGE_SUCCESS = "All the data has been deleted successfully.";
 
     @Override
