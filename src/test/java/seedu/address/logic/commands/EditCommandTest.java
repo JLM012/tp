@@ -226,7 +226,7 @@ public class EditCommandTest {
         MembershipId membershipId = new MembershipId(MembershipId.MIN_ID);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         EditCommand editCommand = new EditCommand(membershipId, editPersonDescriptor);
-        String expected = EditCommand.class.getCanonicalName() + "{membershipId" + membershipId
+        String expected = EditCommand.class.getCanonicalName() + "{membershipId=" + membershipId
                 + ", editPersonDescriptor="
                 + editPersonDescriptor + "}";
         assertEquals(expected, editCommand.toString());
