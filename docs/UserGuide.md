@@ -6,7 +6,7 @@
 
 # GymContactsPro User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+GymContactsPro is a desktop app for managing gym memberships, designed for gym managers who need **a fast and efficient way to organize member records**. It is optimized for use via a **Command Line Interface (CLI)** while still providing a clear and easy-to-read interface. If you are comfortable **typing commands and prefer keyboard-based workflows**, GymContactsPro can help you manage members, track membership validity, and handle daily membership tasks more quickly and accurately than manual methods or generic tools.
 
 - [Quick start](#quick-start)
 - [Features](#features)
@@ -87,7 +87,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page；you may press the "Esc" key to close this help window.
 
 ![help message](images/helpMessage.png)
 
@@ -183,9 +183,26 @@ Example output:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all data of memberships after your confirmation.
 
 Format: `clear`
+
+* A warning page will pop up.
+* The user is asked to confirm his/her command.
+* “Y” means all the data will be deleted, “N” means clear command will be cancelled. Meanwhile, clicking the corresponding buttons has the same function.
+* After confirmation, the pop up window will give feedback on his/her decision and close soon after.
+
+Example input:
+  ![result for 'clear'](images/clearInput.png)
+
+Example output:
+* If all the data has been successfully deleted, this window will display a message to inform you.\
+  ![result for 'successfully delete'](images/successfullyDelete.png)
+* If you cancel the clear command, this window will also notify you.
+  ![result for 'cancel clear'](images/cancelDelete.png)
+* Meanwhile, the product also shows information of clear results.
+  ![result for 'success inf showed on app'](images/successInf.png)
+  ![result for 'cancel inf showed on app'](images/cancelInf.png)
 
 ### Exiting the program : `exit`
 
