@@ -81,7 +81,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] …​`
+Format: `edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]`
 
 * Edits the person at the specified `MEMBERSHIP_ID`. 
 * At least one of the optional fields must be provided.
