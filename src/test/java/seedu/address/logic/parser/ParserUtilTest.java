@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.MembershipExpiryDate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -21,12 +22,15 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_MEMBERSHIP_EXPIRY_DATE = "2026-02-31";
+    private static final String INVALID_MEMBERSHIP_ID = "abc";
+    private static final String OUT_OF_RANGE_MEMBERSHIP_ID = "99999";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "12345678";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_MEMBERSHIP_EXPIRY_DATE = getDateNDaysRelativeToToday(285);
+    private static final String VALID_MEMBERSHIP_ID = "1001";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -48,6 +52,30 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseMembershipId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMembershipId(null));
+    }
+
+    @Test
+    public void parseMembershipId_invalidFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMembershipId(INVALID_MEMBERSHIP_ID));
+    }
+
+    @Test
+    public void parseMembershipId_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMembershipId(OUT_OF_RANGE_MEMBERSHIP_ID));
+    }
+
+
+    @Test
+    public void parseMembershipId_validInput_success() throws Exception {
+        //no whitespaces
+        assertEquals(new MembershipId(1001), ParserUtil.parseMembershipId(VALID_MEMBERSHIP_ID));
+        //leading and trailing whitespaces
+        assertEquals(new MembershipId(1001), ParserUtil.parseMembershipId("  " + VALID_MEMBERSHIP_ID + "  "));
     }
 
     @Test
