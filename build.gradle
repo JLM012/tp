@@ -20,6 +20,11 @@ checkstyle {
     toolVersion = '11.0.0'
 }
 
+// Assertions are enabled for Week 10
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
