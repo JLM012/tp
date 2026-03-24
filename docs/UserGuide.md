@@ -24,7 +24,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 - [FAQ](#faq)
 - [Known issues](#known-issues)
 - [Command summary](#command-summary)
-- [Notes summary](#notes-about-the-command-format)
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -67,6 +66,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 ### Notes about the command format:
 <box type="info" seamless>
 
+**Notes here apply to all features introduced below (where applicable),and will not be repeated**
 <br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
