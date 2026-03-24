@@ -8,6 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipExpiryDate;
+import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -104,5 +105,27 @@ public class ParserUtil {
             throw new ParseException(MembershipExpiryDate.MESSAGE_CONSTRAINTS);
         }
         return new MembershipExpiryDate(trimmedExpiryDate);
+    }
+
+    /**
+     * Parses {@code String membershipId} into a {@code MembershipId} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code membership ID} is invalid.
+     */
+    public static MembershipId parseMembershipId(String membershipId) throws ParseException {
+        requireNonNull(membershipId);
+        String trimmedMembershipId = membershipId.trim();
+
+        int parsedId;
+        try {
+            parsedId = Integer.parseInt(trimmedMembershipId);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS, nfe);
+        }
+        if (!MembershipId.isValidMembershipId(parsedId)) {
+            throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
+        }
+        return new MembershipId(parsedId);
     }
 }
