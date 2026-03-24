@@ -61,9 +61,28 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Features 
+<br>
 
+### Notes about the command format:
+<box type="info" seamless>
 
+<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [p/PHONE]` can be used as `n/John Doe p/92214584` or as `n/John Doe`.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+  </box>
 
 ### Viewing help : `help`
 
@@ -101,13 +120,19 @@ Edits an existing person in the address book.
 
 Format: `edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]`
 
-* Edits the person at the specified `MEMBERSHIP_ID`. 
-* At least one of the optional fields must be provided.
+* Edits the person at the specified `MEMBERSHIP_ID`.
+* At least one of the optional fields must be provided. 
+* Multiple fields can be provided at once. The order of the fields does not matter.
 * Existing values will be updated to the input values.
 
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+Example input:
+*  `edit 1000 p/91234567 e/johndoe@example.com` <br> <br>
+![command for 'edit 1000 p/91234567 e/johndoe@example.com'](images/editPhoneEmailCommand.png)
+
+Example output:
+* Updates the phone number and email of member at ID 1000 <br> <br>
+![result for 'edit 1000 p/91234567 e/johndoe@example.com'](images/editPhoneEmailResult.png)
 
 
 ### Locating person(s) : `find`
@@ -182,28 +207,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### **Notes about the command format:**
-<box type="info" seamless>
 
-<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-  </box>
 
 
 --------------------------------------------------------------------------------------------------------------------
