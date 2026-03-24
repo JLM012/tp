@@ -171,7 +171,7 @@ Format: `delete id/MEMBERSHIP_ID`
 
   Example input:
 * `delete id/1000` <br>
-  ![result for 'delete id/1000'](images/delete1000)
+  ![result for 'delete id/1000'](images/delete1000.png)
 
 Example output:
 * Returns `Deleted Person: Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40; Membership ID: 1000; Membership Expiry Date: 2026-12-31` <br>
