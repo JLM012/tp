@@ -11,7 +11,8 @@ import java.util.Locale;
  */
 public class Address {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses must not be blank and must end with a valid 6-digit postal code.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Addresses must not be blank and must end with a valid 6-digit postal code.";
 
     /*
      * The first character of the address must not be a whitespace,
