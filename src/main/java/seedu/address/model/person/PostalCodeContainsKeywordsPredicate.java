@@ -14,12 +14,12 @@ public class PostalCodeContainsKeywordsPredicate implements Predicate<Person> {
     public PostalCodeContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
-    
+
     @Override
     public boolean test(Person person) {
         String addressValue = person.getAddress().value;
         String postalCode = addressValue.substring(addressValue.length() - 6);
-        
+
         return keywords.stream()
                 .anyMatch(keyword -> postalCode.equals(keyword));
     }
@@ -29,7 +29,7 @@ public class PostalCodeContainsKeywordsPredicate implements Predicate<Person> {
         if (other == this) {
             return true;
         }
-        
+
         if (!(other instanceof PostalCodeContainsKeywordsPredicate)) {
             return false;
         }
