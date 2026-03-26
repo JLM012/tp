@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.ExpiryDateContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.PostalCodeContainsKeywordsPredicate;
@@ -114,6 +115,19 @@ public class FindCommandTest {
 
         assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE),
                 model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_exactExpiryDateKeyword_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+
+        ExpiryDateContainsKeywordsPredicate predicate =
+                new ExpiryDateContainsKeywordsPredicate(Collections.singletonList("2026-12-31"));
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        assertEquals(Collections.singletonList(BENSON), model.getFilteredPersonList());
     }
 
     @Test
