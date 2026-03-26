@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -54,6 +55,19 @@ public class FindCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_phoneKeywords_returnsFindCommand() {
+        FindCommand expectedFindCommand =
+                new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList("91234567", "98765432")));
+        assertParseSuccess(parser, "find p/91234567 98765432", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_multiplePrefixes_throwsParseException() {
+        assertParseFailure(parser, "find n/Alice p/98765432",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
