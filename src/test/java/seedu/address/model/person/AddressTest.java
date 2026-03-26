@@ -27,19 +27,23 @@ public class AddressTest {
         // invalid addresses
         assertFalse(Address.isValidAddress("")); // empty string
         assertFalse(Address.isValidAddress(" ")); // spaces only
-
+        assertFalse(Address.isValidAddress("Blk 123 12345")); // only 5 digits
+        assertFalse(Address.isValidAddress("Blk 123 1234567")); // 7 digits
+        assertFalse(Address.isValidAddress("Blk 123 123456 A")); // digits not at the end
+        assertFalse(Address.isValidAddress("-")); // one character (no postal code)
+        
         // valid addresses
-        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Address.isValidAddress("-")); // one character
-        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Address.isValidAddress("123456")); // exactly 6 digits only
+        assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355 123456"));
+        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; 654321")); // long address
     }
 
     @Test
     public void equals() {
-        Address address = new Address("Valid Address");
+        Address address = new Address("Valid Address 123456");
 
         // same values -> returns true
-        assertTrue(address.equals(new Address("Valid Address")));
+        assertTrue(address.equals(new Address("Valid Address 123456")));
 
         // same object -> returns true
         assertTrue(address.equals(address));
@@ -51,15 +55,15 @@ public class AddressTest {
         assertFalse(address.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(address.equals(new Address("Other Valid Address")));
+        assertFalse(address.equals(new Address("Other Valid Address 654321")));
 
         // same address with and without commas -> returns true
-        assertTrue(new Address("123 Main St, City").equals(new Address("123 Main St City")));
+        assertTrue(new Address("123 Main St, City 123456").equals(new Address("123 Main St City 123456")));
 
         // same address with different comma placement -> returns true
-        assertTrue(new Address("Blk 456, Den Road, #01-355").equals(new Address("Blk 456 Den Road #01-355")));
+        assertTrue(new Address("Blk 456, Den Road, #01-355, 123456").equals(new Address("Blk 456 Den Road #01-355 123456")));
 
         // same address with extra spaces and commas -> returns true
-        assertTrue(new Address("123  Main St,  City").equals(new Address("123 Main St City")));
+        assertTrue(new Address("123  Main St,  City 756452").equals(new Address("123 Main St City 756452")));
     }
 }
