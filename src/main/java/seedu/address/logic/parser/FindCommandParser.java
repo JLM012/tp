@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBERSHIP_EXPIRY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.ExpiryDateContainsKeywordsPredicate;
 import seedu.address.model.person.MembershipIdContainsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
@@ -35,6 +37,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             PREFIX_ID,
             PREFIX_PHONE,
             PREFIX_ADDRESS,
+            PREFIX_MEMBERSHIP_EXPIRY_DATE,
             PREFIX_EMAIL
         };
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPrefixes);
@@ -76,8 +79,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new PostalCodeContainsKeywordsPredicate(keywordList));
         case "id/":
             return new FindCommand(new MembershipIdContainsPredicate(keywordList));
-        // case "m/":
-        //     return new FindCommand(new ExpiryDateContainsKeywordsPredicate(keywordList));
+        case "m/":
+            return new FindCommand(new ExpiryDateContainsKeywordsPredicate(keywordList));
         default:
             throw new ParseException("Find by this prefix is not yet supported.");
         }
