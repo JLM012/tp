@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.PostalCodeContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -69,6 +70,17 @@ public class FindCommandParserTest {
     public void parse_multiplePrefixes_throwsParseException() {
         assertParseFailure(parser, "find n/Alice p/98765432",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_postalCodeKeywords_returnsFindCommand() {
+        FindCommand expectedFindCommandSingle =
+                new FindCommand(new PostalCodeContainsKeywordsPredicate(Arrays.asList("123456")));
+        assertParseSuccess(parser, "find a/123456", expectedFindCommandSingle);
+
+        FindCommand expectedFindCommandMultiple =
+                new FindCommand(new PostalCodeContainsKeywordsPredicate(Arrays.asList("123456", "654321")));
+        assertParseSuccess(parser, "find a/123456 654321", expectedFindCommandMultiple);
     }
 
     @Test
