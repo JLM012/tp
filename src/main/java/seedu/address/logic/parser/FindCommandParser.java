@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -70,7 +70,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         // case "e/":
         //     return new FindCommand(new EmailContainsKeywordsPredicate(keywordList));
         case "a/":
-             return new FindCommand(new PostalCodeContainsKeywordsPredicate(keywordList));
+            return new FindCommand(new PostalCodeContainsKeywordsPredicate(keywordList));
         case "id/":
             return new FindCommand(new MembershipIdContainsPredicate(keywordList));
         // case "m/":
