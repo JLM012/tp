@@ -75,4 +75,26 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Throws a {@code ParseException} if not exactly one of the prefixes given in {@code prefixes}
+     * is present among the arguments. Returns the used prefix if exactly one is present.
+     * @param usageMessage the usage message to show in the exception
+     */
+    public Prefix verifyExactlyOnePrefixPresentFor(String usageMessage, Prefix... prefixes) throws ParseException {
+        Prefix usedPrefix = null;
+        for (Prefix prefix : prefixes) {
+            if (getValue(prefix).isPresent()) {
+                // More than one prefix detected
+                if (usedPrefix != null) {
+                    throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, usageMessage));
+                }
+                usedPrefix = prefix;
+            }
+        }
+        if (usedPrefix == null) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, usageMessage));
+        }
+        return usedPrefix;
+    }
 }
