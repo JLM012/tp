@@ -1,4 +1,5 @@
 [![Java CI](https://github.com/AY2526S2-CS2103T-W08-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S2-CS2103T-W08-4/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2526S2-CS2103T-W08-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2526S2-CS2103T-W08-4/tp)
 
 ![Ui](docs/images/Ui.png)
 
@@ -6,9 +7,10 @@
 
 **GymContactsPro** is a desktop application designed for gym managers who need an efficient way to organize and manage gym members.
 
-It is optimized for use via a **Command Line Interface (CLI)** while still providing a clean and structured display using **JavaFX**.
+It is optimized for users who prefer typing commands rather than clicking through menus and buttons.<br>
+Although it provides a graphical user interface (GUI), interactions are command-based and entered through a built-in input box.
 
-This makes it ideal for users who can type quickly and prefer keyboard-based interaction over mouse-heavy workflows.
+This design makes GymContactsPro ideal for users who can type quickly and prefer keyboard-based workflows over mouse-heavy interactions.
 
 ## Target Users
 
@@ -16,9 +18,11 @@ GymContactsPro is built for gym managers who need a fast, reliable way to:
 - Add new gym members
 - View all registered members
 - Delete members
-- Track membership validity
+- Edit member details
+- Find specific members
+- Sort members by different attributes
 
-Our users are comfortable with CLI commands and value speed and efficiency in their daily operations.
+Our users are comfortable with command line interface (CLI) commands and value speed and efficiency in their daily operations.
 
 ## Value Proposition
 
@@ -26,18 +30,18 @@ Managing gym memberships manually or using generic tools can be slow and error-p
 
 GymContactsPro provides:
 
-- Fast member management through CLI commands
-- Clear visual presentation using JavaFX
+- Fast member management through command-based input
 - Efficient tracking of valid and expired memberships
 - A structured system tailored specifically for gym operations
+- Clear visual presentation using JavaFX
 
 ## Documentation & Product Website
 
-For detailed documentation and to view the GymContactsPro Product Website:
+To view the GymContactsPro product website and detailed documentation:
 
+- [**GymContactsPro Product Website**](https://ay2526s2-cs2103t-w08-4.github.io/tp/)
 - [**User Guide**](https://ay2526s2-cs2103t-w08-4.github.io/tp/UserGuide.html)
 - [**Developer Guide**](https://ay2526s2-cs2103t-w08-4.github.io/tp/DeveloperGuide.html)
-- [**GymContactsPro Product Website**](https://ay2526s2-cs2103t-w08-4.github.io/tp/)
 
 ## Acknowledgements
 

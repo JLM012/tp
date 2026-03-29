@@ -13,7 +13,10 @@ title: ""
 **GymContactsPro is a desktop application that helps gym managers efficiently manage and organize their members.**
 
 It is optimized for users who prefer typing commands rather than clicking through menus and buttons.<br>
-While a graphical user interface (GUI) is available, most interactions are performed via a Command Line Interface (CLI), enabling faster and more efficient workflows.
+Although it provides a graphical user interface (GUI), interactions are command-based and entered through a built-in input box.
+
+This design makes GymContactsPro ideal for users who can type quickly and prefer keyboard-based workflows over mouse-heavy interactions.
+
 
 ---
 
@@ -23,7 +26,7 @@ While a graphical user interface (GUI) is available, most interactions are perfo
 
 ---
 
-### Acknowledgements
+### Acknowledgements (Libraries Used)
 - [JavaFX](https://openjfx.io/)
 - [Jackson](https://github.com/FasterXML/jackson)
 - [JUnit5](https://github.com/junit-team/junit5)
