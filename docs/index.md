@@ -1,21 +1,29 @@
 ---
-  layout: default.md
-  title: ""
+layout: default.md
+title: ""
 ---
 
-# AddressBook Level-3
+# GymContactsPro
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/AY2526S2-CS2103T-W08-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S2-CS2103T-W08-4/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2526S2-CS2103T-W08-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2526S2-CS2103T-W08-4/tp)
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**GymContactsPro is a desktop application that helps gym managers efficiently manage and organize their members.**
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+It is optimized for users who prefer typing commands rather than clicking through menus and buttons.<br>
+While a graphical user interface (GUI) is available, most interactions are performed via a Command Line Interface (CLI), enabling faster and more efficient workflows.
 
+---
 
-**Acknowledgements**
+### Getting Started
+- New user? Check out the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+- Want to contribute or understand the design? Visit the [**Developer Guide**](DeveloperGuide.html).
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+---
+
+### Acknowledgements
+- [JavaFX](https://openjfx.io/)
+- [Jackson](https://github.com/FasterXML/jackson)
+- [JUnit5](https://github.com/junit-team/junit5)
