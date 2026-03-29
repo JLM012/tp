@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.ListUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
@@ -42,7 +44,15 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
+        List<Person> beforeFind = ListUtil.copyDisplayedList(model);
         model.updateFilteredPersonList(predicate);
+        List<Person> afterFind = ListUtil.copyDisplayedList(model);
+
+        if (ListUtil.isSameList(beforeFind, afterFind)) {
+            return new CommandResult(Messages.MESSAGE_NO_CHANGE_IN_DISPLAYED_LIST);
+        }
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
