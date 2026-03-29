@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_NO_CHANGE_IN_DISPLAYED_LIST;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -106,9 +107,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_exactPostalCodeKeyword_multiplePersonsFound() {
-        model.updateFilteredPersonList(p -> false);
-
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        String expectedMessage = MESSAGE_NO_CHANGE_IN_DISPLAYED_LIST;
 
         PostalCodeContainsKeywordsPredicate predicate =
                 new PostalCodeContainsKeywordsPredicate(Collections.singletonList("123456"));
@@ -143,6 +142,15 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(ALICE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_noChangeInList_returnsNoChangeMessage() {
+        String expectedMessage = MESSAGE_NO_CHANGE_IN_DISPLAYED_LIST;
+        NameContainsKeywordsPredicate predicate = preparePredicate("Alice Benson Carl Daniel Elle Fiona George");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
