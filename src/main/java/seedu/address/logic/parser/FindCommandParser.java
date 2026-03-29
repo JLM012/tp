@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
@@ -41,6 +42,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             PREFIX_EMAIL
         };
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPrefixes);
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
 
         // Use utility method to check for duplicate identical prefixes
         argMultimap.verifyNoDuplicatePrefixesFor(allPrefixes);
