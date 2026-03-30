@@ -308,10 +308,7 @@ Delete all registered gym members after confirmation.
 
 **Note:**
 * A warning page will pop up to confirm the deletion of all data.
-* This command is irreversible. Please be careful when using it.
-* The user is asked to confirm his/her command.
-* “Y” means all the data will be deleted, “N” means clear command will be cancelled. Meanwhile, clicking the corresponding buttons has the same function.
-* After confirmation, the pop up window will give feedback on his/her decision and close soon after.
+
 </box>
 
 <box type="tip" seamless>
