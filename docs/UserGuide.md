@@ -32,6 +32,8 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
