@@ -111,7 +111,7 @@ Adds a new gym member to the list of registered gym members.
 ![command for 'add'](images/addMemberCommand.png)
   
 **Example output:**
-* Adds `Alfred Goh` with his personal details to the list of registered gym members, together with a `New person Added: ...` success message.
+* Adds `Alfred Goh` with his personal details to the list of registered gym members, together with a `New person added: ...` success message.
 ![result for 'add'](images/addMemberResult.png)
 
 ---
@@ -152,7 +152,7 @@ Deletes the specified member(s) from the list of registered gym members.
 
 **Example input:**
 * `delete id/1000` <br>
-  ![result for 'delete id/1000'](images/delete1000Command.png)
+  ![result for 'delete id/1000'](images/deleteCommand.png)
 
 **Example output:**
 * Deletes the member with `MEMBERSHIP_ID` of `1000` from the list of registered gym members, together with a `Deleted Person: ...` success message.

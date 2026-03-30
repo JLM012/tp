@@ -25,7 +25,7 @@ public class DeleteCommand extends Command {
         + "Parameters: id/MEMBERSHIP_ID (must be a 4-digit integer from 1000 to 9999)\n"
         + "Example: " + COMMAND_WORD + " id/1042";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person: %1$s";
 
     private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
 

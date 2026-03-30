@@ -35,7 +35,7 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the membership ID of the person.\n "
+            + "by the membership ID of the person.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: MEMBERSHIP_ID (must be a 4-digit positive integer from "
             + MembershipId.MIN_ID + " to " + MembershipId.MAX_ID + ") "
