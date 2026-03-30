@@ -442,7 +442,7 @@ Action     | Format, Examples
 **Delete** | `delete id/MEMBERSHIP_ID`<br> e.g., `delete id/1021`
 **Edit**   | `edit id/MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]`<br> e.g.,`edit 1016 n/James Lee e/jameslee@example.com`
 **Find**   | `find PREFIX/KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/James Max`
-**Sort**   | `sort PREFIX/ORDER `<br> e.g., `sort n/desc`<br> or <br> e.g., `sort none`  
-**Help**   | `help`
+**Sort**   | `sort PREFIX/ORDER `<br> e.g., `sort n/desc`<br> or <br> e.g., `sort none`
 **Clear**  | `clear`
+**Help**   | `help`
 **Exit**   | `exit`
