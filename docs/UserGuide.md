@@ -97,7 +97,7 @@ Notes here apply to all features introduced below (where applicable), and will n
 
 ### Adding a Member : `add`
 
-Adds a person to the list of registered gym members.
+Adds a new gym member to the list of registered gym members.
 
 **Format:** `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/EXPIRY_DATE`
 
@@ -108,38 +108,55 @@ Adds a person to the list of registered gym members.
 
 **Example input:**
 * `add n/Alfred Goh p/88574393 a/Blk 886 Waterloo Street, #03-514, 736886 e/gohfred@gmail.com m/2028-01-01`
-![Add Member](images/addMemberCommand.png)
+![command for 'add'](images/addMemberCommand.png)
   
 **Example output:**
-* Adds the member to the list of registered gym members and returns `New Person Added: ...` success message.
-* ![Add person](images/addMemberResult.png)
+* Adds `Alfred Goh` with his personal details to the list of registered gym members, together with a `New person Added: ...` success message.
+![result for 'add'](images/addMemberResult.png)
 
 ---
 
 ### Listing All Members : `list`
 
-Shows a list of all persons in the address book.
+Displays a list of all registered gym members.
 
 **Format:** `list`
+
+**Example input:**
+* `list` 
+![command for 'list'](images/listCommand.png)
+
+**Example output:**
+* Displays a list of all registered gym members.
+![result for 'list'](images/listResult.png)
 
 ---
 
 ### Deleting Member(s) : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified member(s) from the list of registered gym members.
 
-**Format:** `delete id/MEMBERSHIP_ID`
+**Format:** `delete id/MEMBERSHIP_ID [MORE_MEMBERSHIP_IDS]`
+
+<box type="info" seamless>
 
 * Deletes the person with the specified `MEMBERSHIP_ID`.
 * The MEMBERSHIP_ID refers to the Membership ID number shown in the displayed person list.
 
-  Example input:
-* `delete id/1000` <br>
-  ![result for 'delete id/1000'](images/delete1000.png)
+</box>
 
-Example output:
-* Returns `Deleted Person: Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40; Membership ID: 1000; Membership Expiry Date: 2026-12-31` <br>
-  ![result for 'delete id/1000'](images/delete1000result.png)
+<box type="tip" seamless>
+
+**Tip:**
+</box>
+
+**Example input:**
+* `delete id/1000` <br>
+  ![result for 'delete id/1000'](images/delete1000Command.png)
+
+**Example output:**
+* Deletes the member with `MEMBERSHIP_ID` of `1000` from the list of registered gym members, together with a `Deleted Person: ...` success message.
+  ![result for 'delete id/1000'](images/delete1000Results.png)
 
 ---
 
@@ -149,11 +166,19 @@ Edits an existing person in the address book.
 
 **Format:** `edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]`
 
+<box type="info" seamless>
+
 * Edits the person at the specified `MEMBERSHIP_ID`.
 * At least one of the optional fields must be provided.
 * Multiple fields can be provided at once. The order of the fields does not matter.
 * Existing values will be updated to the input values.
 
+</box>
+
+<box type="tip" seamless>
+
+**Tip:**
+</box>
 
 **Example input:**
 *  `edit 1000 p/91234567 e/johndoe@example.com` <br> <br>
@@ -167,7 +192,7 @@ Edits an existing person in the address book.
 
 ### Finding Member(s) : `find`
 
-Find member(s) whose attributes contain any of the entered keywords and displays them as a list.
+Find member(s) whose attributes matches any of the entered keywords and displays them in a list.
 
 **Format:** `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
