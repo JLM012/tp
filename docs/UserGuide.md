@@ -45,7 +45,7 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar GymContactsPro.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Ui.png)<br><br>
 Alternatively you could simply double click GymContactsPro.jar file.
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -100,6 +100,7 @@ Adds a new gym member to the list of registered gym members.
 **Format:** `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/EXPIRY_DATE`
 
 <box type="info" seamless>
+**Note:**
 
 </box>
 <box type="tip" seamless>
@@ -112,23 +113,33 @@ Adds a new gym member to the list of registered gym members.
 ![command for 'add'](images/addMemberCommand.png)
   
 **Example output:**
-* Adds `Alfred Goh` with his personal details to the list of registered gym members, together with a `New person added: ...` success message.<br><br>
+* Added `Alfred Goh` with his personal details to the list of registered gym members, together with a `New person added: ...` success message.<br><br>
 ![result for 'add'](images/addMemberResult.png)
 
 ---
 
 ### Listing All Members : `list`
 
-Displays a list of all registered gym members.
+Displays the list of all registered gym members.
 
 **Format:** `list`
+
+<box type="info" seamless>
+**Note:**
+
+</box>
+
+<box type="tip" seamless>
+
+**Tip:**
+</box>
 
 **Example input:**
 * `list`<br><br>
 ![command for 'list'](images/listCommand.png)
 
 **Example output:**
-* Displays a list of all registered gym members.<br><br>
+* Displays the list of all registered gym members.<br><br>
 ![result for 'list'](images/listResult.png)
 
 ---
@@ -140,6 +151,7 @@ Deletes the specified member(s) from the list of registered gym members.
 **Format:** `delete id/MEMBERSHIP_ID [MORE_MEMBERSHIP_IDS]`
 
 <box type="info" seamless>
+**Note:**
 
 * Deletes the person with the specified `MEMBERSHIP_ID`.
 * The MEMBERSHIP_ID refers to the Membership ID number shown in the displayed person list.
@@ -156,7 +168,7 @@ Deletes the specified member(s) from the list of registered gym members.
   ![result for 'delete id/1000'](images/deleteCommand.png)
 
 **Example output:**
-* Deletes the member with `MEMBERSHIP_ID` of `1000` from the list of registered gym members, together with a `Deleted Person: ...` success message.<br><br>
+* Deleted the member with `MEMBERSHIP_ID` of `1000` from the list of registered gym members, together with a `Deleted Person: ...` success message.<br><br>
   ![result for 'delete id/1000'](images/deleteResult.png)
 
 ---
@@ -169,6 +181,7 @@ Edits an existing member among the registered gym members.
 
 <box type="info" seamless>
 
+**Note:**
 * Edits the person at the specified `MEMBERSHIP_ID`.
 * At least one of the optional fields must be provided.
 * Multiple fields can be provided at once. The order of the fields does not matter.
@@ -186,20 +199,20 @@ Edits an existing member among the registered gym members.
 ![command for 'edit 1000 p/91234567 e/johndoe@example.com'](images/editPhoneEmailCommand.png)
 
 **Example output:**
-* Updates the phone number and email of member at ID 1000.<br><br>
+* Updated the `PHONE` and `EMAIL` of member with `MEMBERSHIP_ID` of `1000`, together with a `Edited person: ...` success message.<br><br>
 ![result for 'edit 1000 p/91234567 e/johndoe@example.com'](images/editPhoneEmailResult.png)
 
 ---
 
 ### Finding Member(s) : `find`
 
-Find member(s) whose attributes matches any of the entered keywords.
+Finds member(s) matching any of the given keywords.
 
 **Format:** `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
 <box type="info" seamless>
 
-**Notes:** 
+**Note:** 
 * Only 1 `PREFIX` is allowed in the command
     * Prefix `id/` finds by Membership ID.
     * Prefix `n/` finds by Name.
@@ -218,7 +231,7 @@ Find member(s) whose attributes matches any of the entered keywords.
 
 **Tip:** Finding by name doesn't require full names.
 * Any keyword matching part of a member’s first or last name will return that member.<br>
-  e.g. `Max` will return `Max Lim`
+  e.g. `Max` will match and find `Max Lim`
 
 </box>
 
@@ -227,20 +240,20 @@ Find member(s) whose attributes matches any of the entered keywords.
   ![command for 'find n/bernice'](images/findBerniceCommand.png)
 
 **Example output:**
-* Returns `Bernice Yu` displayed in a list.<br><br>
+* Displayed finding `Bernice Yu` in a list, together with a `(No. of) persons listed` success message.<br><br>
   ![result for 'find n/bernice'](images/findBerniceResult.png)
 
 ---
 
 ### Sorting Members : `sort`
 
-Activate or De-activate a sorting order applied to all displayed list of members.
+Activate or De-activate a sorting order.
 
 **Format:** `sort PREFIX/ORDER` OR `sort none`
 
 <box type="info" seamless>
 
-**Notes:**
+**Note:**
 * Only 1 `PREFIX` is allowed in the command
   * Prefix `id/` sorts by Membership ID.
   * Prefix `n/` sorts by Name.
@@ -267,7 +280,7 @@ applied across commands unless "turned off" by `sort none`.
   ![command for 'sort n/desc'](images/sortNameDescCommand.png)
 
 **Example output:**
-* Names of members are now sorted in descending order.<br><br>
+* sorted `NAME` of members in `desc` order.<br><br>
   ![result for 'sort n/desc'](images/sortNameDescResult.png)
 
 ---
@@ -277,6 +290,19 @@ applied across commands unless "turned off" by `sort none`.
 Delete all members from storage after confirmation.
 
 **Format:** `clear`
+
+<box type="info" seamless>
+
+**Note:**
+* A warning page will pop up.
+* The user is asked to confirm his/her command.
+* “Y” means all the data will be deleted, “N” means clear command will be cancelled. Meanwhile, clicking the corresponding buttons has the same function.
+* After confirmation, the pop up window will give feedback on his/her decision and close soon after.
+</box>
+
+<box type="tip" seamless>
+
+</box>
 
 * A warning page will pop up.
 * The user is asked to confirm his/her command.
