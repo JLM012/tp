@@ -331,9 +331,10 @@ Delete all registered gym members after confirmation.
 ![command for 'clear'](images/clearCommand.png)
 
 **Example output:**
-* A warning page pops up to ask for confirmation.<br><br>
+* A warning window pops up to ask for confirmation.<br><br>
 ![result for 'clear'](images/clearConfirmation.png)<br><br>
-* After confirmation, all data will be deleted, together with a `All data has been deleted successfully` success message.<br><br>
+* After confirmation, all data will be deleted, together with a `All data has been deleted successfully` success message.<br>
+The warning window will close after a short delay.<br><br>
 ![result for 'successfully delete'](images/clearSuccess.png)
 
 
