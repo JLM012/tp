@@ -51,6 +51,7 @@ public class MainWindow extends UiPart<Stage> {
     private Button yesButton;
     private Button noButton;
     private boolean isProcessingClearConfirmation;
+    private boolean isManualCloseClearConfirmation;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -224,6 +225,15 @@ public class MainWindow extends UiPart<Stage> {
             clearConfirmationStage.initModality(Modality.APPLICATION_MODAL);
             clearConfirmationStage.setResizable(false);
             clearConfirmationStage.setScene(scene);
+
+            clearConfirmationStage.setOnHidden(event -> {
+                commandBox.enableInput();
+                isProcessingClearConfirmation = false;
+
+                if (isManualCloseClearConfirmation) {
+                    resultDisplay.setFeedbackToUser("Closed warning window.");
+                }
+            });
         }
 
         clearConfirmationLabel.setText(message);
@@ -232,6 +242,7 @@ public class MainWindow extends UiPart<Stage> {
         yesButton.setDisable(false);
         noButton.setDisable(false);
         isProcessingClearConfirmation = false;
+        isManualCloseClearConfirmation = true;
 
         if (!clearConfirmationStage.isShowing()) {
             commandBox.disableInput();
@@ -255,6 +266,7 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         isProcessingClearConfirmation = true;
+        isManualCloseClearConfirmation = false;
         yesButton.setDisable(true);
         noButton.setDisable(true);
         yesButton.setVisible(false);
@@ -283,6 +295,7 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         isProcessingClearConfirmation = true;
+        isManualCloseClearConfirmation = false;
 
         resultDisplay.setFeedbackToUser("Clear command cancelled.");
         clearConfirmationLabel.setText("Deletion has been cancelled.");
