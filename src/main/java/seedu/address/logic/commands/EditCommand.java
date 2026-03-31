@@ -51,6 +51,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_NO_CHANGES = "No changes made — the provided fields are identical to the current values.";
+
 
     private static final Logger logger = LogsCenter.getLogger(EditCommand.class);
 
@@ -92,6 +94,10 @@ public class EditCommand extends Command {
         }
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        if (personToEdit.equals(editedPerson)) {
+            return new CommandResult(MESSAGE_NO_CHANGES);
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             logger.warning("Duplicate person detected while editing Membership ID: " + membershipId
