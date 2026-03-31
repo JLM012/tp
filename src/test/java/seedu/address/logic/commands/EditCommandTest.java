@@ -38,7 +38,7 @@ import seedu.address.testutil.PersonBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-   
+    
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         MembershipId targetId = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getMembershipId();
@@ -47,7 +47,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-
+    
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
