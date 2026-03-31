@@ -6,20 +6,15 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic as LogicPackage {
 
+package "Parser Classes" as ParserClasses{
+}
+Class XYZCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+
+
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
-
-package "Parser Classes" as ParserClasses {
-    Class AddressBookParser
-    Class XYZCommandParser
-}
-
-package "Command Classes" as CommandClasses {
-    Class XYZCommand
-    Class CommandResult
-    Class "{abstract}\nCommand" as Command
-}
-
 }
 
 package Model {
@@ -33,9 +28,8 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
-LogicManager -right-> AddressBookParser
-AddressBookParser ..> XYZCommandParser : <<create>>
-XYZCommandParser ..> XYZCommand : <<create>>
+LogicManager -right->"1" ParserClasses
+ParserClasses ..> XYZCommand : <<create>>
 
 XYZCommand -up-|> Command
 LogicManager .left.> Command : <<call>>
@@ -45,25 +39,7 @@ LogicManager --> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
-
-note right of XYZCommand
-    XYZCommand =
-    AddCommand,
-    DeleteCommand,
-    FindCommand,
-    ListCommand,
-    RenewMembershipCommand,
-    etc.
-end note
-
-note right of XYZCommandParser
-    XYZCommandParser =
-    AddCommandParser,
-    DeleteCommandParser,
-    FindCommandParser,
-    RenewMembershipCommandParser,
-    etc.
-end note
+note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
