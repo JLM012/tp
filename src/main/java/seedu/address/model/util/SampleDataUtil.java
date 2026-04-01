@@ -17,22 +17,22 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), new MembershipId(MembershipId.MIN_ID),
+                new Address("Blk 30 Geylang Street 29, #06-40 388030"), new MembershipId(MembershipId.MIN_ID),
                 new MembershipExpiryDate("2026-12-31")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new MembershipId(MembershipId.MIN_ID + 1),
-                new MembershipExpiryDate("2026-11-30")),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18 555030"),
+                new MembershipId(MembershipId.MIN_ID + 1), new MembershipExpiryDate("2026-11-30")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new MembershipId(MembershipId.MIN_ID + 2),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04 560011"), new MembershipId(MembershipId.MIN_ID + 2),
                 new MembershipExpiryDate("2026-10-31")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new MembershipId(MembershipId.MIN_ID + 3),
-                new MembershipExpiryDate("2026-09-30")),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43 554436"),
+                new MembershipId(MembershipId.MIN_ID + 3), new MembershipExpiryDate("2026-09-30")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), new MembershipId(MembershipId.MIN_ID + 4),
+                new Address("Blk 47 Tampines Street 20, #17-35 520047"), new MembershipId(MembershipId.MIN_ID + 4),
                 new MembershipExpiryDate("2026-08-31")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), new MembershipId(MembershipId.MIN_ID + 5),
+                new Address("Blk 45 Aljunied Street 85, #11-31 380045"), new MembershipId(MembershipId.MIN_ID + 5),
                 new MembershipExpiryDate("2026-07-31"))
         };
     }
