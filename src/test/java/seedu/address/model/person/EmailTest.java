@@ -8,6 +8,16 @@ import org.junit.jupiter.api.Test;
 
 public class EmailTest {
 
+    private static final String LOCAL_PART_64 = "a".repeat(64);
+    private static final String LOCAL_PART_65 = "a".repeat(65);
+
+    private static final String DOMAIN_LABEL_63 = "b".repeat(63);
+    private static final String DOMAIN_LABEL_64 = "b".repeat(64);
+
+    private static final String EMAIL_MAX_LENGTH = LOCAL_PART_64 + "@" + DOMAIN_LABEL_63 + ".com";
+
+    private static final String EMAIL_TOO_LONG = LOCAL_PART_64 + "@" + DOMAIN_LABEL_64 + ".com";
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Email(null));
@@ -66,6 +76,18 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
+
+        // Whole email length limits
+        assertTrue(Email.isValidEmail(EMAIL_MAX_LENGTH));
+        assertFalse(Email.isValidEmail(EMAIL_TOO_LONG));
+
+        // Local part length limits
+        assertTrue(Email.isValidEmail(LOCAL_PART_64 + "@example.com"));
+        assertFalse(Email.isValidEmail(LOCAL_PART_65 + "@example.com"));
+
+        // Domain label length limits
+        assertTrue(Email.isValidEmail("test@" + DOMAIN_LABEL_63 + ".com"));
+        assertFalse(Email.isValidEmail("test@" + DOMAIN_LABEL_64 + ".com"));
     }
 
     @Test
@@ -90,5 +112,29 @@ public class EmailTest {
 
         // different values -> returns false
         assertFalse(email.equals(new Email("other.valid@email.com")));
+    }
+
+    @Test
+    public void hashCode_sameValue_returnsSameHashCode() {
+        Email email1 = new Email("valid@email.com");
+        Email email2 = new Email("VALID@EMAIL.COM");
+
+        assertTrue(email1.equals(email2));
+        assertTrue(email1.hashCode() == email2.hashCode());
+    }
+
+    @Test
+    public void hashCode_sameObject_returnsSameHashCode() {
+        Email email = new Email("valid@email.com");
+
+        assertTrue(email.hashCode() == email.hashCode());
+    }
+
+    @Test
+    public void hashCode_differentValues_returnsDifferentHashCode() {
+        Email email1 = new Email("valid@email.com");
+        Email email2 = new Email("other@email.com");
+
+        assertFalse(email1.hashCode() == email2.hashCode());
     }
 }
