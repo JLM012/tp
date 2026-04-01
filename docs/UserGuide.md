@@ -406,7 +406,7 @@ There is no need to save manually.
 <box type="info" seamless>
 
 **Note:**
-* Data is saved to `[JAR file location]/data/addressbook.json` automatically after each command that modifies data.
+* Data is saved to `[JAR file location]/data/addressbook.json`
 * Saving is typically very fast and completes within milliseconds.
 
 </box>
