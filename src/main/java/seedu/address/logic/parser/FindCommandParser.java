@@ -42,6 +42,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         };
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPrefixes);
 
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
         // Use utility method to check for duplicate identical prefixes
         argMultimap.verifyNoDuplicatePrefixesFor(allPrefixes);
 
