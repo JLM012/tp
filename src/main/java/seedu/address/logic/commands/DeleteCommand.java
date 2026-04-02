@@ -25,8 +25,7 @@ public class DeleteCommand extends Command {
         + ": Deletes one or more persons identified by their Membership IDs.\n"
         + "Parameters: id/MEMBERSHIP_ID [MORE_MEMBERSHIP_IDs]...\n"
         + "(must be 4-digit integers from 1000 to 9999, space-separated after id/)\n"
-        + "Example (single): " + COMMAND_WORD + " id/1042\n"
-        + "Example (multiple): " + COMMAND_WORD + " id/1042 1043 1044";
+        + "Example: " + COMMAND_WORD + " id/1042 1043 1044";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person(s):\n%1$s";
 
@@ -34,19 +33,7 @@ public class DeleteCommand extends Command {
 
     private final List<MembershipId> targetIds;
 
-    /**
-     * Creates a DeleteCommand to delete a single person with the given {@code MembershipId}.
-     */
-    public DeleteCommand(MembershipId targetId) {
-        requireNonNull(targetId);
-        this.targetIds = List.of(targetId);
-    }
-
-    /**
-     * Creates a DeleteCommand to delete multiple persons with the given {@code MembershipId}s.
-     */
     public DeleteCommand(List<MembershipId> targetIds) {
-        requireNonNull(targetIds);
         this.targetIds = targetIds;
     }
 
