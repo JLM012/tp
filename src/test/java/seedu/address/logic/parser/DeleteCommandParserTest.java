@@ -1,74 +1,118 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.commands;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.MembershipId;
+import seedu.address.model.person.Person;
 
 /**
- * As we are only doing white-box testing, our test cases do not cover path variations
- * outside of the DeleteCommand code. For example, inputs "id/1000" and "id/1000 abc" take the
- * same path through the DeleteCommand, and therefore we test only one of them.
- * The path variation for those two cases occur inside the ParserUtil, and
- * therefore should be covered by the ParserUtilTest.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code DeleteCommand}.
  */
-public class DeleteCommandParserTest {
+public class DeleteCommandTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void parse_singleValidArg_returnsDeleteCommand() {
-        assertParseSuccess(parser, " id/1000",
-            new DeleteCommand(new MembershipId(1000)));
+    public void execute_singleValidMembershipId_success() {
+        Person personToDelete = model.getAddressBook().getPersonList().get(0);
+        MembershipId targetId = personToDelete.getMembershipId();
+        DeleteCommand deleteCommand = new DeleteCommand(List.of(targetId));
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+            Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void parse_multipleValidArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, " id/1000 1001",
-            new DeleteCommand(List.of(new MembershipId(1000), new MembershipId(1001))));
+    public void execute_multipleValidMembershipIds_success() {
+        Person firstPerson = model.getAddressBook().getPersonList().get(0);
+        Person secondPerson = model.getAddressBook().getPersonList().get(1);
+        DeleteCommand deleteCommand = new DeleteCommand(
+            List.of(firstPerson.getMembershipId(), secondPerson.getMembershipId()));
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+            Messages.format(firstPerson) + "\n" + Messages.format(secondPerson));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(firstPerson);
+        expectedModel.deletePerson(secondPerson);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        // no prefix
-        assertParseFailure(parser, "1000",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        // invalid id format should be rejected
-        assertParseFailure(parser, " id/+1000", MembershipId.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, " id/0001000", MembershipId.MESSAGE_CONSTRAINTS);
+    public void execute_invalidMembershipId_throwsCommandException() {
+        MembershipId nonExistentId = new MembershipId(MembershipId.MAX_ID);
+        DeleteCommand deleteCommand = new DeleteCommand(List.of(nonExistentId));
+
+        assertCommandFailure(deleteCommand, model,
+            String.format(Messages.MESSAGE_PERSON_NOT_FOUND, nonExistentId));
     }
 
     @Test
-    public void parse_multipleIdsOneInvalid_throwsParseException() {
-        assertParseFailure(parser, " id/1000 +1001", MembershipId.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, " id/1000 01001", MembershipId.MESSAGE_CONSTRAINTS);
-    }
+    public void execute_oneValidOneInvalidMembershipId_throwsCommandException() {
+        Person existingPerson = model.getAddressBook().getPersonList().get(0);
+        MembershipId nonExistentId = new MembershipId(MembershipId.MAX_ID);
+        DeleteCommand deleteCommand = new DeleteCommand(
+            List.of(existingPerson.getMembershipId(), nonExistentId));
 
-
-    @Test
-    public void parse_invalidIdFormat_throwsParseException() {
-        // non-integer after prefix
-        assertParseFailure(parser, " id/abc",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_outOfRangeId_throwsParseException() {
-        // valid integer but out of 1000-9999 range
-        assertParseFailure(parser, " id/999", MembershipId.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, " id/10000", MembershipId.MESSAGE_CONSTRAINTS);
+        // Should fail fast — no deletions if any ID is invalid
+        assertCommandFailure(deleteCommand, model,
+            String.format(Messages.MESSAGE_PERSON_NOT_FOUND, nonExistentId));
     }
 
     @Test
-    public void parse_missingPrefix_throwsParseException() {
-        // empty input
-        assertParseFailure(parser, "",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    public void equals() {
+        MembershipId firstId = new MembershipId(MembershipId.MIN_ID);
+        MembershipId secondId = new MembershipId(MembershipId.MIN_ID + 1);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(List.of(firstId));
+        DeleteCommand deleteSecondCommand = new DeleteCommand(List.of(secondId));
+
+        // same object -> returns true
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+
+        // same values -> returns true
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(List.of(firstId));
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteFirstCommand.equals(null));
+
+        // different id -> returns false
+        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+
+        // multiple ids -> returns true if same list
+        DeleteCommand deleteMultiCommand1 = new DeleteCommand(List.of(firstId, secondId));
+        DeleteCommand deleteMultiCommand2 = new DeleteCommand(List.of(firstId, secondId));
+        assertTrue(deleteMultiCommand1.equals(deleteMultiCommand2));
+    }
+
+    @Test
+    public void toStringMethod() {
+        MembershipId targetId = new MembershipId(MembershipId.MIN_ID);
+        DeleteCommand deleteCommand = new DeleteCommand(List.of(targetId));
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetIds=[" + targetId + "]}";
+        assertEquals(expected, deleteCommand.toString());
     }
 }
