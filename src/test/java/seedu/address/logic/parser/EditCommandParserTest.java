@@ -71,6 +71,10 @@ public class EditCommandParserTest {
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1001 i/ string", MESSAGE_INVALID_FORMAT);
+
+        // invalid membership id format
+        assertParseFailure(parser, "+1000" + NAME_DESC_AMY, MembershipId.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "0001000" + NAME_DESC_AMY, MembershipId.MESSAGE_CONSTRAINTS);
     }
 
     @Test

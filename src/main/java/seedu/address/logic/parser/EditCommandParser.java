@@ -29,14 +29,17 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_MEMBERSHIP_EXPIRY_DATE);
 
+        String membershipIdToken = argMultimap.getPreamble().trim();
         int membershipIdValue;
         try {
-            membershipIdValue = Integer.parseInt(argMultimap.getPreamble().trim());
+            membershipIdValue = Integer.parseInt(membershipIdToken);
         } catch (NumberFormatException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
-        if (!MembershipId.isValidMembershipId(membershipIdValue)) {
+        // reject invalid id numeric forms such as "+1000" or "0001000".
+        if (!membershipIdToken.equals(Integer.toString(membershipIdValue))
+                || !MembershipId.isValidMembershipId(membershipIdValue)) {
             throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
         }
 
