@@ -100,6 +100,13 @@ A JSON data file with multiple members looks like:
   } ]
 }
 ```
+<box type="info" seamless>
+
+**Note:**
+* Each member separated by commas `,`
+
+</box>
+
 ---
 
 ## Field Rules
