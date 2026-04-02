@@ -47,7 +47,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(personToEdit.getMembershipId(), descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson))
-            + "\nChanged fields: Name, Phone, Email, Address, Membership Expiry Date";
+            + "\nChanged fields: Name, Phone, Email, Membership Expiry Date"
+            + "\nUnchanged fields: Address";
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
