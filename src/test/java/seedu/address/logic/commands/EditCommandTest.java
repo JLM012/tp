@@ -40,11 +40,17 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        MembershipId targetId = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getMembershipId();
-        EditCommand editCommand = new EditCommand(targetId, new EditPersonDescriptor());
-        String expectedMessage = EditCommand.MESSAGE_NO_CHANGES;
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder().withMembershipId(personToEdit.getMembershipId().value).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditCommand editCommand = new EditCommand(personToEdit.getMembershipId(), descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -94,9 +100,8 @@ public class EditCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         MembershipId targetId = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getMembershipId();
         EditCommand editCommand = new EditCommand(targetId, new EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        String expectedMessage = EditCommand.MESSAGE_NO_CHANGES;
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -193,24 +198,18 @@ public class EditCommandTest {
         MembershipId secondId = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()).getMembershipId();
         final EditCommand standardCommand = new EditCommand(firstId, DESC_AMY);
 
-        // same values -> returns true
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(firstId, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
-        // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
 
-        // null -> returns false
         assertFalse(standardCommand.equals(null));
 
-        // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different membership ID -> returns false
         assertFalse(standardCommand.equals(new EditCommand(secondId, DESC_AMY)));
 
-        // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(firstId, DESC_BOB)));
     }
 
