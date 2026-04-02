@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.GuiSettings;
+
 public class UserPrefsTest {
 
     @Test
@@ -32,6 +34,29 @@ public class UserPrefsTest {
         UserPrefs userPrefs = new UserPrefs();
         assertFalse(userPrefs.equals(null));
         assertFalse(userPrefs.equals("not user prefs"));
+    }
+
+    @Test
+    public void equals_differentGuiSettings_returnsFalse() {
+        UserPrefs first = new UserPrefs();
+        UserPrefs second = new UserPrefs();
+
+        // Keep file path the same; only gui settings differ
+        second.setGuiSettings(new GuiSettings(800, 600, 10, 10));
+
+        assertFalse(first.equals(second));
+    }
+
+    @Test
+    public void equals_sameGuiSettingsAndPath_returnsTrue() {
+        UserPrefs first = new UserPrefs();
+        UserPrefs second = new UserPrefs();
+
+        GuiSettings custom = new GuiSettings(800, 600, 10, 10);
+        first.setGuiSettings(custom);
+        second.setGuiSettings(new GuiSettings(800, 600, 10, 10)); // equal value object
+
+        assertTrue(first.equals(second));
     }
 
     @Test

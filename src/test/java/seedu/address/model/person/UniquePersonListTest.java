@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -168,5 +169,35 @@ public class UniquePersonListTest {
     @Test
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
+    }
+
+    @Test
+    public void iterator_nonEmptyList_returnsIteratorOverElements() {
+        Person alice = new PersonBuilder().build();
+        uniquePersonList.add(alice);
+
+        Iterator<Person> iterator = uniquePersonList.iterator();
+
+        assertTrue(iterator.hasNext());
+        assertEquals(alice, iterator.next());
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void iterator_emptyList_hasNoElements() {
+        Iterator<Person> iterator = uniquePersonList.iterator();
+
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        assertTrue(uniquePersonList.equals(uniquePersonList));
+    }
+
+    @Test
+    public void equals_nonUniquePersonList_returnsFalse() {
+        assertFalse(uniquePersonList.equals(null));
+        assertFalse(uniquePersonList.equals("not unqiue person list"));
     }
 }
