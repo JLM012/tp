@@ -18,7 +18,7 @@ This guide explains JSON in the **context of GymContactsPro**, helping you under
 * [Empty Data File Structure](#empty-data-file-structure)
 * [Adding the First Member](#adding-the-first-member)
 * [Complete Example](#complete-example)
-* [Field Rules](#field-rules)
+* [Field Ruless](#field-rules)
 * [Common Mistakes to Avoid](#common-mistakes-to-avoid)
 * [Validation](#validation)
 * [Safety Tips](#safety-tips)
