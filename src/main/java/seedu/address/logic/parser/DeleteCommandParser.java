@@ -28,42 +28,26 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
+        // Split all values after id/ by whitespace
         String[] idTokens = argMultimap.getValue(PREFIX_ID).get().trim().split("\\s+");
 
-        if (idTokens.length == 1) {
-            return new DeleteCommand(parseSingleId(idTokens[0]));
-        } else {
-            return new DeleteCommand(parseMultipleIds(idTokens));
-        }
-    }
-
-    /**
-     * Parses a single membership ID string and returns a {@code MembershipId}.
-     * @throws ParseException if the ID string is invalid.
-     */
-    private MembershipId parseSingleId(String idString) throws ParseException {
-        idString = idString.trim();
-        int idValue;
-        try {
-            idValue = Integer.parseInt(idString);
-        } catch (NumberFormatException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        }
-        if (!idString.equals(Integer.toString(idValue)) || !MembershipId.isValidMembershipId(idValue)) {
-            throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
-        }
-        return new MembershipId(idValue);
-    }
-
-    /**
-     * Parses multiple membership ID strings and returns a list of {@code MembershipId}s.
-     * @throws ParseException if any ID string is invalid.
-     */
-    private List<MembershipId> parseMultipleIds(String[] idTokens) throws ParseException {
         List<MembershipId> membershipIds = new ArrayList<>();
         for (String idString : idTokens) {
-            membershipIds.add(parseSingleId(idString));
+            idString = idString.trim();
+            int idValue;
+            try {
+                idValue = Integer.parseInt(idString);
+            } catch (NumberFormatException e) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
+
+            if (!idString.equals(Integer.toString(idValue)) || !MembershipId.isValidMembershipId(idValue)) {
+                throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
+            }
+
+            membershipIds.add(new MembershipId(idValue));
         }
-        return membershipIds;
+
+        return new DeleteCommand(membershipIds);
     }
 }
