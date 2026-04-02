@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Gym Manager requests to find a member by specifying search attribute and the search term
+1. Gym Manager requests to find a member by specifying search field and the search term
 2. GymContactsPro displays a list of members matching the specifies criteria
 
     Use case ends.
@@ -546,7 +546,7 @@ Widely used operating systems such as Windows, macOS, and Linux that GymContacts
 An individual registered in GymContactsPro with personal and membership information.
 
 **Member Lookup**
-The process of searching for and retrieving a member's record from the system using attributes such as name, phone number, or membership ID.
+The process of searching for and retrieving a member's record from the system using fields such as name, phone number, or membership ID.
 
 **Member Record**
 A stored set of information about a gym member, including personal details and membership information.
@@ -569,7 +569,7 @@ The method used by GymContactsPro to store member data so that it remains availa
 **Prefix**
 A short identifier used before a value in a command to indicate the type of data being entered (for example, `n/`, `p/`, `e/`).
 
-**Search Attribute**
+**Search Field**
 A specific field (such as name, phone number, or email) used to locate members in the system.
 
 **Sorting**
