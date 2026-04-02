@@ -31,14 +31,9 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        // Accept all possible prefixes
         Prefix[] allPrefixes = new Prefix[] {
-            PREFIX_NAME,
-            PREFIX_ID,
-            PREFIX_PHONE,
-            PREFIX_ADDRESS,
-            PREFIX_MEMBERSHIP_EXPIRY_DATE,
-            PREFIX_EMAIL
+            PREFIX_NAME, PREFIX_ID, PREFIX_PHONE,
+            PREFIX_ADDRESS, PREFIX_MEMBERSHIP_EXPIRY_DATE, PREFIX_EMAIL
         };
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPrefixes);
 
@@ -46,39 +41,49 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // Use utility method to check for duplicate identical prefixes
         argMultimap.verifyNoDuplicatePrefixesFor(allPrefixes);
 
-        // Use utility method to check that exactly one prefix is present
         Prefix usedPrefix = argMultimap.verifyExactlyOnePrefixPresentFor(FindCommand.MESSAGE_USAGE, allPrefixes);
 
-        // No prefix detected
         if (usedPrefix == null) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // Get keywords (simplified logic)
-        String value = argMultimap.getValue(usedPrefix).get().trim();
-        value = value.replaceAll("\\s+", " ");
+        String value = argMultimap.getValue(usedPrefix).get().trim().replaceAll("\\s+", " ");
         if (value.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        List<String> keywordList = Arrays.asList(value.split(" "));
 
-        // Route to the correct predicate using a switch statement
-        switch (usedPrefix.getPrefix()) {
+        String[] tokens = value.split(" ");
+        return tokens.length == 1
+            ? parseSingleKeyword(usedPrefix, tokens[0])
+            : parseMultipleKeywords(usedPrefix, Arrays.asList(tokens));
+    }
+
+    /**
+     * Parses a single keyword and returns a FindCommand with the appropriate predicate.
+     */
+    private FindCommand parseSingleKeyword(Prefix prefix, String keyword) throws ParseException {
+        return parseMultipleKeywords(prefix, List.of(keyword));
+    }
+
+    /**
+     * Parses multiple keywords and returns a FindCommand with the appropriate predicate.
+     */
+    private FindCommand parseMultipleKeywords(Prefix prefix, List<String> keywords) throws ParseException {
+        switch (prefix.getPrefix()) {
         case "n/":
-            return new FindCommand(new NameContainsKeywordsPredicate(keywordList));
+            return new FindCommand(new NameContainsKeywordsPredicate(keywords));
         case "p/":
-            return new FindCommand(new PhoneContainsKeywordsPredicate(keywordList));
+            return new FindCommand(new PhoneContainsKeywordsPredicate(keywords));
         case "e/":
-            return new FindCommand(new EmailContainsKeywordsPredicate(keywordList));
+            return new FindCommand(new EmailContainsKeywordsPredicate(keywords));
         case "a/":
-            return new FindCommand(new PostalCodeContainsKeywordsPredicate(keywordList));
+            return new FindCommand(new PostalCodeContainsKeywordsPredicate(keywords));
         case "id/":
-            return new FindCommand(new MembershipIdContainsPredicate(keywordList));
+            return new FindCommand(new MembershipIdContainsPredicate(keywords));
         case "m/":
-            return new FindCommand(new ExpiryDateContainsKeywordsPredicate(keywordList));
+            return new FindCommand(new ExpiryDateContainsKeywordsPredicate(keywords));
         default:
             throw new ParseException("Find by this prefix is not yet supported.");
         }
