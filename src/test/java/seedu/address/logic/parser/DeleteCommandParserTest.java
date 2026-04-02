@@ -30,6 +30,9 @@ public class DeleteCommandParserTest {
         // no prefix
         assertParseFailure(parser, "1000",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        // invalid Id format should be rejected
+        assertParseFailure(parser, " id/+1000", MembershipId.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " id/0001000", MembershipId.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -51,4 +54,5 @@ public class DeleteCommandParserTest {
         assertParseFailure(parser, "",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
+
 }

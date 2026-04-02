@@ -34,7 +34,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        if (!MembershipId.isValidMembershipId(idValue)) {
+        // Reject invalid membership id numeric forms such as "+1000" or "0001000"
+        if (!idString.equals(Integer.toString(idValue)) || !MembershipId.isValidMembershipId(idValue)) {
             throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
         }
 
