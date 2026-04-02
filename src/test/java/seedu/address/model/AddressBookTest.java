@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -28,6 +29,9 @@ public class AddressBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertTrue(addressBook.canGenerateMembershipId());
+        assertEquals(MembershipId.MIN_ID, addressBook.getNextMembershipId());
+        assertEquals(MembershipId.MIN_ID + 1, addressBook.getNextMembershipId());
     }
 
     @Test
@@ -40,6 +44,30 @@ public class AddressBookTest {
         AddressBook newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
+        assertEquals(MembershipId.MIN_ID + 7, addressBook.getNextMembershipId());
+        assertTrue(addressBook.canGenerateMembershipId());
+    }
+
+    @Test
+    public void resetData_withEmptyAddressBook_resetsNextMembershipIdToMinimum() {
+        AddressBook newData = new AddressBook();
+        addressBook.addPerson(ALICE);
+
+        addressBook.resetData(newData);
+
+        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(MembershipId.MIN_ID, addressBook.getNextMembershipId());
+    }
+
+    @Test
+    public void resetData_withMaxMembershipId_cannotGenerateMoreIds() {
+        Person maxIdPerson = new PersonBuilder(ALICE).withMembershipId(MembershipId.MAX_ID).build();
+        AddressBookStub newData = new AddressBookStub(List.of(maxIdPerson));
+
+        addressBook.resetData(newData);
+
+        assertFalse(addressBook.canGenerateMembershipId());
+        assertEquals(MembershipId.MAX_ID + 1, addressBook.getNextMembershipId());
     }
 
     @Test
@@ -78,6 +106,26 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        assertTrue(addressBook.equals(addressBook));
+    }
+
+    @Test
+    public void equals_nonAddressBook_returnsFalse() {
+        assertFalse(addressBook.equals(null));
+        assertFalse(addressBook.equals("not an address book"));
+    }
+
+    @Test
+    public void hashCode_equalsAddressBookSameHashCode() {
+        AddressBook first = getTypicalAddressBook();
+        AddressBook second = new AddressBook(first);
+
+        assertEquals(first, second);
+        assertEquals(first.hashCode(), second.hashCode());
     }
 
     @Test
