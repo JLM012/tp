@@ -72,7 +72,7 @@ A JSON data file with a single member looks like this:
 * Within each member's `{}`, are their fields (name, phone, email, etc.) separated by commas `,`
 * The name of fields is followed by a colon `:`, then the value of the field
 * Notice that names and values of each field are enclosed in double quotes `""` except for the value for the `"membershipId"` field
-  * This has to do with the fact that the value is a number and not a collection of characters. If you are interested in knowing more, see [Field Rules](#field-rules) for more details.
+  * If you are interested in knowing more about valid filed values, see [Field Rules](#field-rules) for more details.
 
 </box>
 
@@ -113,23 +113,23 @@ A JSON data file with multiple members looks like:
 
 Each member in the `"persons"` list contains the following fields:
 
-| Field | Type | Description | Example |
-|-------|------|-------------|---------|
-| `name` | String | Full name of the member | `"Alex Yeoh"` |
-| `phone` | String | 8-digit phone number | `"87438807"` |
-| `email` | String | Email address | `"alexyeoh@example.com"` |
-| `address` | String | Full address with postal code at the end | `"Blk 30 Geylang Street 29, #06-40, 388066"` |
-| `membershipId` | Number | Unique 4-digit ID (no quotes) | `1000` |
-| `membershipExpiryDate` | String | Expiry date in YYYY-MM-DD format | `"2027-01-15"` |
+| Field | Quotes? | Description                                                                              | Example |
+|-------|---------|------------------------------------------------------------------------------------------|---------|
+| `name` | Yes     | Full name of the member                                                                  | `"Alex Yeoh"` |
+| `phone` | Yes     | 8-digit phone number starting with 8 or 9                                                | `"87438807"` |
+| `email` | Yes     | Email address                                                                            | `"alexyeoh@example.com"` |
+| `address` | Yes     | Minimally postal code, else full address with postal code at the end                     | `"Blk 30 Geylang Street 29, #06-40, 388066"` |
+| `membershipId` | No      | Unique 4-digit ID between 1000 to 9999, that must be higher than the highest existing ID | `1000` |
+| `membershipExpiryDate` | Yes     | Expiry date in YYYY-MM-DD format                                                         | `"2027-01-15"` |
 
 ---
 
 ### Common Mistakes to Avoid 
 ```json
-// ❌ WRONG - Missing quotes around string value
+// ❌ WRONG - Missing double quotes around non-membershipId values
 "name" : John Yeoh
 
-// ❌ WRONG - Quotes around membershipId
+// ❌ WRONG - Double quotes around membershipId
 "membershipId" : "1000"
 
 // ❌ WRONG - Missing comma between members
