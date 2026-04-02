@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.MembershipId;
@@ -21,24 +24,28 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ID);
 
-        if (!argMultimap.getValue(PREFIX_ID).isPresent() || !argMultimap.getPreamble().isEmpty()) {
+        if (argMultimap.getAllValues(PREFIX_ID).isEmpty() || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        String idString = argMultimap.getValue(PREFIX_ID).get().trim();
+        List<MembershipId> membershipIds = new ArrayList<>();
+        for (String idString : argMultimap.getAllValues(PREFIX_ID)) {
+            idString = idString.trim();
+            int idValue;
+            try {
+                idValue = Integer.parseInt(idString);
+            } catch (NumberFormatException e) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
 
-        int idValue;
-        try {
-            idValue = Integer.parseInt(idString);
-        } catch (NumberFormatException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            // Reject invalid membership id numeric forms such as "+1000" or "0001000"
+            if (!idString.equals(Integer.toString(idValue)) || !MembershipId.isValidMembershipId(idValue)) {
+                throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
+            }
+
+            membershipIds.add(new MembershipId(idValue));
         }
 
-        // Reject invalid membership id numeric forms such as "+1000" or "0001000"
-        if (!idString.equals(Integer.toString(idValue)) || !MembershipId.isValidMembershipId(idValue)) {
-            throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
-        }
-
-        return new DeleteCommand(new MembershipId(idValue));
+        return new DeleteCommand(membershipIds);
     }
 }

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -14,55 +15,57 @@ import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using their Membership ID from the address book.
+ * Deletes one or more persons identified by their Membership IDs from the address book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the person identified by their Membership ID.\n"
-        + "Parameters: id/MEMBERSHIP_ID (must be a 4-digit integer from 1000 to 9999)\n"
-        + "Example: " + COMMAND_WORD + " id/1042";
+        + ": Deletes one or more persons identified by their Membership IDs.\n"
+        + "Parameters: id/MEMBERSHIP_ID [id/MORE_MEMBERSHIP_IDs]...\n"
+        + "(must be 4-digit integers from 1000 to 9999)\n"
+        + "Example: " + COMMAND_WORD + " id/1042 id/1043";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person(s):\n%1$s";
 
     private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
 
-    private final MembershipId targetId;
+    private final List<MembershipId> targetIds;
 
-    public DeleteCommand(MembershipId targetId) {
-        this.targetId = targetId;
+    public DeleteCommand(List<MembershipId> targetIds) {
+        this.targetIds = targetIds;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        assert targetId != null : "Target membership ID should not be null";
+        assert targetIds != null && !targetIds.isEmpty() : "Target IDs should not be null or empty";
 
-        logger.info("Executing DeleteCommand for Membership ID: " + targetId);
+        logger.info("Executing DeleteCommand for Membership IDs: " + targetIds);
 
-        List<Person> allPersons = model.getAddressBook().getPersonList();
-
-        Person personToDelete = null;
-        for (Person person : allPersons) {
-            if (person.getMembershipId().equals(targetId)) {
-                personToDelete = person;
-                break;
-            }
+        // Resolve all persons first before deleting (fail fast if any ID not found)
+        List<Person> personsToDelete = new ArrayList<>();
+        for (MembershipId targetId : targetIds) {
+            Person person = model.getAddressBook().getPersonList().stream()
+                .filter(p -> p.getMembershipId().equals(targetId))
+                .findFirst()
+                .orElseThrow(() -> {
+                    logger.warning("No person found with Membership ID: " + targetId);
+                    return new CommandException(
+                        String.format(Messages.MESSAGE_PERSON_NOT_FOUND, targetId));
+                });
+            personsToDelete.add(person);
         }
 
-        if (personToDelete == null) {
-            logger.warning("No person found with Membership ID: " + targetId);
-            throw new CommandException(String.format(Messages.MESSAGE_PERSON_NOT_FOUND, targetId));
+        StringBuilder deletedNames = new StringBuilder();
+        for (Person person : personsToDelete) {
+            model.deletePerson(person);
+            logger.info("Successfully deleted person with Membership ID: " + person.getMembershipId());
+            deletedNames.append(Messages.format(person)).append("\n");
         }
 
-        assert model.getAddressBook().getPersonList().contains(personToDelete)
-            : "Person to delete must exist in address book";
-
-        model.deletePerson(personToDelete);
-        logger.info("Successfully deleted person with Membership ID: " + targetId);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames.toString().trim()));
     }
 
     @Override
@@ -74,13 +77,13 @@ public class DeleteCommand extends Command {
             return false;
         }
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetId.equals(otherDeleteCommand.targetId);
+        return targetIds.equals(otherDeleteCommand.targetIds);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .add("targetId", targetId)
+            .add("targetIds", targetIds)
             .toString();
     }
 }

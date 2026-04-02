@@ -4,6 +4,8 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
@@ -21,8 +23,17 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, " id/1000", new DeleteCommand(new MembershipId(MembershipId.MIN_ID)));
+    public void parse_singleValidArg_returnsDeleteCommand() {
+        assertParseSuccess(parser, " id/1000",
+            new DeleteCommand(List.of(new MembershipId(MembershipId.MIN_ID))));
+    }
+
+    @Test
+    public void parse_multipleValidArgs_returnsDeleteCommand() {
+        assertParseSuccess(parser, " id/1000 id/1001",
+            new DeleteCommand(List.of(
+                new MembershipId(1000),
+                new MembershipId(1001))));
     }
 
     @Test
@@ -30,9 +41,16 @@ public class DeleteCommandParserTest {
         // no prefix
         assertParseFailure(parser, "1000",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        // invalid Id format should be rejected
+        // invalid id format should be rejected
         assertParseFailure(parser, " id/+1000", MembershipId.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, " id/0001000", MembershipId.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_multipleIdsOneInvalid_throwsParseException() {
+        // valid id followed by invalid format
+        assertParseFailure(parser, " id/1000 id/+1001", MembershipId.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " id/1000 id/01001", MembershipId.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -46,6 +64,7 @@ public class DeleteCommandParserTest {
     public void parse_outOfRangeId_throwsParseException() {
         // valid integer but out of 1000-9999 range
         assertParseFailure(parser, " id/999", MembershipId.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " id/10000", MembershipId.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -54,5 +73,4 @@ public class DeleteCommandParserTest {
         assertParseFailure(parser, "",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
-
 }
