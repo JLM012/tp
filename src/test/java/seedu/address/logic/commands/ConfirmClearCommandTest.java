@@ -5,30 +5,29 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class ClearCommandTest {
+public class ConfirmClearCommandTest {
 
     @Test
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
+        expectedModel.setAddressBook(new AddressBook());
 
         CommandResult expectedResult = new CommandResult(
-                ClearCommand.MESSAGE_CONFIRMATION,
+                ConfirmClearCommand.MESSAGE_SUCCESS,
+                false,
                 false,
                 false,
                 true,
-                false,
-                "Warning!\n"
-                        + "This command will clear all contacts.\n"
-                        + "Press Y/N keys to confirm.\n\n"
-                        + "Alternatively, click the buttons below.\n"
+                "All the data has been deleted successfully."
         );
 
-        assertEquals(expectedResult, new ClearCommand().execute(model));
+        assertEquals(expectedResult, new ConfirmClearCommand().execute(model));
         assertEquals(expectedModel, model);
     }
 
@@ -36,20 +35,18 @@ public class ClearCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.setAddressBook(new AddressBook());
 
         CommandResult expectedResult = new CommandResult(
-                ClearCommand.MESSAGE_CONFIRMATION,
+                ConfirmClearCommand.MESSAGE_SUCCESS,
+                false,
                 false,
                 false,
                 true,
-                false,
-                "Warning!\n"
-                        + "This command will clear all contacts.\n"
-                        + "Press Y/N keys to confirm.\n\n"
-                        + "Alternatively, click the buttons below.\n"
+                "All the data has been deleted successfully."
         );
 
-        assertEquals(expectedResult, new ClearCommand().execute(model));
+        assertEquals(expectedResult, new ConfirmClearCommand().execute(model));
         assertEquals(expectedModel, model);
     }
 }
