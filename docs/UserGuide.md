@@ -129,20 +129,6 @@ Displays the list of all registered gym members.
 
 **Format:** `list`
 
-<box type="info" seamless>
-
-**Note:**
-* Pending edit
-
-</box>
-
-<box type="tip" seamless>
-
-**Tip:**
-* Pending edit
-
-</box>
-
 **Example input:**
 * `list`<br><br>
 ![command for 'list'](images/listCommand.png)
