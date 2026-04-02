@@ -2,6 +2,7 @@ package seedu.address.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,18 @@ import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.Person;
 
 public class SampleDataUtilTest {
+
+    @Test
+    void getSamplePersons_returnsCorrectNumber() {
+        Person[] persons = SampleDataUtil.getSamplePersons();
+        assertEquals(6, persons.length);
+    }
+
+    @Test
+    void getSampleAddressBook_notNull() {
+        ReadOnlyAddressBook ab = SampleDataUtil.getSampleAddressBook();
+        assertNotNull(ab);
+    }
 
     @Test
     public void getSamplePersons_returnsExpectedPersons() {
