@@ -24,12 +24,15 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ID);
 
-        if (argMultimap.getAllValues(PREFIX_ID).isEmpty() || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getValue(PREFIX_ID).isPresent() || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
+        // Split all values after id/ by whitespace
+        String[] idTokens = argMultimap.getValue(PREFIX_ID).get().trim().split("\\s+");
+
         List<MembershipId> membershipIds = new ArrayList<>();
-        for (String idString : argMultimap.getAllValues(PREFIX_ID)) {
+        for (String idString : idTokens) {
             idString = idString.trim();
             int idValue;
             try {
@@ -38,7 +41,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
 
-            // Reject invalid membership id numeric forms such as "+1000" or "0001000"
             if (!idString.equals(Integer.toString(idValue)) || !MembershipId.isValidMembershipId(idValue)) {
                 throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
             }

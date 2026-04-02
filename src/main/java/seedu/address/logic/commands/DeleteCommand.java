@@ -23,9 +23,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes one or more persons identified by their Membership IDs.\n"
-        + "Parameters: id/MEMBERSHIP_ID [id/MORE_MEMBERSHIP_IDs]...\n"
-        + "(must be 4-digit integers from 1000 to 9999)\n"
-        + "Example: " + COMMAND_WORD + " id/1042 id/1043";
+        + "Parameters: id/MEMBERSHIP_ID [MORE_MEMBERSHIP_IDs]...\n"
+        + "(must be 4-digit integers from 1000 to 9999, space-separated after id/)\n"
+        + "Example: " + COMMAND_WORD + " id/1042 1043 1044";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person(s):\n%1$s";
 
