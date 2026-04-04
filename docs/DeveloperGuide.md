@@ -6,18 +6,45 @@
 
 # GymContactsPro Developer Guide 📖
 
+---
 
+## **Table of Contents**
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+    - [Architecture](#architecture)
+    - [UI component](#ui-component)
+    - [Logic component](#logic-component)
+    - [Model component](#model-component)
+    - [Storage component](#storage-component)
+    - [Common classes](#common-classes)
+- [Implementation](#implementation)
+    - [[Proposed] Undo/redo feature](#proposed-undo-redo-feature)
+    - [[Proposed] Data archiving](#proposed-data-archiving)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+    - [Product scope](#product-scope)
+    - [User stories](#user-stories)
+    - [Use cases](#use-cases)
+    - [Non-Functional Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    - [Launch and shutdown](#launch-and-shutdown)
+    - [Deleting a person](#deleting-a-person)
+    - [Saving data](#saving-data)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -88,7 +115,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete id/1000 1001")` API call as an example.
 
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
@@ -149,6 +176,8 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -263,6 +292,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -379,7 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Gym Manager requests to find a member by specifying search attribute and the search term
+1. Gym Manager requests to find a member by specifying search field and the search term
 2. GymContactsPro displays a list of members matching the specifies criteria
 
     Use case ends.
@@ -546,7 +577,7 @@ Widely used operating systems such as Windows, macOS, and Linux that GymContacts
 An individual registered in GymContactsPro with personal and membership information.
 
 **Member Lookup**
-The process of searching for and retrieving a member's record from the system using attributes such as name, phone number, or membership ID.
+The process of searching for and retrieving a member's record from the system using fields such as name, phone number, or membership ID.
 
 **Member Record**
 A stored set of information about a gym member, including personal details and membership information.
@@ -569,7 +600,7 @@ The method used by GymContactsPro to store member data so that it remains availa
 **Prefix**
 A short identifier used before a value in a command to indicate the type of data being entered (for example, `n/`, `p/`, `e/`).
 
-**Search Attribute**
+**Search Field**
 A specific field (such as name, phone number, or email) used to locate members in the system.
 
 **Sorting**
@@ -577,6 +608,8 @@ The process of arranging members in a specific order.
 
 **Success Message**
 A confirmation message shown after a command has been executed successfully.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -30,7 +30,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_multipleValidArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, " id/1000 id/1001",
+        assertParseSuccess(parser, " id/1000 1001",
             new DeleteCommand(List.of(
                 new MembershipId(1000),
                 new MembershipId(1001))));
@@ -48,10 +48,10 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_multipleIdsOneInvalid_throwsParseException() {
-        // valid id followed by invalid format
-        assertParseFailure(parser, " id/1000 id/+1001", MembershipId.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, " id/1000 id/01001", MembershipId.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " id/1000 +1001", MembershipId.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " id/1000 01001", MembershipId.MESSAGE_CONSTRAINTS);
     }
+
 
     @Test
     public void parse_invalidIdFormat_throwsParseException() {

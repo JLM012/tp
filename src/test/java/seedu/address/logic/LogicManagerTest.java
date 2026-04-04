@@ -19,6 +19,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -87,6 +88,31 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getAddressBook_returnsAddressBook() {
+        ReadOnlyAddressBook addressBook = logic.getAddressBook();
+        assertEquals(model.getAddressBook(), addressBook);
+    }
+
+    @Test
+    public void getAddressBookFilePath_returnsAddressBookFilePath() {
+        Path addressBookFilePath = logic.getAddressBookFilePath();
+        assertEquals(model.getAddressBookFilePath(), addressBookFilePath);
+    }
+
+    @Test
+    public void getGuiSettings_returnsGuiSettings() {
+        GuiSettings guiSettings = logic.getGuiSettings();
+        assertEquals(model.getGuiSettings(), guiSettings);
+    }
+
+    @Test
+    public void setGuiSettings_setsGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(500, 600, 1, 2);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, model.getGuiSettings());
     }
 
     /**

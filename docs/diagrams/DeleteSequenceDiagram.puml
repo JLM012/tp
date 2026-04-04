@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete id/1000")
+[-> LogicManager : execute("delete id/1000 1001")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete id/1000")
+LogicManager -> AddressBookParser : parseCommand("delete id/1000 1001")
 activate AddressBookParser
 
 create DeleteCommandParser
@@ -27,11 +27,21 @@ activate DeleteCommandParser
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("id/1000")
+AddressBookParser -> DeleteCommandParser : parse("id/1000 1001")
 activate DeleteCommandParser
 
+DeleteCommandParser -> DeleteCommandParser : parseSingleId("1000")
+activate DeleteCommandParser
+DeleteCommandParser --> DeleteCommandParser
+deactivate DeleteCommandParser
+
+DeleteCommandParser -> DeleteCommandParser : parseSingleId("1001")
+activate DeleteCommandParser
+DeleteCommandParser --> DeleteCommandParser
+deactivate DeleteCommandParser
+
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand : new DeleteCommand(membershipId)
+DeleteCommandParser -> DeleteCommand : new DeleteCommand(membershipIds)
 activate DeleteCommand
 
 DeleteCommand --> DeleteCommandParser :
@@ -49,9 +59,15 @@ deactivate AddressBookParser
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(membershipId)
-activate Model
+note right of DeleteCommand : Resolve all persons first\n(fail fast if any ID not found),\nthen sort by membership ID
 
+DeleteCommand -> Model : deletePerson(person1)
+activate Model
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : deletePerson(person2)
+activate Model
 Model --> DeleteCommand
 deactivate Model
 
