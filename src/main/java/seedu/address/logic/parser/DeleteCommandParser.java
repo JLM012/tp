@@ -24,12 +24,19 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ID);
 
-        if (!argMultimap.getValue(PREFIX_ID).isPresent() || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID);
+
+        Prefix usedPrefix = argMultimap.verifyExactlyOnePrefixPresentFor(DeleteCommand.MESSAGE_USAGE, PREFIX_ID);
+        if (usedPrefix == null) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         // Split all values after id/ by whitespace
-        String[] idTokens = argMultimap.getValue(PREFIX_ID).get().trim().split("\\s+");
+        String[] idTokens = argMultimap.getValue(usedPrefix).get().trim().split("\\s+");
 
         List<MembershipId> membershipIds = new ArrayList<>();
         for (String idString : idTokens) {
