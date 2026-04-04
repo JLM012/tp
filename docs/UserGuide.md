@@ -27,7 +27,6 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
   - [Getting Help: `help`](#getting-help-help)
   - [Exiting the App: `exit`](#exiting-the-app-exit)
   - [Saving Data](#saving-data)
-  - [Editing the Data File](#editing-the-data-file)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
@@ -110,7 +109,7 @@ Adds a new gym member to the list of registered gym members.
 <box type="tip" seamless>
 
 **Tip:** 
-* Attributes following the `add` command can be provided in any order
+* Fields following the `add` command can be provided in any order
 </box>
 
 **Example input:**
@@ -396,19 +395,6 @@ There is no need to save manually.
 **Tip:**
 * It is recommended to regularly back up your `addressbook.json` file to a secure location.
 
-</box>
-
----
-
-### Editing the Data File
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 <div style="page-break-after: always;"></div>

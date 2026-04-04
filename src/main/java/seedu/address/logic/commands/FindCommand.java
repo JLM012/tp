@@ -20,7 +20,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons by the specified prefix, "
-            + "whose attribute matches any of "
+            + "whose field matches any of "
             + "the specified keywords (case-insensitive) and displays them as a list.\n"
             + "Parameters: PREFIX/KEYWORD [MORE_KEYWORDS]\n"
             + "Exactly one prefix must be used.\n"

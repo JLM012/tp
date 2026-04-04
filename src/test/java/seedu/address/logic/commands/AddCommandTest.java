@@ -59,6 +59,15 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_addressBookFull_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubAddressBookFull();
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_ADDRESS_BOOK_FULL, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
@@ -189,6 +198,26 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+    }
+
+    /**
+     * A Model stub that simulates an address book that is full (cannot generate more membership IDs).
+     */
+    private class ModelStubAddressBookFull extends ModelStub {
+        @Override
+        public boolean hasPerson(Person person) {
+            return false;
+        }
+
+        @Override
+        public int getNextMembershipId() {
+            throw new AssertionError("This method should not be called when address book is full.");
+        }
+
+        @Override
+        public boolean canGenerateMembershipId() {
+            return false;
         }
     }
 

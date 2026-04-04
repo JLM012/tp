@@ -24,27 +24,27 @@ public class FindCommandParserTest {
     @Test
     public void parse_nonEmptyPreamble_throwsParseException() {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + " n/Alice",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_singleKeyword_returnsFindCommand() {
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice")));
+            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice")));
         assertParseSuccess(parser, " n/Alice", expectedFindCommand);
     }
 
     @Test
     public void parse_multipleKeywords_returnsFindCommand() {
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, " n/Alice Bob", expectedFindCommand);
     }
 
     @Test
     public void parse_multipleKeywordsWithExtraSpaces_returnsFindCommand() {
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         // multiple spaces between keywords
         assertParseSuccess(parser, " n/Alice    Bob", expectedFindCommand);
         // leading and trailing whitespace
@@ -54,7 +54,7 @@ public class FindCommandParserTest {
     @Test
     public void parse_keywordsWithTabsNewlinesAndMixedWhitespace_returnsFindCommand() {
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         // tabs between keywords
         assertParseSuccess(parser, " n/Alice\tBob", expectedFindCommand);
         // newlines between keywords
@@ -64,74 +64,66 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-    }
-
-    @Test
     public void parse_phoneKeywords_returnsFindCommand() {
         FindCommand expectedFindCommand =
-                new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList("91234567", "98765432")));
+            new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList("91234567", "98765432")));
         assertParseSuccess(parser, " p/91234567 98765432", expectedFindCommand);
     }
 
     @Test
     public void parse_multiplePrefixes_throwsParseException() {
         assertParseFailure(parser, " n/Alice p/98765432",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_postalCodeKeywords_returnsFindCommand() {
         FindCommand expectedFindCommandSingle =
-                new FindCommand(new PostalCodeContainsKeywordsPredicate(Arrays.asList("123456")));
+            new FindCommand(new PostalCodeContainsKeywordsPredicate(Arrays.asList("123456")));
         assertParseSuccess(parser, " a/123456", expectedFindCommandSingle);
 
         FindCommand expectedFindCommandMultiple =
-                new FindCommand(new PostalCodeContainsKeywordsPredicate(Arrays.asList("123456", "654321")));
+            new FindCommand(new PostalCodeContainsKeywordsPredicate(Arrays.asList("123456", "654321")));
         assertParseSuccess(parser, " a/123456 654321", expectedFindCommandMultiple);
     }
 
     @Test
     public void parse_expiryDateKeywords_returnsFindCommand() {
         FindCommand expectedFindCommandSingle =
-                new FindCommand(new ExpiryDateContainsKeywordsPredicate(Arrays.asList("2026-12-31")));
+            new FindCommand(new ExpiryDateContainsKeywordsPredicate(Arrays.asList("2026-12-31")));
         assertParseSuccess(parser, " m/2026-12-31", expectedFindCommandSingle);
 
         FindCommand expectedFindCommandMultiple =
-                new FindCommand(new ExpiryDateContainsKeywordsPredicate(Arrays.asList("2026-12-31", "2027-01-01")));
+            new FindCommand(new ExpiryDateContainsKeywordsPredicate(Arrays.asList("2026-12-31", "2027-01-01")));
         assertParseSuccess(parser, " m/2026-12-31 2027-01-01", expectedFindCommandMultiple);
     }
 
     @Test
     public void parse_emailKeywords_returnsFindCommand() {
         FindCommand expectedFindCommandSingle =
-                new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList("alice@example.com")));
+            new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList("alice@example.com")));
         assertParseSuccess(parser, " e/alice@example.com", expectedFindCommandSingle);
 
         FindCommand expectedFindCommandMultiple =
-                new FindCommand(new EmailContainsKeywordsPredicate(Arrays
-                        .asList("alice@example.com", "bob@example.com")));
+            new FindCommand(new EmailContainsKeywordsPredicate(Arrays
+                .asList("alice@example.com", "bob@example.com")));
         assertParseSuccess(parser, " e/alice@example.com bob@example.com", expectedFindCommandMultiple);
     }
 
     @Test
-    public void parse_commandWordOnly_throwsParseException() {
+    public void parse_emptyOrWhitespaceInput_throwsParseException() {
         assertParseFailure(parser, "",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_prefixOnly_throwsParseException() {
+    public void parse_prefixWithoutValue_throwsParseException() {
         assertParseFailure(parser, " n/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_onlyWhitespaceAfterPrefix_throwsParseException() {
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         assertParseFailure(parser, " n/    ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -145,16 +137,6 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " id/1000 1001 1002", expectedFindCommandMultiple);
     }
 
-    @Test
-    public void parse_noPrefixProvided_throwsParseException() {
-        assertParseFailure(parser, " ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-    }
 
-    @Test
-    public void parse_prefixWithOnlyWhitespaceValue_throwsParseException() {
-        assertParseFailure(parser, " n/   ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-    }
 
 }

@@ -84,6 +84,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        helpWindow.getRoot().setOnHidden(event -> resultDisplay.setFeedbackToUser("Closed Help window"));
     }
 
     public Stage getPrimaryStage() {
@@ -133,6 +134,9 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        helpWindow.getRoot().setOnHidden(event ->
+                resultDisplay.setFeedbackToUser("Closed Help window"));
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -231,7 +235,7 @@ public class MainWindow extends UiPart<Stage> {
                 isProcessingClearConfirmation = false;
 
                 if (isManualCloseClearConfirmation) {
-                    resultDisplay.setFeedbackToUser("Closed warning window.");
+                    resultDisplay.setFeedbackToUser("Clear command cancelled.");
                 }
             });
         }
