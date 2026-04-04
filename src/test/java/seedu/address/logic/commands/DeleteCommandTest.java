@@ -45,9 +45,12 @@ public class DeleteCommandTest {
     public void execute_multipleValidMembershipIds_success() {
         Person firstPerson = model.getAddressBook().getPersonList().get(0);
         Person secondPerson = model.getAddressBook().getPersonList().get(1);
-        DeleteCommand deleteCommand = new DeleteCommand(
-            List.of(firstPerson.getMembershipId(), secondPerson.getMembershipId()));
 
+        // Pass in reverse order to verify sorting
+        DeleteCommand deleteCommand = new DeleteCommand(
+            List.of(secondPerson.getMembershipId(), firstPerson.getMembershipId()));
+
+        // Expected output should be sorted by ID (firstPerson before secondPerson)
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
             Messages.format(firstPerson) + "\n" + Messages.format(secondPerson));
 

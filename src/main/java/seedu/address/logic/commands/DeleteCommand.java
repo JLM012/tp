@@ -58,6 +58,9 @@ public class DeleteCommand extends Command {
             personsToDelete.add(person);
         }
 
+        // Sort by membership ID before deleting
+        personsToDelete.sort((a, b) -> Integer.compare(a.getMembershipId().value, b.getMembershipId().value));
+
         StringBuilder deletedNames = new StringBuilder();
         for (Person person : personsToDelete) {
             model.deletePerson(person);
