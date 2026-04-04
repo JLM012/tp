@@ -31,9 +31,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID);
 
         Prefix usedPrefix = argMultimap.verifyExactlyOnePrefixPresentFor(DeleteCommand.MESSAGE_USAGE, PREFIX_ID);
-        if (usedPrefix == null) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        }
 
         // Split all values after id/ by whitespace
         String[] idTokens = argMultimap.getValue(usedPrefix).get().trim().split("\\s+");
