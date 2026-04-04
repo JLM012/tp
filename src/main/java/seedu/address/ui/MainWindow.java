@@ -231,7 +231,7 @@ public class MainWindow extends UiPart<Stage> {
                 isProcessingClearConfirmation = false;
 
                 if (isManualCloseClearConfirmation) {
-                    resultDisplay.setFeedbackToUser("Closed warning window.");
+                    resultDisplay.setFeedbackToUser("Clear command cancelled.");
                 }
             });
         }
