@@ -319,7 +319,10 @@ Delete all registered gym members after confirmation.
 ![result for 'clear'](images/clearConfirmation.png)<br><br>
 * After confirmation, all data will be deleted, together with a `All data has been deleted successfully` success message.<br>
 The warning window will close after a short delay.<br><br>
-![result for 'successfully delete'](images/clearSuccess.png)
+![result for 'successfully delete'](images/clearSuccess.png)<br><br>
+* If you click the button or hit the 'N' key, deletion is cancelled, together with a `Detelation has been cancelled.`.<br>
+  The warning window will close after a short delay.<br><br>
+* Clicking on red `X` in the top left corner of warning window will also cancel deletion.
 
 
 ---
@@ -341,8 +344,8 @@ Shows a help message.
 
 **Tip:**
 * There is two possible ways that you may close the help window:
-  * Hitting the 'esc' key.
-  * Clicking on red 'X' in the top left corner of help window.
+  * Hitting the `esc` key.
+  * Clicking on red `X` in the top left corner of help window.
 
 </box>
 
