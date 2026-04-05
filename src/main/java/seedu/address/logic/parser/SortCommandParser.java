@@ -18,11 +18,12 @@ public class SortCommandParser implements Parser<SortCommand> {
                 PREFIX_NAME);
         // Future: Add more prefixes for id, phone, email, address, expiry date
 
+        // Check that exactly one prefix is used
         Prefix usedPrefix = null;
         for (Prefix prefix : new Prefix[]{PREFIX_NAME}) {
             // Future: Add more prefixes to the array above
             if (argMultimap.getValue(prefix).isPresent()) {
-                // Ensure only one prefix is used
+                // More than one prefix detected
                 if (usedPrefix != null) {
                     throw new ParseException(SortCommand.MESSAGE_INVALID_PREFIX);
                 }
@@ -30,16 +31,20 @@ public class SortCommandParser implements Parser<SortCommand> {
             }
         }
 
+        // No prefix detected or preamble is not empty
         if (usedPrefix == null || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(SortCommand.MESSAGE_INVALID_PREFIX);
         }
 
+        // Obtain the sorting order
         String order = argMultimap.getValue(usedPrefix).orElse("").trim().toLowerCase();
 
+        // Validate the sorting order
         if (!(order.equals("asc") || order.equals("desc") || order.equals("none"))) {
             throw new ParseException(SortCommand.MESSAGE_INVALID_ORDER);
         }
 
+        // Determine the appropriate comparator based on the prefix and order via nested switch statements
         Comparator<Person> comparator = null;
         String prefixString = usedPrefix.getPrefix();
 
@@ -60,6 +65,7 @@ public class SortCommandParser implements Parser<SortCommand> {
                 }
                 break;
             // Future: Add more cases for id, phone, email, address, expiry date
+
             default:
                 throw new ParseException(SortCommand.MESSAGE_INVALID_PREFIX);
         }
