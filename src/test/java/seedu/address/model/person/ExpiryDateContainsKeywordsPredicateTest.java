@@ -1,8 +1,5 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -10,7 +7,34 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class ExpiryDateContainsKeywordsPredicateTest {
+
+    @Test
+    public void equals() {
+        ExpiryDateContainsKeywordsPredicate firstPredicate =
+                new ExpiryDateContainsKeywordsPredicate(Collections.singletonList("12-12-2026"));
+        ExpiryDateContainsKeywordsPredicate secondPredicate =
+                new ExpiryDateContainsKeywordsPredicate(Collections.singletonList("13-12-2026"));
+
+        // same object -> true
+        assertEquals(firstPredicate, firstPredicate);
+
+        // same values -> true
+        ExpiryDateContainsKeywordsPredicate firstPredicateCopy =
+                new ExpiryDateContainsKeywordsPredicate(Collections.singletonList("12-12-2026"));
+        assertEquals(firstPredicate, firstPredicateCopy);
+
+        // different type -> false
+        assertNotEquals(1, firstPredicate);
+
+        // null -> false
+        assertNotEquals(null, firstPredicate);
+
+        // different keywords -> false
+        assertNotEquals(firstPredicate, secondPredicate);
+    }
 
     @Test
     public void test_expiryDateContainsKeywords_returnsTrue() {
