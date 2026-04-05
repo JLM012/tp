@@ -354,8 +354,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends
 
-* 1b. The member to be added is identical to an existing member in the system.
-  * 1b1. GymContactsPro rejects the addition and shows an error message.
+* 1b. The member to be added is identical to an existing member in the system
+  * 1b1. GymContactsPro shows an error message
 
   Use case ends
 
@@ -374,17 +374,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The command format was invalid
     * 1a1. GymContactsPro shows an error message
 
+    Use case ends
+
 * 1b. There are no members in the system.
     * 1b1. GymContactsPro shows an error message.
 
-    Use case ends.
+    Use case ends
 
 **Use case : UC03 : Delete gym member(s)**
 
 **MSS**
 
 1. Gym Manager requests to delete member(s) by providing their membership ID(s)
-2. GymContactsPro deletes the member
+2. GymContactsPro deletes the member(s)
 3. GymContactsPro displays a success message
 
     Use case ends
@@ -401,6 +403,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+* 1c. Multiple membership IDs provided but only a few exists in the system
+  * 1c1. GymContactsPro shows an error message
+
 **Use case : UC04 : View list of executable commands**
 
 **MSS**
@@ -408,43 +413,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Gym Manager requests to view the list of executable commands
 2. GymContactsPro displays the list of available executable commands and their formats
 
-    Use case ends.
+    Use case ends
 
-**Use case : UC05 : Find a gym member**
+**Use case : UC05 : Find gym member(s)**
 
 **MSS**
 
-1. Gym Manager requests to find a member by specifying the search field and the search term
-2. GymContactsPro displays a list of members matching the specified criteria
+1. Gym Manager requests to find member(s) by specifying the search field and the search term
+2. GymContactsPro displays a list of member(s) matching the specified criteria
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Command format is invalid
-  * 1a1. GymContactsPro shows an error message.
+* 1a. Command format is invalid or search field is invalid
+  * 1a1. GymContactsPro shows an error message
 
-    Use case ends.
+    Use case ends
 
-* 2a. There are no members matching the provided criteria.
-    * 2a1. GymContactsPro shows an error message.
+* 2a. There are no members matching the provided criteria
+    * 2a1. GymContactsPro shows an error message
 
-    Use case ends.
+    Use case ends
 
 
-**Use case : UC06 : Edit existing member details**
+**Use case : UC06 : Edit details of an existing member**
 
 **MSS**
 
-1. Gym Manager requests to edit a member by providing their membership ID
+1. Gym Manager requests to edit a member by providing their membership ID and fields to edit
 2. GymContactsPro updates the member's details
 3. GymContactsPro displays a success message
 
-   Use case ends.
+   Use case ends
 
 **Extensions**
 
-* 1a. The command format is invalid, or no membership ID is provided, or no fields to edit are provided
+* 1a. The command format is invalid, or no membership ID is provided, or no fields to edit are invalid
   * 1a1. GymContactsPro shows an error message prompting for the correct format
 
     Use case ends
@@ -453,6 +458,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. GymContactsPro rejects the edit and shows a duplicate fields error message
 
     Use case ends
+
+* 1c. Some or all the fields provided are identical to the existing member's details
+  * 1c1. GymContactsPro accepts the edit and tells the user which fields were updated
 
 
 **Use case : UC07 : Renew a member's membership validity**
@@ -463,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. GymContactsPro updates the member's membership validity
 3. GymContactsPro displays a success message
 
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
