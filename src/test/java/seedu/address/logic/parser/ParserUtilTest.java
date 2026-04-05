@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipExpiryDate;
+import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -21,12 +22,14 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_MEMBERSHIP_EXPIRY_DATE = "2026-02-31";
+    private static final String INVALID_MEMBERSHIP_ID = "abc";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "91234567";
     private static final String VALID_ADDRESS = "123 Main Street #0505 123456";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_MEMBERSHIP_EXPIRY_DATE = getDateNDaysRelativeToToday(285);
+    private static final String VALID_MEMBERSHIP_ID = "1000";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -166,4 +169,37 @@ public class ParserUtilTest {
         assertEquals(expectedMembershipExpiryDate, ParserUtil
                 .parseMembershipExpiryDate(membershipExpiryDateWithWhitespace));
     }
+
+    @Test
+    public void parseMembershipId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMembershipId((String) null));
+    }
+
+    @Test
+    public void parseMembershipId_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, MembershipId.MESSAGE_CONSTRAINTS,
+                () -> ParserUtil.parseMembershipId(INVALID_MEMBERSHIP_ID));
+        assertThrows(ParseException.class, MembershipId.MESSAGE_CONSTRAINTS,
+                () -> ParserUtil.parseMembershipId("+1000"));
+        assertThrows(ParseException.class, MembershipId.MESSAGE_CONSTRAINTS,
+                () -> ParserUtil.parseMembershipId("0001000"));
+        assertThrows(ParseException.class, MembershipId.MESSAGE_CONSTRAINTS,
+                () -> ParserUtil.parseMembershipId("999"));
+        assertThrows(ParseException.class, MembershipId.MESSAGE_CONSTRAINTS,
+                () -> ParserUtil.parseMembershipId("10000"));
+    }
+
+    @Test
+    public void parseMembershipId_validValueWithoutWhitespace_returnsMembershipId() throws Exception {
+        MembershipId expectedMembershipId = new MembershipId(1000);
+        assertEquals(expectedMembershipId, ParserUtil.parseMembershipId(VALID_MEMBERSHIP_ID));
+    }
+
+    @Test
+    public void parseMembershipId_validValueWithWhitespace_returnsTrimmedMembershipId() throws Exception {
+        String membershipIdWithWhitespace = WHITESPACE + VALID_MEMBERSHIP_ID + WHITESPACE;
+        MembershipId expectedMembershipId = new MembershipId(1000);
+        assertEquals(expectedMembershipId, ParserUtil.parseMembershipId(membershipIdWithWhitespace));
+    }
+
 }
