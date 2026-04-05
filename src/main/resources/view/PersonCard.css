@@ -6,6 +6,14 @@
     -fx-font-weight: bold;
 }
 
+.membership-expiring-soon {
+    -fx-background-color: #FF8F00;
+    -fx-text-fill: white;
+    -fx-padding: 2 12 2 12;
+    -fx-background-radius: 8;
+    -fx-font-weight: bold;
+}
+
 .membership-expired {
     -fx-background-color: #F44336;
     -fx-text-fill: white;
