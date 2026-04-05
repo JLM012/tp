@@ -21,13 +21,17 @@ public class SortCommandParser implements Parser<SortCommand> {
         Map<String, Comparator<Person>> nameMap = new HashMap<>();
         nameMap.put("asc", PersonComparators.NAME_ASC);
         nameMap.put("desc", PersonComparators.NAME_DESC);
-        nameMap.put("none", null);
         COMPARATOR_MAP.put("n/", nameMap);
         // Future: Add more maps for id, phone, email, address, expiry date
     }
 
     @Override
     public SortCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.equalsIgnoreCase("none")) {
+            return new SortCommand(null, "none", "none");
+        }
+
         Prefix[] allPrefixes = new Prefix[] {
                 PREFIX_NAME,
                 // Future: Add support for other prefixes
@@ -49,7 +53,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         String order = argMultimap.getValue(usedPrefix).orElse("").trim().toLowerCase();
 
         // Validate the sorting order
-        if (!(order.equals("asc") || order.equals("desc") || order.equals("none"))) {
+        if (!(order.equals("asc") || order.equals("desc"))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
