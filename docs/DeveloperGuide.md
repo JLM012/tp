@@ -641,7 +641,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+<br>
+
+### Adding a member
+
+<br>
+
+### Listing members
+
+<br>
+
+### Deleting member(s)
 
 1. Deleting a person while all persons are being shown
 
@@ -657,6 +667,36 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+<br>
+
+### Editing a member
+
+<br>
+
+### Finding member(s)
+
+<br>
+
+### Sorting members
+
+<br>
+
+### Renewing membership
+
+<br>
+
+### Clearing all members
+
+<br>
+
+### Viewing help
+
+<br>
+
+### Exiting the program
+
+<br>
 
 ### Saving data
 
