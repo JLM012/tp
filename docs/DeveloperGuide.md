@@ -319,17 +319,17 @@ Manage gym member records faster than a typical mouse-driven or spreadsheet-base
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                                                  | So that I can…​                                                            |
-|----------|-------------|---------------------------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | Gym manager | I want to add new members                                     | So that I can keep a record of new members                                 |
-| `* * *`  | Gym manager | I want to view the list of members                            | So that I understand who is currently recorded                             |
-| `* * *`  | Gym manager | I want to delete a member                                     | So that I can remove incorrect or obsolete records                         |
-| `* * `   | Gym manager | I want to know how to interact with the app                   | So that I can begin to use the app                                         |
-| `* *`    | Gym manager | I want to search for a member                                 | So that I can retrieve their information                                   |
-| `* *`    | Gym manager | I want to edit member's personal information                  | So that my records can stay updated with the latest information            |
-| `* *`    | Gym manager | I want to know which member's membership is close to expiring | So that I can contact member's to remind them of their memberhsip validity |
-| `*`      | Gym manager | I want to check for a member's membership validity            | So that I can allow valid entry to gyms                                    |
-| `*`      | Gym manager | I want to sort member's membership validity                   | So that I can view members in order of membership expiry date              |
+| Priority | As a …​     | I want to …​                                                  | So that I can…​                                                             |
+|----------|-------------|---------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `* * *`  | Gym manager | I want to add new members                                     | So that I can keep a record of new members                                  |
+| `* * *`  | Gym manager | I want to view the list of members                            | So that I understand who is currently registered to the gym                 |
+| `* * *`  | Gym manager | I want to delete a member                                     | So that I can remove incorrect or obsolete records                          |
+| `* * `   | Gym manager | I want to know how to interact with the app                   | So that I can begin to use the app                                          |
+| `* *`    | Gym manager | I want to search for a member                                 | So that I can retrieve their information                                    |
+| `* *`    | Gym manager | I want to edit member's personal information                  | So that my records can stay updated with the latest information             |
+| `* *`    | Gym manager | I want to know which member's membership is close to expiring | So that I can contact members to remind them of their membership validity   |
+| `*`      | Gym manager | I renew gym member's membership expiry date                   | So that they can continue using the gym                                     |
+| `*`      | Gym manager | I want to sort member's membership expriy date                  | So that I can know which members have expired or soon to expire memberships |
 
 
 ### Use cases
