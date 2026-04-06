@@ -80,23 +80,17 @@ public class DeleteCommandTest {
         assertCommandFailure(deleteCommand, model,
             String.format(Messages.MESSAGE_PERSON_NOT_FOUND, nonExistentId));
     }
-
+    
     @Test
-    public void execute_duplicateIds_deduplicatesAndDeletesOnce() {
+    public void execute_duplicateIds_throwsCommandException() {
         Person personToDelete = model.getAddressBook().getPersonList().get(0);
         MembershipId targetId = personToDelete.getMembershipId();
-
-        // Same ID twice
         DeleteCommand deleteCommand = new DeleteCommand(List.of(targetId, targetId));
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-            Messages.format(personToDelete) + "\n");
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(deleteCommand, model,
+                             String.format(Messages.MESSAGE_DUPLICATE_ID, targetId));
     }
+
+
 
     @Test
     public void equals() {
