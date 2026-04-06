@@ -35,6 +35,21 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.Storage;
+
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
     private static final IOException DUMMY_AD_EXCEPTION = new AccessDeniedException("dummy access denied exception");
@@ -203,5 +218,53 @@ public class LogicManagerTest {
         Person personWithId = new PersonBuilder(expectedPerson).withMembershipId(nextId).build();
         expectedModel.addPerson(personWithId);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void confirmClear_nonEmptyAddressBook_success() throws Exception {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Storage storage = new StorageManager(
+                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json")),
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"))
+        );
+        LogicManager logicManager = new LogicManager(model, storage);
+
+        CommandResult result = logicManager.confirmClear();
+
+        CommandResult expectedResult = new CommandResult(
+                "All the data has been deleted successfully.",
+                false,
+                false,
+                false,
+                true,
+                "All the data has been deleted successfully."
+        );
+
+        assertEquals(expectedResult, result);
+        assertEquals(new AddressBook(), model.getAddressBook());
+    }
+
+    @Test
+    public void confirmClear_emptyAddressBook_success() throws Exception {
+        Model model = new ModelManager();
+        Storage storage = new StorageManager(
+                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json")),
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"))
+        );
+        LogicManager logicManager = new LogicManager(model, storage);
+
+        CommandResult result = logicManager.confirmClear();
+
+        CommandResult expectedResult = new CommandResult(
+                "All the data has been deleted successfully.",
+                false,
+                false,
+                false,
+                true,
+                "All the data has been deleted successfully."
+        );
+
+        assertEquals(expectedResult, result);
+        assertEquals(new AddressBook(), model.getAddressBook());
     }
 }
