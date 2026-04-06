@@ -30,7 +30,16 @@
     - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     - [Launch and shutdown](#launch-and-shutdown)
-    - [Deleting a person](#deleting-a-person)
+    - [Adding a member](#adding-a-member)
+    - [Listing members](#listing-members)
+    - [Deleting member(s)](#deleting-members)
+    - [Editing a member](#editing-a-member)
+    - [Finding member(s)](#finding-members)
+    - [Sorting members](#sorting-members)
+    - [Renewing membership](#renewing-membership)
+    - [Clearing all members](#clearing-all-members)
+    - [Viewing help](#viewing-help)
+    - [Exiting the program](#exiting-the-program)
     - [Saving data](#saving-data)
 --------------------------------------------------------------------------------------------------------------------
 
@@ -636,7 +645,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+<br>
+
+### Adding a member
+
+<br>
+
+### Listing members
+
+<br>
+
+### Deleting member(s)
 
 1. Deleting a person while all persons are being shown
 
@@ -652,6 +671,36 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+<br>
+
+### Editing a member
+
+<br>
+
+### Finding member(s)
+
+<br>
+
+### Sorting members
+
+<br>
+
+### Renewing membership
+
+<br>
+
+### Clearing all members
+
+<br>
+
+### Viewing help
+
+<br>
+
+### Exiting the program
+
+<br>
 
 ### Saving data
 
