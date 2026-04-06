@@ -341,187 +341,214 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `GymContactsPro` and the **Actor** is the `GymManager`, unless specified otherwise)
 
 
-**Use case: UC01 : Add a gym member**
+**Use case : UC01 : Add a gym member**
 
 **MSS**
 
-1. Gym Manager requests to add a new member by providing their details
+1. Gym Manager requests to add a new member by providing the member's details
 2. GymContactsPro adds the new member
-3. GymContactsPro displays a success message showing the newly added member's details
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The provided details are in an invalid format.
-  * 1a1. GymContactsPro shows an error message indicating the required format.
-
-  Use case ends.
-
-* 1b. The provided details correspond to an already existing member in the system.
-  * 1b1. GymContactsPro rejects the addition and shows a duplicate error message.
-
-  Use case ends.
-
-**Use case: UC02 : List all gym members**
-
-**MSS**
-
-1. Gym Manager requests to view the list of members
-2. GymContactsPro displays the complete list of members
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. There are no members recorded in the system.
-  * 2a1. GymContactsPro shows an error message.
-
-    Use case ends.
-
-**Use case: UC03 : Delete a gym member**
-
-**MSS**
-
-1. Gym Manager requests to delete a member by providing their membership ID
-2. GymContactsPro deletes the member
 3. GymContactsPro displays a success message
 
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
-* 1a. No membership is provided or format is invalid.
-  * 1a1. GymContactsPro shows an error message prompting for the correct format.
+* 1a. The command format was invalid
+  * 1a1. GymContactsPro shows an error message
 
-  Use case ends.
+  Use case ends
+
+* 1b. The member to be added is identical to an existing member in the system
+  * 1b1. GymContactsPro shows an error message
+
+  Use case ends
+
+<br>
+
+**Use case : UC02 : List all gym members**
+
+**MSS**
+
+1. Gym Manager requests to view the list of all registered members
+2. GymContactsPro displays the complete list of members
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The command format was invalid
+    * 1a1. GymContactsPro shows an error message
+
+    Use case ends
+
+* 1b. There are no members in the system
+    * 1b1. GymContactsPro shows an error message
+
+    Use case ends
+
+<br>
+
+**Use case : UC03 : Delete gym member(s)**
+
+**MSS**
+
+1. Gym Manager requests to delete member(s) by providing their membership ID(s)
+2. GymContactsPro deletes the member(s)
+3. GymContactsPro displays a success message
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The command format was invalid 
+  * 1a1. GymContactsPro shows an error message
+
+  Use case ends
 
 * 1b. No member with given membership ID exists in the system.
-  * 1b1. GymContactsPro shows an error message.
+  * 1b1. GymContactsPro shows an error message
 
-  Use case ends.
+  Use case ends
 
-**Use case : UC05 : View list of executable commands**
+* 1c. Multiple membership IDs are provided, but only a few exist in the system
+  * 1c1. GymContactsPro shows an error message
+
+  Use case ends
+
+* 1d. Multiple identical membership IDs are provided
+  * 1d1. GymContactsPro shows an error message
+
+  Use case ends
+
+<br>
+
+**Use case : UC04 : View list of executable commands**
 
 **MSS**
 
 1. Gym Manager requests to view the list of executable commands
 2. GymContactsPro displays the list of available executable commands and their formats
+3. GymContactsPro displays a success message
 
-    Use case ends.
-
-**Use case: UC05 : Find a gym member**
-
-**MSS**
-
-1. Gym Manager requests to find a member by specifying search field and the search term
-2. GymContactsPro displays a list of members matching the specifies criteria
-
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
-* 1a. The Gym Manager does not provide a valid search format.
-  * 1a1. GymContactsPro shows an error message.
+* 1a. The command format was invalid
+  * 1a1. GymContactsPro shows an error message
 
-    Use case ends.
+  Use case ends
 
-* 2a. There are no members matching the provided criteria.
-    * 2a1. GymContactsPro shows an error message.
+<br>
 
-    Use case ends.
-
-
-**Use case: UC06 : Edit existing member details**
+**Use case : UC05 : Find gym member(s)**
 
 **MSS**
 
-1. Gym Manager requests to edit a member by providing their membership ID
+1. Gym Manager requests to find member(s) by specifying the search field and the search term
+2. GymContactsPro displays a list of member(s) matching the specified criteria
+3. GymContactsPro displays a success message
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Command format is invalid
+  * 1a1. GymContactsPro shows an error message
+
+  Use case ends
+
+* 1b. There are no members matching the provided criteria
+    * 1b1. GymContactsPro shows an error message
+
+    Use case ends
+
+* 1c. Only some members match the provided criteria
+    * 1c1. GymContactsPro only shows a list of members matching the provided criteria
+
+    Use case ends
+
+<br>
+
+**Use case : UC06 : Edit details of an existing member**
+
+**MSS**
+
+1. Gym Manager requests to edit a member by providing their membership ID and fields to edit
 2. GymContactsPro updates the member's details
 3. GymContactsPro displays a success message
 
-   Use case ends.
+   Use case ends
 
 **Extensions**
 
-* 1a. No membership ID is provided or the format is invalid.
-  * 1a1. GymContactsPro shows an error message prompting for the correct format.
+* 1a. The command format is invalid
+  * 1a1. GymContactsPro shows an error message
 
-    Use case ends.
+  Use case ends
 
-* 3b. The provided new details are in an invalid format.
-  * 3b1. GymContactsPro shows an error message corresponding to the invalid field.
+* 1b. The new details create a duplicate member
+  * 1b1. GymContactsPro shows a error message
 
-    Use case ends.
+  Use case ends
 
-* 3c. The new details create a duplicate member.
-  * 3c1. GymContactsPro rejects the edit and shows a duplicate fields error message.
+* 1c. Some or all the fields provided are identical to the existing member's details
+  * 1c1. GymContactsPro accepts the edit and tells the user which fields were updated
 
-    Use case ends.
+  Use case ends
 
-**Use case: UC07 : Check memberships nearing expiry**
+<br>
+
+**Use case : UC07 : Renew a member's membership validity**
 
 **MSS**
 
-1. Gym Manager requests to identify members whose memberships expire within a specified number of days
-2. GymContactsPro displays a list of members expiring within that timeframe
+1. Gym Manager requests to renew the validity of a member by providing the membership ID and days to renew
+2. GymContactsPro updates the member's membership validity
+3. GymContactsPro displays a success message
 
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
-* 1a. The Gym Manager provides an invalid number of days.
-  * 1a1. GymContactsPro shows an error message prompting for a valid number.
+* 1a. The command format was invalid 
+  * 1a1. GymContactsPro shows an error message
 
-    Use case ends.
+  Use case ends
 
-* 2a. No members have memberships expiring within the specified timeframe.
-    * 2a1. GymContactsPro shows an error message.
+* 2a. No member with the given membership ID exists in the system
+  * 2a1. GymContactsPro shows an error message
 
-  Use case ends.
+  Use case ends
 
-**Use case: UC08 : Check a member's membership validity**
+<br>
+
+**Use case: UC08 : Sort gym members**
 
 **MSS**
 
-1. Gym Manager requests to check the validity of a specific membership ID
-2. GymContactsPro verifies the membership ID
-3. GymContactsPro displays the membership validity status and the member's details
+1. Gym Manager requests to sort members by provided field and order
+2. GymContactsPro displays the list of members sorted in the requested criteria
+3. GymContactsPro displays a success message
 
-    Use case ends.
-
-**Extensions**
-
-* 1a. No membership ID is provided.
-  * 1a1. GymContactsPro shows an error message prompting for the correct format.
-
-    Use case ends.
-
-* 2a. No member with the given membership ID exists in the system.
-  * 2a1. GymContactsPro shows an error message.
-
-    Use case ends.
-
-**Use case: UC09 : Sort members by membership expiry**
-
-**MSS**
-
-1. Gym Manager requests to sort members.
-2. GymContactsPro displays the list of members sorted in the requested order
-
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
-* 1a. The Gym Manager specifies an invalid sort order.
-  * 1a1. GymContactsPro shows an error message specifying the correct sort options.
+* 1a. The command format was invalid
+  * 1a1. GymContactsPro shows an error message
 
-    Use case ends.
+  Use case ends
 
-* 2a. There are no members available to sort.
-    * 2a1. GymContactsPro shows an error message specifying the correct sort options.
+* 2a. There are no members available to sort
+    * 2a1. GymContactsPro shows an error message 
+    
+    Use case ends
 
-  Use case ends.
+* 3a. Sorting results in no change in the member list
+    * 3a1. GymContactsPro shows an error message
+
+  Use case ends
 
 
 ### Non-Functional Requirements
