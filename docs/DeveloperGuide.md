@@ -303,17 +303,12 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Gym managers and front-desk staff who manage a significant number of member records
-* works mainly in a desktop or front-desk environment
-* performs frequent repetitive administrative tasks
-* prefers typing to mouse interactions
-* can type reasonably fast
-* is reasonably comfortable using CLI apps
+Gym managers who perform frequent repetitive administrative tasks to manage a significant number of member records.
+They work on a computer, can type reasonably fast, prefer typing to mouse interactions and, are comfortable using command line interface (CLI) apps.
 
 **Value proposition**:
 
-Manage gym member records faster than a typical mouse-driven or spreadsheet-based application, while supporting quick member lookup, record updates, and membership validity tracking.
-
+Manage gym member records more quickly and accurately than a spreadsheet-based or typical mouse-driven application, thereby boosting work efficiency, particularly for repetitive administrative tasks.
 
 ### User stories
 
