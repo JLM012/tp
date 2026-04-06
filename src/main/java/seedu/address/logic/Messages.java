@@ -19,6 +19,7 @@ public class Messages {
     public static final String MESSAGE_PERSON_NOT_FOUND = "No person with Membership ID %1$s found";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_DUPLICATE_ID = "Duplicate membership ID detected: %1$s";
     public static final String MESSAGE_NO_CHANGE_IN_DISPLAYED_LIST = "No change in displayed list.";
 
     /**
