@@ -68,7 +68,7 @@ public class DeleteCommand extends Command {
             deletedNames.append(Messages.format(person)).append("\n");
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames.toString().trim()));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames.toString()));
     }
 
     @Override
