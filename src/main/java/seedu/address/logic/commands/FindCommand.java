@@ -23,7 +23,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all member(s) by the specified prefix, "
             + "whose field matches any of "
-            + "the specified keywords (case-insensitive) and displays them as a list.\n"
+            + "the specified keywords and displays them as a list.\n"
             + "Parameters: PREFIX/KEYWORD [MORE_KEYWORDS]\n"
             + "Exactly one prefix must be used.\n"
             + "At least one keyword must provided.\n"

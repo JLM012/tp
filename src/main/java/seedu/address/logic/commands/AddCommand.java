@@ -36,13 +36,13 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_MEMBERSHIP_EXPIRY_DATE + "2026-12-31 ";
+            + PREFIX_MEMBERSHIP_EXPIRY_DATE + "2026-12-31";
 
     public static final String MESSAGE_SUCCESS = "New member added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This member already exists in the address book";
-    public static final String MESSAGE_ADDRESS_BOOK_FULL = "Cannot add more contacts. "
+    public static final String MESSAGE_ADDRESS_BOOK_FULL = "Cannot add more members."
             + "Address book has reached its maximum capacity of "
-            + MembershipId.MAX_CAPACITY + " contacts.";
+            + MembershipId.MAX_CAPACITY + " members.";
 
     private static final Logger logger = LogsCenter.getLogger(AddCommand.class);
 
@@ -60,17 +60,17 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        assert toAdd != null : "Person should not be null before adding";
+        assert toAdd != null : "Member should not be null before adding";
 
-        logger.info("Executing AddCommand for person: " + toAdd);
+        logger.info("Executing AddCommand for member: " + toAdd);
 
         if (model.hasPerson(toAdd)) {
-            logger.warning("Duplicate person detected: " + toAdd);
+            logger.warning("Duplicate member detected: " + toAdd);
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         if (!model.canGenerateMembershipId()) {
-            logger.warning("Address book is full. Cannot add person: " + toAdd);
+            logger.warning("Address book is full. Cannot add member: " + toAdd);
             throw new CommandException(MESSAGE_ADDRESS_BOOK_FULL);
         }
 
@@ -81,8 +81,8 @@ public class AddCommand extends Command {
                 toAdd.getMembershipExpiryDate());
 
         model.addPerson(personWithId);
-        assert model.hasPerson(personWithId) : "Model should, but does not contain the newly added person";
-        logger.info("Successfully added person: " + personWithId);
+        assert model.hasPerson(personWithId) : "Model should, but does not contain the newly added member";
+        logger.info("Successfully added member: " + personWithId);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personWithId)));
     }
 

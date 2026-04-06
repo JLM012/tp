@@ -28,11 +28,11 @@ public class ListCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         if (model.getFilteredPersonList().isEmpty()) {
-            logger.warning("No person to list");
+            logger.warning("No member to list");
             return new CommandResult(MESSAGE_NO_PERSONS);
         }
 
-        logger.info("Successfully listed all persons");
+        logger.info("Successfully listed all members");
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
