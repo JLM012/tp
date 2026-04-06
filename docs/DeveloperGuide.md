@@ -303,33 +303,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Gym managers and front-desk staff who manage a significant number of member records
-* works mainly in a desktop or front-desk environment
-* performs frequent repetitive administrative tasks
-* prefers typing to mouse interactions
-* can type reasonably fast
-* is reasonably comfortable using CLI apps
+Gym managers who perform frequent repetitive administrative tasks to manage a significant number of member records.
+They work on a computer, can type reasonably fast, prefer typing to mouse interactions and, are comfortable using command line interface (CLI) apps.
 
 **Value proposition**:
 
-Manage gym member records faster than a typical mouse-driven or spreadsheet-based application, while supporting quick member lookup, record updates, and membership validity tracking.
-
+Manage gym member records more quickly and accurately than a spreadsheet-based or typical mouse-driven application, thereby boosting work efficiency, particularly for repetitive administrative tasks.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                                                  | So that I can…​                                                            |
-|----------|-------------|---------------------------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | Gym manager | I want to add new members                                     | So that I can keep a record of new members                                 |
-| `* * *`  | Gym manager | I want to view the list of members                            | So that I understand who is currently recorded                             |
-| `* * *`  | Gym manager | I want to delete a member                                     | So that I can remove incorrect or obsolete records                         |
-| `* * `   | Gym manager | I want to know how to interact with the app                   | So that I can begin to use the app                                         |
-| `* *`    | Gym manager | I want to search for a member                                 | So that I can retrieve their information                                   |
-| `* *`    | Gym manager | I want to edit member's personal information                  | So that my records can stay updated with the latest information            |
-| `* *`    | Gym manager | I want to know which member's membership is close to expiring | So that I can contact member's to remind them of their memberhsip validity |
-| `*`      | Gym manager | I want to check for a member's membership validity            | So that I can allow valid entry to gyms                                    |
-| `*`      | Gym manager | I want to sort member's membership validity                   | So that I can view members in order of membership expiry date              |
+| Priority | As a …​     | I want to …​                                                  | So that I can…​                                                             |
+|----------|-------------|---------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `* * *`  | Gym manager | I want to add new members                                     | So that I can keep a record of new members                                  |
+| `* * *`  | Gym manager | I want to view the list of members                            | So that I understand who is currently registered to the gym                 |
+| `* * *`  | Gym manager | I want to delete a member                                     | So that I can remove incorrect or obsolete records                          |
+| `* * `   | Gym manager | I want to know how to interact with the app                   | So that I can begin to use the app                                          |
+| `* *`    | Gym manager | I want to search for a member                                 | So that I can retrieve their information                                    |
+| `* *`    | Gym manager | I want to edit member's personal information                  | So that my records can stay updated with the latest information             |
+| `* *`    | Gym manager | I want to know which member's membership is close to expiring | So that I can contact members to remind them of their membership validity   |
+| `*`      | Gym manager | I renew gym member's membership expiry date                   | So that they can continue using the gym                                     |
+| `*`      | Gym manager | I want to sort member's membership expriy date                  | So that I can know which members have expired or soon to expire memberships |
 
 
 ### Use cases
@@ -524,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The product should be optimized for gym managers who are comfortable typing commands, such that frequent operations can be completed entirely via keyboard without requiring mouse interaction.
 2. A new user with basic CLI familiarity should be able to learn the core commands by referring to the user guide.
-3. Should work on any _mainstream OS_ such as Windows and macOS as long as it has Java `17` or above installed.
+3. Should work on any mainstream OS such as Windows and macOS as long as it has Java 17 or above installed.
 4. The product should respond to any valid command within 2 seconds when managing up to 1000 member records.
 5. Should be able to hold up to 1000 persons without a noticeable lag in performance for typical usage.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.

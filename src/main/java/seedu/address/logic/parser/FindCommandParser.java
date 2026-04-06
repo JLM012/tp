@@ -45,10 +45,6 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         Prefix usedPrefix = argMultimap.verifyExactlyOnePrefixPresentFor(FindCommand.MESSAGE_USAGE, allPrefixes);
 
-        if (usedPrefix == null) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-
         String value = argMultimap.getValue(usedPrefix).get().trim().replaceAll("\\s+", " ");
         if (value.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

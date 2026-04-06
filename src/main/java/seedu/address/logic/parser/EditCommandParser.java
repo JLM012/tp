@@ -30,20 +30,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_MEMBERSHIP_EXPIRY_DATE);
 
         String membershipIdToken = argMultimap.getPreamble().trim();
-        int membershipIdValue;
-        try {
-            membershipIdValue = Integer.parseInt(membershipIdToken);
-        } catch (NumberFormatException e) {
+        if (membershipIdToken.isEmpty() || membershipIdToken.split("\\s+").length != 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
-
-        // reject invalid id numeric forms such as "+1000" or "0001000".
-        if (!membershipIdToken.equals(Integer.toString(membershipIdValue))
-                || !MembershipId.isValidMembershipId(membershipIdValue)) {
-            throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
-        }
-
-        MembershipId membershipId = new MembershipId(membershipIdValue);
+        MembershipId membershipId = ParserUtil.parseMembershipId(membershipIdToken);
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_MEMBERSHIP_EXPIRY_DATE);

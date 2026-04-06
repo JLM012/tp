@@ -8,6 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipExpiryDate;
+import seedu.address.model.person.MembershipId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -104,6 +105,33 @@ public class ParserUtil {
             throw new ParseException(MembershipExpiryDate.MESSAGE_CONSTRAINTS);
         }
         return new MembershipExpiryDate(trimmedExpiryDate);
+    }
+
+
+    /**
+     * Parses a {@code String membershipId} into a {@code MembershipId}.
+     * Leading and trailing whitespaces will be trimmed.
+     * <p>
+     * Rejects invalid id numeric forms (e.g. "+1000", "0001000").
+     *
+     * @throws ParseException if the given {@code membershipId} is invalid.
+     */
+    public static MembershipId parseMembershipId(String membershipId) throws ParseException {
+        requireNonNull(membershipId);
+        String trimmedMembershipId = membershipId.trim();
+        int membershipIdValue;
+        try {
+            membershipIdValue = Integer.parseInt(trimmedMembershipId);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!trimmedMembershipId.equals(Integer.toString(membershipIdValue))
+                || !MembershipId.isValidMembershipId(membershipIdValue)) {
+            throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
+        }
+
+        return new MembershipId(membershipIdValue);
     }
 
 }

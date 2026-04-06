@@ -56,8 +56,7 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_invalidIdFormat_throwsParseException() {
         // non-integer after prefix
-        assertParseFailure(parser, " id/abc",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " id/abc", MembershipId.MESSAGE_CONSTRAINTS);
     }
 
     @Test

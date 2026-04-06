@@ -31,9 +31,8 @@ public class DeleteCommandTest {
         Person personToDelete = model.getAddressBook().getPersonList().get(0);
         MembershipId targetId = personToDelete.getMembershipId();
         DeleteCommand deleteCommand = new DeleteCommand(List.of(targetId));
-
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-            Messages.format(personToDelete));
+                                               Messages.format(personToDelete) + "\n");
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -52,7 +51,7 @@ public class DeleteCommandTest {
 
         // Expected output should be sorted by ID (firstPerson before secondPerson)
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-            Messages.format(firstPerson) + "\n" + Messages.format(secondPerson));
+            Messages.format(firstPerson) + "\n" + Messages.format(secondPerson) + "\n");
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(firstPerson);

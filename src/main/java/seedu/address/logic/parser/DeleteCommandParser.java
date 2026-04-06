@@ -24,28 +24,20 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ID);
 
-        if (!argMultimap.getValue(PREFIX_ID).isPresent() || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID);
+
+        Prefix usedPrefix = argMultimap.verifyExactlyOnePrefixPresentFor(DeleteCommand.MESSAGE_USAGE, PREFIX_ID);
+
         // Split all values after id/ by whitespace
-        String[] idTokens = argMultimap.getValue(PREFIX_ID).get().trim().split("\\s+");
+        String[] idTokens = argMultimap.getValue(usedPrefix).get().trim().split("\\s+");
 
         List<MembershipId> membershipIds = new ArrayList<>();
         for (String idString : idTokens) {
-            idString = idString.trim();
-            int idValue;
-            try {
-                idValue = Integer.parseInt(idString);
-            } catch (NumberFormatException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-            }
-
-            if (!idString.equals(Integer.toString(idValue)) || !MembershipId.isValidMembershipId(idValue)) {
-                throw new ParseException(MembershipId.MESSAGE_CONSTRAINTS);
-            }
-
-            membershipIds.add(new MembershipId(idValue));
+            membershipIds.add(ParserUtil.parseMembershipId(idString));
         }
 
         return new DeleteCommand(membershipIds);
