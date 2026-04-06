@@ -34,17 +34,14 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_singleKeyword_returnsFindCommand() {
-        FindCommand expectedFindCommand =
-            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice")));
-        assertParseSuccess(parser, " n/Alice", expectedFindCommand);
-    }
+    public void parse_nameKeywords_returnsFindCommand() {
+        FindCommand expectedSingle =
+                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice")));
+        assertParseSuccess(parser, " n/Alice", expectedSingle);
 
-    @Test
-    public void parse_multipleKeywords_returnsFindCommand() {
-        FindCommand expectedFindCommand =
-            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, " n/Alice Bob", expectedFindCommand);
+        FindCommand expectedMultiple =
+                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, " n/Alice Bob", expectedMultiple);
     }
 
     @Test
@@ -58,16 +55,16 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_keywordsWithTabsNewlinesAndMixedWhitespace_returnsFindCommand() {
+    public void parse_nameKeywordsWithIrregularWhitespace_returnsFindCommand() {
         FindCommand expectedFindCommand =
-            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        // tabs between keywords
-        assertParseSuccess(parser, " n/Alice\tBob", expectedFindCommand);
-        // newlines between keywords
-        assertParseSuccess(parser, " n/Alice\nBob", expectedFindCommand);
-        // mix of spaces, tabs, and newlines
-        assertParseSuccess(parser, " n/ Alice \n \t Bob  ", expectedFindCommand);
+                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+
+        assertParseSuccess(parser, " n/Alice    Bob", expectedFindCommand);  // many spaces
+        assertParseSuccess(parser, " n/   Alice Bob   ", expectedFindCommand);  // leading/trailing
+        assertParseSuccess(parser, " n/Alice\tBob", expectedFindCommand);  // tab
+        assertParseSuccess(parser, " n/Alice\nBob", expectedFindCommand);  // newline
     }
+
 
     @Test
     public void parse_phoneKeywords_returnsFindCommand() {
@@ -191,7 +188,4 @@ public class FindCommandParserTest {
         assertParseFailure(parser, " m/2020-01-01",
             MembershipExpiryDate.MESSAGE_CONSTRAINTS);
     }
-
-
-
 }

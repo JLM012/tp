@@ -38,7 +38,9 @@ public class HelpWindow extends UiPart<Stage> {
                     + "Format: find KEYWORD [MORE_KEYWORDS]\n\n"
 
                     + "sort\n"
-                    + "Format: sort PREFIX/ORDER]\n\n"
+                    + "Format: sort PREFIX/ORDER\n"
+                    + "or\n"
+                    + "Format: sort none\n\n"
 
                     + "renew\n"
                     + "Format: renew id/MEMBERSHIP_ID d/DAYS\n\n"
