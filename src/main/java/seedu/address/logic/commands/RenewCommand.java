@@ -36,6 +36,10 @@ public class RenewCommand extends Command {
     private final MembershipId membershipId;
     private final int daysToAdd;
 
+    /**
+     * Creates a RenewCommand to renew a member with the given {@code membershipId}
+     * by {@code daysToAdd} days.
+     */
     public RenewCommand(MembershipId membershipId, int daysToAdd) {
         requireNonNull(membershipId);
         this.membershipId = membershipId;
