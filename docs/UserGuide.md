@@ -178,17 +178,18 @@ Edits an existing member among the registered gym members.
 <box type="info" seamless>
 
 **Note:**
-* Edits the person at the specified `MEMBERSHIP_ID`.
+* Edits the member at the specified `MEMBERSHIP_ID`.
 * At least one of the optional fields must be provided.
-* Multiple fields can be provided at once. The order of the fields does not matter.
-* Existing values will be updated to the input values.
+* Multiple different fields can be provided at once.
+* Existing values will be updated to the input values. Only changed fields will be updated, 
+and unchanged fields will remain unchanged.
 
 </box>
 
 <box type="tip" seamless>
 
 **Tip:**
-* Pending edit
+* Fields following the `edit` command can be provided in any order
 
 </box>
 
@@ -426,7 +427,7 @@ Action     | Format, Examples
 **Add**    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS m/EXPIRY_DATE`<br> e.g., `add n/James Ho p/92375927 e/jamesho@example.com a/Blk 123, Clementi Rd, 665123 m/2026-12-31`
 **List**   | `list`
 **Delete** | `delete id/MEMBERSHIP_ID`<br> e.g., `delete id/1021`
-**Edit**   | `edit id/MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]`<br> e.g.,`edit 1016 n/James Lee e/jameslee@example.com`
+**Edit**   | `edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]`<br> e.g.,`edit 1016 n/James Lee e/jameslee@example.com`
 **Find**   | `find PREFIX/KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/James Max`
 **Sort**   | `sort PREFIX/ORDER `<br> e.g., `sort n/desc`<br> or <br> e.g., `sort none`
 **Clear**  | `clear`
