@@ -53,9 +53,8 @@ public class SortCommandParserTest {
         assertParseFailure(parser, " n/none", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         // Empty order
         assertParseFailure(parser, " n/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
-        // Uppercase asc/desc (case-insensitive check)
-        assertParseFailure(parser, " n/ASC", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
-        assertParseFailure(parser, " n/DESC", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        // Whitespace-only order
+        assertParseFailure(parser, " n/   ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
     }
 
     @Test
@@ -162,5 +161,21 @@ public class SortCommandParserTest {
         SortCommand expectedExpiryDesc = new SortCommand(
                 PersonComparators.EXPIRY_DATE_DESC, "m/", "desc");
         assertParseSuccess(parser, " m/desc", expectedExpiryDesc);
+    }
+
+    @Test
+    public void parse_caseInsensitiveOrder_returnsSortCommand() {
+        // Uppercase ASC
+        SortCommand expectedAsc = new SortCommand(
+                PersonComparators.NAME_ASC, "n/", "asc");
+        assertParseSuccess(parser, " n/ASC", expectedAsc);
+
+        // Uppercase DESC
+        SortCommand expectedDesc = new SortCommand(
+                PersonComparators.NAME_DESC, "n/", "desc");
+        assertParseSuccess(parser, " n/DESC", expectedDesc);
+
+        // Mixed case
+        assertParseSuccess(parser, " n/AsC", expectedAsc);
     }
 }
