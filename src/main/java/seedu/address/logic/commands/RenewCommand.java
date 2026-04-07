@@ -28,7 +28,6 @@ public class RenewCommand extends Command {
     public static final int MIN_RENEW_DAYS = 1;
     public static final int MAX_RENEW_DAYS = 730;
 
-    private static final Logger logger = LogsCenter.getLogger(RenewCommand.class);
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Renews a member's membership by Membership ID.\n"
@@ -41,6 +40,8 @@ public class RenewCommand extends Command {
 
     public static final String MESSAGE_INVALID_DAYS =
             "Days to add must be an integer from " + MIN_RENEW_DAYS + " to " + MAX_RENEW_DAYS + ".";
+
+    private static final Logger logger = LogsCenter.getLogger(RenewCommand.class);
 
     private final MembershipId membershipId;
     private final int daysToAdd;
