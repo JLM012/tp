@@ -4,14 +4,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.getErrorMessageForDuplicatePrefixes;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.SortCommand.MESSAGE_USAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBERSHIP_EXPIRY_DATE;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +33,8 @@ public class SortCommandParserTest {
         assertParseFailure(parser, " desc", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         // Unsupported prefix
         assertParseFailure(parser, " x/asc", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        // Only order value without prefix
+        assertParseFailure(parser, " asc", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
     }
 
     @Test
@@ -54,6 +51,10 @@ public class SortCommandParserTest {
         assertParseFailure(parser, " n/invalid", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         // None (with prefix)
         assertParseFailure(parser, " n/none", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        // Empty order
+        assertParseFailure(parser, " n/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        // Whitespace-only order
+        assertParseFailure(parser, " n/   ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
     }
 
     @Test
@@ -160,5 +161,21 @@ public class SortCommandParserTest {
         SortCommand expectedExpiryDesc = new SortCommand(
                 PersonComparators.EXPIRY_DATE_DESC, "m/", "desc");
         assertParseSuccess(parser, " m/desc", expectedExpiryDesc);
+    }
+
+    @Test
+    public void parse_caseInsensitiveOrder_returnsSortCommand() {
+        // Uppercase ASC
+        SortCommand expectedAsc = new SortCommand(
+                PersonComparators.NAME_ASC, "n/", "asc");
+        assertParseSuccess(parser, " n/ASC", expectedAsc);
+
+        // Uppercase DESC
+        SortCommand expectedDesc = new SortCommand(
+                PersonComparators.NAME_DESC, "n/", "desc");
+        assertParseSuccess(parser, " n/DESC", expectedDesc);
+
+        // Mixed case
+        assertParseSuccess(parser, " n/AsC", expectedAsc);
     }
 }

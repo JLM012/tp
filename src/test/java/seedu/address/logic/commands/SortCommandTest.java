@@ -2,17 +2,15 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -78,14 +76,49 @@ class SortCommandTest {
     }
 
     @Test
+    void execute_restoreFromSortedOrder_returnsMessageRestored() {
+        // Sort first to change the order
+        SortCommand sortDesc = new SortCommand(PersonComparators.NAME_DESC, "n/", "desc");
+        sortDesc.execute(model);
+        List<Person> sortedList = new ArrayList<>(model.getFilteredPersonList());
+        // Verify list is actually different from original
+        if (!sortedList.equals(originalOrder)) {
+            // Now restore to original - should return MESSAGE_RESTORED
+            SortCommand restore = new SortCommand(null, "none", "none");
+            CommandResult result = restore.execute(model);
+            assertEquals(SortCommand.MESSAGE_RESTORED, result.getFeedbackToUser());
+            // Verify list is restored
+            assertEquals(originalOrder, model.getFilteredPersonList());
+        }
+    }
+
+    @Test
     void equals_and_toString() {
         SortCommand a = new SortCommand(PersonComparators.NAME_ASC, "n/", "asc");
         SortCommand b = new SortCommand(PersonComparators.NAME_ASC, "n/", "asc");
         SortCommand c = new SortCommand(PersonComparators.NAME_DESC, "n/", "desc");
+        SortCommand d = new SortCommand(PersonComparators.NAME_ASC, "e/", "asc");
+
+        // Test equality for same values
         assertEquals(a, b);
+
+        // Test inequality for different comparators/orders
         assertNotEquals(a, c);
+
+        // Test inequality for different prefix
+        assertNotEquals(a, d);
+
+        // Test self-equality (line 100: if (other == this))
+        assertEquals(a, a);
+
+        // Test null inequality (line 104: instanceof handles nulls)
         assertNotEquals(a, null);
+
+        // Test different type inequality (line 104: instanceof)
         assertNotEquals(a, "string");
+        assertNotEquals(a, 123);
+
+        // Test toString contains expected fields
         String str = a.toString();
         assert str.contains("prefix") && str.contains("order");
     }

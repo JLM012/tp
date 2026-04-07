@@ -392,7 +392,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command format was invalid 
+* 1a. The command format was invalid
   * 1a1. GymContactsPro shows an error message
 
   Use case ends
@@ -503,7 +503,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The command format was invalid 
+* 1a. The command format was invalid
   * 1a1. GymContactsPro shows an error message
 
   Use case ends
@@ -533,7 +533,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends
 
 * 2a. There are no members available to sort
-    * 2a1. GymContactsPro shows an error message 
+    * 2a1. GymContactsPro shows an error message
     
     Use case ends
 
