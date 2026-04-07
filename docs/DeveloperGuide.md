@@ -672,6 +672,26 @@ testers are expected to do more *exploratory* testing.
 
 ### Listing members
 
+1. List all members in the address book after opening the application
+
+    1. Prerequisites: Members include those in the sample address book
+
+    1. Test case: `lis`<br>
+       Expected: No change in displayed list, together with a `Unknown command` error message shown
+
+    1. Test case: `list`<br>
+       Expected: No change in displayed list, together with a `Listed all members` success message shown
+
+    1. Test case: `list list` <br>
+       Expected: No change in displayed list, together with a `Listed all members` success message shown
+
+1. List all members in the address book after `find n/alex`
+
+    1. Prerequisites: Members include those in the sample address book
+
+    1. Test case: `list` <br>
+       Expected: Displayed list changes to show all members, together with a `Listed all members` success message shown
+
 <br>
 
 ### Deleting member(s)
@@ -719,12 +739,37 @@ testers are expected to do more *exploratory* testing.
 
 ### Exiting the program
 
+1. Exiting the program
+
+    1. Prerequisites: Any state of the app
+
+    1. Test case: `exi`<br>
+       Expected: No change in displayed list, together with a `Unknown command` error message shown
+
+    1. Test case: `exit`<br>
+       Expected: App closes
+
+    1. Test case: Exit via `File` -> `Exit` menu option<br>
+       Expected: App closes
+
 <br>
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Data files save modified data continuously as commands are executed
+   1. Prerequisites: App is running
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: Run a command that modifies data (e.g., `add`, `delete`, `edit`) and manually check `/data/addressbook.json`<br> 
+      Expected: The modified data is immediately saved to the file
 
-1. _{ more test cases …​ }_
+1. Program still runs despite missing/corrupted data files
+    1. Prerequisites: App is not running at first
+
+    1. Test case: Delete /data/addressbook.json and start the app 
+       Expected: App initializes with sample member data, and `INFO: Creating a new data file [path] populated with a sample AddressBook` is logged to the console
+
+    1. Test case: Enter invalid JSON to /data/addressbook.json and start the app
+       Expected: App initializes with an empty address book, and `WARNING: Data file at [path] could not be loaded. Will be starting with an empty AddressBook` is logged to the console
+
+    1. Test case: Enter invalid JSON to /preferences.json and start the app
+       Expected: App initiliazes with default preferences and `WARNING: Preference file at [path] could not be loaded. Using default preferences`is logged to the console
