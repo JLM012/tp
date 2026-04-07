@@ -23,6 +23,7 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
   - [Editing a Member: `edit`](#editing-a-member-edit)
   - [Finding Member(s): `find`](#finding-member-s-find)
   - [Sorting Members: `sort`](#sorting-members-sort)
+  - [Renewing Membership: `renew`](#renewing-membership-renew)
   - [Clearing All Data: `clear`](#clearing-all-data-clear)
   - [Getting Help: `help`](#getting-help-help)
   - [Exiting the App: `exit`](#exiting-the-app-exit)
@@ -285,6 +286,36 @@ applied on displayed lists across all commands unless "turned off" by `sort none
 **Example output:**
 * Sorted `NAME` of members in `desc` order.<br><br>
   ![result for 'sort n/desc'](images/sortNameDescResult.png)
+
+---
+
+### Renewing Membership : `renew`
+
+Renews the membership of an existing member 
+
+**Format:** `renew id/MEMBERSHIP_ID d/DAYS`
+
+<box type="info" seamless>
+
+**Note:**
+* 
+
+</box>
+
+<box type="tip" seamless>
+
+**Tip:**
+* 
+
+</box>
+
+**Example input:**
+* `renew id/1000 d/7`<br><br>
+
+
+**Example output:**
+* 
+
 
 ---
 
