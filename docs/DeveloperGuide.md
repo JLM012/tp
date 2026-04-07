@@ -653,7 +653,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file
+   1. Double-click the jar file
    Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
@@ -711,10 +711,10 @@ testers are expected to do more *exploratory* testing.
       Expected: No change in displayed list, together with a `Invalid command format` error message shown
 
    1. Test case: `find n/`<br>
-      Expected: No change in displayed list, together with a `Invalid command format` error message shown
+      Expected: No change in displayed list, together with a `Names should only contain alphanumeric characters and spaces, and it should not be blank` error message shown
    
    1. Test case: `find n/ale`<br>
-      Expected: Displayed list is empty, together with a `0 member(s) listed` message shown
+      Expected: Displayed list is empty, together with a `0 member(s) found` message shown
 
    1. Test case: `find find n/alex`<br>
       Expected: No change in displayed list, together with a `Invalid command format` error message shown
