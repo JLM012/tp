@@ -79,12 +79,12 @@ public class RenewCommandParserTest {
     @Test
     public void parse_emptyValues_failure() {
         // empty id
-        assertParseFailure(parser, " id/ d/7", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, " d/7 id/", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " id/ d/7", MembershipId.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " d/7 id/", MembershipId.MESSAGE_CONSTRAINTS);
 
         // empty days
-        assertParseFailure(parser, " id/1001 d/", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, " d/ id/1001", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " id/1001 d/", RenewCommand.MESSAGE_INVALID_DAYS);
+        assertParseFailure(parser, " d/ id/1001", RenewCommand.MESSAGE_INVALID_DAYS);
 
         // both empty
         assertParseFailure(parser, " id/ d/", MESSAGE_INVALID_FORMAT);
