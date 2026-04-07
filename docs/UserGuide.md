@@ -291,7 +291,7 @@ applied on displayed lists across all commands unless "turned off" by `sort none
 
 ### Renewing Membership : `renew`
 
-Renews the membership of an existing member 
+Renews the membership of an existing member.
 
 **Format:** `renew id/MEMBERSHIP_ID d/DAYS`
 
