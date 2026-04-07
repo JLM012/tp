@@ -723,6 +723,50 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting members
 
+1. Sorting members while all members are listed. Eg. after the `list` command
+
+    1. Prerequisites: Members used are those in the sample address book
+
+    1. Test case: `sor`<br>
+       Expected: No change in displayed list, together with a `Unknown command` error message shown
+
+    1. Test case: `sort`<br>
+       Expected: No change in displayed list, together with a `Invalid command format` error message shown
+
+    1. Test case: `sort n/`<br>
+       Expected: No change in displayed list, together with a `Invalid command format` error message shown
+
+    1. Test case: `sort n/as`<br>
+       Expected: No change in displayed list, together with a `Invalid command format` error message shown
+
+    1. Test case: `sort sort n/asc`<br>
+       Expected: No change in displayed list, together with a `Invalid command format` error message shown
+
+    1. Test case: `sort n/asc`<br>
+       Expected: Members are sorted by names alphabetically in ascending order, together with a `Sorted by n/ in asc order` success message shown
+
+    1. Test case: `sort n/asc asc`<br>
+       Expected: No change in displayed list, together with a `Invalid command format` error message shown
+
+    1. Test case: `sort n/asc n/desc`<br>
+       Expected: No change in displayed list, together with a `Multiple values specified for the following single-valued field(s): n/` error message shown
+
+    1. Test case: `sort n/desc`<br>
+       Expected: Members are sorted by names alphabetically in descending order, together with a `Sorted by n/ in desc order` success message shown
+
+    1. Test case: `sort n/desc p/asc`<br>
+       Expected: No change in displayed list, together with a `Invalid command format` error message shown
+
+    1. Test case: `sort none` <br>
+       Expected: Members return to their default order, together with a `Restored to original order` success message shown
+
+1. Sorting members while all members are already sorted in ascending order after `sort n/asc`
+
+    1. Prerequisites: Members used are those in the sample address book
+
+    1. Test case: `sort n/ASC` <br>
+       Expected: No change in displayed list, together with a `No change in displayed list` error message shown
+
 <br>
 
 ### Renewing membership
