@@ -12,7 +12,7 @@ public class ConfirmClearCommand extends Command {
 
     public static final String COMMAND_WORD = "confirmclear";
 
-    public static final String MESSAGE_SUCCESS = "All the data has been deleted successfully.";
+    public static final String MESSAGE_SUCCESS = "All data has been deleted successfully";
 
     @Override
     public CommandResult execute(Model model) {

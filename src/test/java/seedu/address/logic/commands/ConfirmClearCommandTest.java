@@ -24,7 +24,7 @@ public class ConfirmClearCommandTest {
                 false,
                 false,
                 true,
-                "All the data has been deleted successfully."
+                "All data has been deleted successfully"
         );
 
         assertEquals(expectedResult, new ConfirmClearCommand().execute(model));
@@ -43,7 +43,7 @@ public class ConfirmClearCommandTest {
                 false,
                 false,
                 true,
-                "All the data has been deleted successfully."
+                "All data has been deleted successfully"
         );
 
         assertEquals(expectedResult, new ConfirmClearCommand().execute(model));

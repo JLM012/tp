@@ -23,7 +23,7 @@ public class ClearCommandTest {
                 true,
                 false,
                 "Warning!\n"
-                        + "This command will clear all contacts.\n"
+                        + "This command will clear all data.\n"
                         + "Press Y/N keys to confirm.\n\n"
                         + "Alternatively, click the buttons below.\n"
         );
@@ -44,7 +44,7 @@ public class ClearCommandTest {
             true,
             false,
             "Warning!\n"
-                + "This command will clear all contacts.\n"
+                + "This command will clear all data.\n"
                 + "Press Y/N keys to confirm.\n\n"
                 + "Alternatively, click the buttons below.\n"
         );

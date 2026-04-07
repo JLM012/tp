@@ -24,8 +24,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes one or more members identified by their Membership IDs.\n"
-        + "Parameters: id/MEMBERSHIP_ID [MORE_MEMBERSHIP_IDs]...\n"
-        + "(must be 4-digit integers from 1000 to 9999, space-separated after id/)\n"
+        + "Parameters: id/MEMBERSHIP_ID [MORE_MEMBERSHIP_IDs]\n"
+        + "At least one membership ID must be provided.\n"
         + "Example: " + COMMAND_WORD + " id/1042 1043 1044";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted member(s):\n%1$s";
@@ -73,7 +73,7 @@ public class DeleteCommand extends Command {
                 .filter(p -> p.getMembershipId().equals(targetId))
                 .findFirst()
                 .orElseThrow(() -> {
-                    logger.warning("No person found with Membership ID: " + targetId);
+                    logger.warning("No member found with Membership ID: " + targetId);
                     return new CommandException(
                         String.format(Messages.MESSAGE_PERSON_NOT_FOUND, targetId));
                 });
@@ -87,8 +87,11 @@ public class DeleteCommand extends Command {
         StringBuilder deletedNames = new StringBuilder();
         for (Person person : personsToDelete) {
             model.deletePerson(person);
-            logger.info("Successfully deleted person with Membership ID: " + person.getMembershipId());
-            deletedNames.append(Messages.format(person)).append("\n");
+            logger.info("Successfully deleted member(s) with Membership ID: " + person.getMembershipId());
+            deletedNames.append(Messages.format(person)).append("\n\n");
+        }
+        if (deletedNames.length() >= 2) {
+            deletedNames.setLength(deletedNames.length() - 2);
         }
 
         // Update filtered list so UI and storage reflect the deletion

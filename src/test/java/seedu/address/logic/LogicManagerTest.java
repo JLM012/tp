@@ -220,12 +220,12 @@ public class LogicManagerTest {
         CommandResult result = logicManager.confirmClear();
 
         CommandResult expectedResult = new CommandResult(
-                "All the data has been deleted successfully.",
+                "All data has been deleted successfully",
                 false,
                 false,
                 false,
                 true,
-                "All the data has been deleted successfully."
+                "All data has been deleted successfully"
         );
 
         assertEquals(expectedResult, result);
@@ -244,12 +244,12 @@ public class LogicManagerTest {
         CommandResult result = logicManager.confirmClear();
 
         CommandResult expectedResult = new CommandResult(
-                "All the data has been deleted successfully.",
+                "All data has been deleted successfully",
                 false,
                 false,
                 false,
                 true,
-                "All the data has been deleted successfully."
+                "All data has been deleted successfully"
         );
 
         assertEquals(expectedResult, result);
