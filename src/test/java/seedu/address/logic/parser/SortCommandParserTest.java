@@ -186,4 +186,9 @@ public class SortCommandParserTest {
         // Mixed case
         assertParseSuccess(parser, " n/AsC", expectedAsc);
     }
+
+    @Test
+    public void parse_preambleWithNoPrefix_throwsParseException() {
+        assertParseFailure(parser, "junk", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+    }
 }
