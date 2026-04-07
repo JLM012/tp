@@ -28,7 +28,7 @@ public class SortCommand extends Command {
             + "  n/NAME\n"
             + "  p/PHONE\n"
             + "  e/EMAIL\n"
-            + "  a/ADDRESS(Postal Code)\n"
+            + "  a/ADDRESS (Postal Code)\n"
             + "  m/EXPIRY_DATE\n"
             + "Example: " + COMMAND_WORD + " n/desc\n"
             + "Example: " + COMMAND_WORD + " none";

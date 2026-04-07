@@ -31,7 +31,7 @@ public class FindCommand extends Command {
             + "  n/NAME\n"
             + "  p/PHONE\n"
             + "  e/EMAIL\n"
-            + "  a/ADDRESS(Postal Code)\n"
+            + "  a/ADDRESS (Postal Code)\n"
             + "  m/EXPIRY_DATE\n"
             + "Example: " + COMMAND_WORD + " n/alice bob charlie\n"
             + "Example: " + COMMAND_WORD + " p/91234567 98765432";
