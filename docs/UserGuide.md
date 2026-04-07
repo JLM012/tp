@@ -110,7 +110,7 @@ Adds a new gym member to the list of registered gym members.
 
 **Tip:**
 * Attributes following the `add` command can be provided in any order
-**Tip:** 
+**Tip:**
 * Fields following the `add` command can be provided in any order
 </box>
 
@@ -183,7 +183,7 @@ Edits an existing member among the registered gym members.
 * Edits the member at the specified `MEMBERSHIP_ID`.
 * At least one of the optional fields must be provided.
 * Multiple different fields can be provided at once.
-* Existing values will be updated to the input values. Only changed fields will be updated, 
+* Existing values will be updated to the input values.Only changed fields will be updated, 
 and unchanged fields will remain unchanged.
 
 </box>
