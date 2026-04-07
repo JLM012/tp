@@ -75,5 +75,20 @@ public class RenewCommandParserTest {
         assertParseFailure(parser, " id/1001 id/1002 d/7 d/8",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ID, PREFIX_DAYS));
     }
+
+    @Test
+    public void parse_emptyValues_failure() {
+        // empty id
+        assertParseFailure(parser, " id/ d/7", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " d/7 id/", MESSAGE_INVALID_FORMAT);
+
+        // empty days
+        assertParseFailure(parser, " id/1001 d/", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " d/ id/1001", MESSAGE_INVALID_FORMAT);
+
+        // both empty
+        assertParseFailure(parser, " id/ d/", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " d/ id/", MESSAGE_INVALID_FORMAT);
+    }
 }
 
