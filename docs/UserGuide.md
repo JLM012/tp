@@ -133,7 +133,6 @@ Displays the list of all registered gym members.
 
 **Example input:**
 * `list`<br><br>
-![command for 'list'](images/listCommand.png)
 
 **Example output:**
 * Displays the list of all registered gym members.<br><br>
@@ -352,8 +351,8 @@ Deletes all registered gym members after confirmation.
 * `clear`<br>
 
 **Example output:**
-* A warning window pops up asking for deletion confirmation.<br><br>
-![result for 'clear'](images/clearConfirmation.png)<br><br>
+* A warning window pops up to ask for deletion confirmation.<br><br>
+![warning window](images/warningWindow.png)<br><br>
 * After confirmation, all data will be deleted, together with a `All data has been deleted successfully` success message.<br>
 Thereafter, the warning window will close after a short delay.<br><br>
 ![result for 'successfully delete'](images/clearSuccess.png)<br><br>

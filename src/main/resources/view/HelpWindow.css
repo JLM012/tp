@@ -4,6 +4,7 @@
 
 #copyButton {
     -fx-background-color: #b1b0b0;
+    -fx-font-weight: bold;
 }
 
 #copyButton:hover {

@@ -19,7 +19,9 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2526s2-cs2103t-w08-4.github.io/tp/UserGuide.html";
 
     public static final String HELP_MESSAGE =
-            "User Guide:\n" + USERGUIDE_URL + "\n\n"
+            "User Guide: " + USERGUIDE_URL + "\n"
+                    + "__________________________________\n\n"
+
                     + "Command Summary:\n\n"
 
                     + "add\n"

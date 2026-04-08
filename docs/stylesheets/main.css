@@ -168,3 +168,19 @@ h5,
 h6 {
   color: #e46c0a;
 }
+
+.navbar-brand {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+
+.navbar-brand-icon {
+  display: inline-block !important;
+  height: 42px !important;
+  width: auto !important;
+  vertical-align: middle !important;
+  filter: brightness(0) invert(1) contrast(1.1);
+  margin-left: 8px !important;
+}
