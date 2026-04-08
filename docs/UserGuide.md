@@ -53,15 +53,21 @@ Alternatively you could simply double click GymContactsPro.jar file.
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+  * `list` : Lists all members.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, 138601 m/2026-11-12` : Adds a contact named `John Doe` to the Address Book.
+  * `add n/John Doe p/98765432 e/johnd@example.com a/John Street, Block 123, #01-01 138601 m/2026-11-12` : Adds a member named `John Doe` to the list of Registered Members.
 
-   * `delete id/1006` : Deletes the member with membership ID 1006 from the list.
+  * `find n/John` : Finds members whose names contain "John".
 
-   * `clear` : Deletes all contacts.
+  * * `renew id/1000 d/7` : Renews the membership of the member with ID 1000 by 7 days.
 
-   * `exit` : Exits the app.
+  * `sort n/asc` : Sorts the list of members by name in ascending order.
+
+  * `delete id/1006` : Deletes the member with membership ID 1006 from the list.
+
+  * `clear` : Deletes all members.
+
+  * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -104,7 +110,13 @@ Adds a new gym member to the list of registered gym members.
 <box type="info" seamless>
 
 **Note:**
-* Pending edit
+
+To ensure data accuracy, the information provided must follow these rules:
+* **Name:** Must not be blank.
+* **Phone:** Must be exactly 8 digits long and start with 8 or 9.
+* **Email:** Must be a properly formatted email address (e.g., `johndoe@example.com`).
+* **Address:** Must not be blank and **must end with a valid 6-digit postal code**.
+* **Expiry Date:** Must be a valid date in the format `YYYY-MM-DD` and **cannot be before the current date**.
 
 </box>
 <box type="tip" seamless>
