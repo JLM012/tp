@@ -849,6 +849,20 @@ testers are expected to do more *exploratory* testing.
 <br>
 
 ### Viewing help
+1. Opening the help window when the application is running normally
+   1. Prerequisites: Application is launched successfully
+   2. Test case: `hel`, `helpme`<br>
+      Expected: No help window is opened, together with a `Unknown command` error message shown
+   3. Test case: `help 123`<br>
+      Expected: No help window is opened, together with a `Invalid command format` error message shown
+   4. Test case: `help`<br>
+      Expected: Help window opens, together with a `Opened help window`. success message shown in the result display
+2. Closing the help window after it has been opened
+   1. Prerequisites: Help window is open
+   2. Test case: Close the help window<br>
+      Expected: Help window closes, together with a `Closed help window` message shown in the result display
+   3. Test case: Press `ESC`<br>
+      Expected: Help window closes, together with a `Closed Help window` message shown in the result display
 
 <br>
 
