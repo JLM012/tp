@@ -324,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Gym manager | I want to search for a member                                 | So that I can retrieve their information                                    |
 | `* *`    | Gym manager | I want to edit member's personal information                  | So that my records can stay updated with the latest information             |
 | `* *`    | Gym manager | I want to know which member's membership is close to expiring | So that I can contact members to remind them of their membership validity   |
-| `*`      | Gym manager | I renew gym member's membership expiry date                   | So that they can continue using the gym                                     |
+| `*`      | Gym manager | I want to renew gym member's membership expiry date           | So that they can continue using the gym                                     |
 | `*`      | Gym manager | I want to sort member's membership expriy date                | So that I can know which members have expired or soon to expire memberships |
 
 
@@ -674,7 +674,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a member
 
-    1. Prerequisites: Ensure there is no existing member with the exact name `John Doe` and the details used below.
+    1. Prerequisites: Ensure there is no existing member with the exact phone number and email address.
 
     1. Test case: `ad`<br>
        Expected: An `Unknown command` error message shown
