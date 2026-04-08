@@ -178,9 +178,9 @@ h6 {
 
 .navbar-brand-icon {
   display: inline-block !important;
-  height: 42px !important;
+  height: 41px !important;
   width: auto !important;
   vertical-align: middle !important;
   filter: brightness(0) invert(1) contrast(1.1);
-  margin-left: 8px !important;
+  margin-left: 3px !important;
 }
