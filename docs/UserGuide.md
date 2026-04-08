@@ -302,7 +302,7 @@ Renews the membership of an existing member.
 **Note:**
 * The `DAYS` parameter specifies the number of days to extend the membership.
 * Both `MEMBERSHIP_ID` and `DAYS` parameters are required for the command to be valid.
-* Renewing an expired membership will set the expiry date to the current date plus the specified number of days.
+* If the membership has already expired, the current day is counted as day 1 when renewing. For example, `renew id/1000 d/7` will set the new expiry date to 7 days from today, including today as the first day.
 * A maximum of 730 days (2 years) can be added to the current expiry date.
 
 </box>
@@ -316,11 +316,11 @@ Renews the membership of an existing member.
 
 **Example input:**
 * `renew id/1000 d/7`<br><br>
-
+  ![command for 'renew id/1000 d/7'](images/renewCommand.png)
 
 **Example output:**
 * Renews the membership of member with ID of `1000` by `7` days.<br><br>
-
+  ![result for 'renew id/1000 d/7'](images/renewResult.png)
 
 ---
 

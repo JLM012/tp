@@ -741,6 +741,34 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a member
 
+1. Editing a member 
+
+    1. Prerequisites: Ensure there is a member with `MEMBERSHIP_ID` of `1000`.
+
+    1. Test case: `edi`<br>
+       Expected: An `Unknown command` error message shown
+
+    1. Test case: `edit`<br>
+       Expected: An `Invalid command format` error message shown
+
+    1. Test case: `edit 1000`<br>
+       Expected: An `At least one field to edit must be provided.` error message shown
+
+    1. Test case: `edit 1000 p/`<br>
+       Expected: A phone number validation error message shown
+
+    1. Test case: `edit 1000 p/91234567 p/98765432`<br>
+       Expected: A `Multiple values specified for the following single-valued field(s): p/` error message shown
+
+    1. Test case: `edit 1000 p/91234567 e/johndoe@example.com`<br>
+       Expected: Member with `MEMBERSHIP_ID` `1000` is updated, together with an `Edited member: ...` success message shown
+
+    1. Test case: `edit 1000 p/91234567 e/johndoe@example.com` (run the same command again)<br>
+       Expected: A `No changes made — the provided fields are identical` message shown
+
+    1. Test case: `edit 9999 n/Test User` (use a valid but non-existent membership ID)<br>
+       Expected: A `No member with Membership ID 9999 found` error message shown
+
 <br>
 
 ### Finding member(s)
@@ -840,6 +868,37 @@ testers are expected to do more *exploratory* testing.
 <br>
 
 ### Renewing membership
+
+1. Renewing a member's membership 
+
+    1. Prerequisites: Ensure there is a member with `MEMBERSHIP_ID` of `1000`.
+
+    1. Test case: `rene`<br>
+       Expected: An `Unknown command` error message shown
+
+    1. Test case: `renew`<br>
+       Expected: An `Invalid command format` error message shown
+
+    1. Test case: `renew id/1000`<br>
+       Expected: An `Invalid command format` error message shown
+
+    1. Test case: `renew d/7`<br>
+       Expected: An `Invalid command format` error message shown
+
+    1. Test case: `renew id/1000 d/0`<br>
+       Expected: A `Days to add must be an integer from 1 to 730 (2 years)` error message shown
+
+    1. Test case: `renew id/1000 d/731`<br>
+       Expected: A `Days to add must be an integer from 1 to 730 (2 years)` error message shown
+
+    1. Test case: `renew id/1000 id/1001 d/7`<br>
+       Expected: A `Multiple values specified for the following single-valued field(s): id/` error message shown
+
+    1. Test case: `renew id/1000 d/7`<br>
+       Expected: Member with `MEMBERSHIP_ID` `1000` has expiry date extended, together with a success message showing old and new expiry dates
+
+    1. Test case: `renew id/9999 d/7` (use a valid but non-existent membership ID)<br>
+       Expected: A `No member with Membership ID 9999 found` error message shown
 
 <br>
 
