@@ -298,14 +298,17 @@ Renews the membership of an existing member
 <box type="info" seamless>
 
 **Note:**
-* 
+* The `DAYS` parameter specifies the number of days to extend the membership.
+* Both `MEMBERSHIP_ID` and `DAYS` parameters are required for the command to be valid.
+* Renewing an expired membership will set the expiry date to the current date plus the specified number of days.
+* A maximum of 730 days (2 years) can be added to the current expiry date.
 
 </box>
 
 <box type="tip" seamless>
 
 **Tip:**
-* 
+* The `DAYS` and `MEMBERSHIP_ID` parameters can be provided in any order.
 
 </box>
 
@@ -314,7 +317,7 @@ Renews the membership of an existing member
 
 
 **Example output:**
-* 
+* Renews the membership of member with ID of `1000` by `7` days.<br><br>
 
 
 ---
