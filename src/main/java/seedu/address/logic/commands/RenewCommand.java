@@ -32,14 +32,13 @@ public class RenewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Renews a member's membership by Membership ID.\n"
             + "Parameters: " + PREFIX_ID + "MEMBERSHIP_ID " + PREFIX_DAYS + "DAYS\n"
-            + "(MEMBERSHIP_ID must be 4-digit integers from 1000 to 9999)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_ID + "1001 " + PREFIX_DAYS + "7";
 
     public static final String MESSAGE_RENEW_PERSON_SUCCESS =
             "Renewed membership ID: %1$s\nOld expiry date: %2$s\nNew expiry date: %3$s";
 
     public static final String MESSAGE_INVALID_DAYS =
-            "Days to add must be an integer from " + MIN_RENEW_DAYS + " to " + MAX_RENEW_DAYS + ".";
+            "Days to add must be an integer from " + MIN_RENEW_DAYS + " to " + MAX_RENEW_DAYS + " (2 years)";
 
     private static final Logger logger = LogsCenter.getLogger(RenewCommand.class);
 
