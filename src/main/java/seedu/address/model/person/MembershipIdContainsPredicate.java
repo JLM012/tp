@@ -31,8 +31,8 @@ public class MembershipIdContainsPredicate implements Predicate<Person> {
             return false;
         }
 
-        MembershipIdContainsPredicate other2 = (MembershipIdContainsPredicate) other;
-        return keywords.equals(other2.keywords);
+        MembershipIdContainsPredicate otherMembershipIdContainsPredicate = (MembershipIdContainsPredicate) other;
+        return keywords.equals(otherMembershipIdContainsPredicate.keywords);
     }
 
     @Override
