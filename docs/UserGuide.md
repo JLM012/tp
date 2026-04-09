@@ -372,9 +372,9 @@ Renews the membership expiry date of an existing gym member.
 * `MEMBERSHIP_ID` specifies the membership ID of the member to be renewed.
 <br><br>
 * `DAYS` specifies the number of days to extend the membership expiry date by and, it must be an number between `1` and `730` (2 years).
-  * If the membership has already expired, renewing by `1` day will set the new expiry date to today. <br>
-  e.g. `renew id/1000 d/7` will set the new expiry date to 7 days from today, including today as the first day.
-  * If the membership is still active, renewing by `1` day will set the new expiry date to tomorrow.
+    * If the membership has already expired, the current day is counted as day 1 when renewing.<br>
+    e.g. `renew id/1000 d/7` will set the new expiry date to 7 days from today, including today as the first day.
+    * If the membership is still valid, the new expiry date is calculated from the current expiry date.
 
 </box>
 
