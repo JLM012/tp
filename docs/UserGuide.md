@@ -482,7 +482,7 @@ There is no need to save manually.
 **Q**: What happens if the application freezes or is forcibly closed?<br>
 **A**: If the application freezes (but is not forcefully closed), all your previous changes are safely saved. However, if the application is forcibly closed while saving data (e.g., force quit, system crash, power loss), the data file may become corrupted. In such cases, the application will start with empty member data on the next run. To prevent data loss, it is recommended to regularly back up your `addressbook.json` file.
 
-**Q**: Why am i getting a permission error when trying to run the app on Linux?<br>
+**Q**: Why am I getting a permission error when trying to run the app on Linux?<br>
 **A**: If you get a permission error, you should make the file executable. Try typing in the terminal: `chmod +x GymContactsPro.jar`
 
 --------------------------------------------------------------------------------------------------------------------
