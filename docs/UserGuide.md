@@ -350,9 +350,10 @@ Sorts the list of registered gym members by the specified order.
 
 <box type="tip" seamless>
 
+**Tip:**
 * Sort by `sort m/asc` to find out which members have to renew their memberships soon.
 
-<\box>
+</box>
 
 **Example input:**
 ```
