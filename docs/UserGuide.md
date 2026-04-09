@@ -152,7 +152,7 @@ e.g. typing `help` and pressing Enter will open the help window.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Rules for the fields are:
-  * `MEMBERSHP_ID`: Must be a 4-digit number from `1000` to `9999`
+  * `MEMBERSHIP_ID`: Must be a 4-digit number from `1000` to `9999`
   * `NAME`: Must be non-empty.
   * `PHONE`: Must be exactly 8 digits long and start with 8 or 9.
   * `EMAIL`: Must be a properly formatted email address (e.g. `johndoe@example.com`).
