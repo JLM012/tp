@@ -40,12 +40,18 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
 
 ## Quick Start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+1. Ensure you have Java `17` or above installed in your computer.<br>
+    * Full guide for installation [here](https://se-education.org/guides/tutorials/javaInstallation.html). If you are familiar with the process, you can download Java directly [here](https://www.oracle.com/asean/java/technologies/downloads/).<br>
+      **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).<br><br>
 
-2. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-W08-4/tp/releases).
    * The folder containing the downloaded `GymContactsPro.jar` is your _home folder_ for GymContactsPro.
-<br><br>
+   * For the best experience, move the `GymContactsPro.jar` file to a dedicated and easily accessible folder, such as: <br>
+   **Windows:** `Documents\GymContactsPro` <br>
+   **macOS:** `~/Documents/GymContactsPro` <br>
+   **Linux:** `~/Documents/GymContactsPro` 
+   <br><br>
 
 3. On your respective Operating System (OS), open a terminal to launch GymContactsPro.
 
@@ -62,7 +68,7 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
       <box type="info" seamless>
 
    PATH_TO_HOME_FOLDER is the path to the folder where you placed the `GymContactsPro.jar` file in. If your _home folder_
-   was your Downloads folder, the command would be `cd C:\Users\<YOUR_USERNAME>\Downloads`.
+   was your `Downloads\GymContactsPro` folder, the command would be `cd C:\Users\<YOUR_USERNAME>\Downloads\GymContactsPro`
 
       </box>
 
@@ -79,7 +85,7 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
       <box type="info" seamless>
 
    PATH_TO_HOME_FOLDER is the path to the folder where you placed the `GymContactsPro.jar` file in. If your _home folder_
-   was your Downloads folder, the command would be `cd ~/Downloads`.
+   was your `Downloads/GymContactsPro` folder, the command would be `cd ~/Downloads/GymContactsPro`
 
       </box>
 
@@ -96,7 +102,7 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
       <box type="info" seamless>
 
    PATH_TO_HOME_FOLDER is the path to the folder where you placed the `GymContactsPro.jar` file in. If your _home folder_
-   was your Downloads folder, the command would be `cd ~/Downloads`.
+   was your `Downloads/GymContactsPro` folder, the command would be `cd ~/Downloads/GymContactsPro`
 
       </box>
 
@@ -104,31 +110,14 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
    </tabs>
 
    An interface shown below should appear in a few seconds. The app comes preloaded with some sample data.<br><br>
-   ![Ui](images/Ui.png =1000x) <br><br>
+   ![Ui](images/Ui.png =1000x) <br>
 
 4. Alternatively you could simply double-click the `GymContactsPro.jar` file.<br>
 
-5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
-open the help window.<br> 
-Some example commands you can try:
+5. Type a command in the command box and press Enter to execute it.<br>
+e.g. typing `help` and pressing Enter will open the help window.<br> 
 
-   * `list` : Lists all members.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John Street, Block 123, #01-01 138601 m/2026-11-12` : Adds a member named `John Doe` to the list of Registered Members.
-
-   * `find n/John` : Finds members whose names contain "John".
-
-   * `renew id/1000 d/7` : Renews the membership of the member with ID 1000 by 7 days.
-
-   * `sort n/asc` : Sorts the list of members by name in ascending order.
-
-   * `delete id/1006` : Deletes the member with membership ID 1006 from the list.
-
-   * `clear` : Deletes all members.
-
-   * `exit` : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for more commands to try.
 
 <div style="page-break-after: always;"></div>
 
@@ -144,23 +133,31 @@ Some example commands you can try:
 **Notes here apply to all features introduced below (unless otherwise specified)**
 <br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the fields whose values are to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a field which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [p/PHONE]` can be used as `n/John Doe p/92214584` or as `n/John Doe`.
 
-* Parameters can be in any order.<br>
+* Fields can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Commands can be typed in any capitalization.<br>
+  e.g. `sort n/desc` and `SORT N/DESC` are acceptable.
+
+* Fields can be typed in any capitalization and will be shown as it is.<br>
+  e.g. `add n/MASON ...` will save the new member with the capitalized name `MASON`
+
+* Extraneous characters for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Formats for the fields are:
-  * **Phone:** Must be exactly 8 digits long and start with 8 or 9.
-  * **Email:** Must be a properly formatted email address (e.g., `johndoe@example.com`).
-  * **Address:** must end with a valid 6-digit postal code.
-  * **Expiry Date:** Must be a valid date in the format `YYYY-MM-DD` and **cannot be before the current date**.
+* Rules for the fields are:
+  * `MEMBERSHIP_ID`: Must be a 4-digit number from `1000` to `9999`
+  * `NAME`: Must be non-empty.
+  * `PHONE`: Must be exactly 8 digits long and start with 8 or 9.
+  * `EMAIL`: Must be a properly formatted email address (e.g. `johndoe@example.com`).
+  * `ADDRESS`: Must end with a valid 6-digit postal code.
+  * `EXPIRY_DATE`: Must be a valid date in the format `YYYY-MM-DD` and, cannot be before the current date.
 <br><br>
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
@@ -177,11 +174,9 @@ Adds a new gym member to the list of registered gym members.
 <box type="info" seamless>
 
 **Note:**
-* All five fields are required: `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS`, and `EXPIRY_DATE`.
+* All five fields are required: `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS`, `EXPIRY_DATE`
 
-</box> 
-
-<br>
+</box>
 
 **Example input:**
 ```
@@ -213,19 +208,20 @@ Deletes the specified member(s) from the list of registered gym members.
 <box type="info" seamless>
 
 **Note:**
-* Deletes the member(s) with the specified `MEMBERSHIP_ID`(s).
-* At least one `MEMBERSHIP_ID` must be provided
-* Multiple IDs must be space-separated after `id/`.
+* `MEMBERSHIP_ID` specifies the membership ID of the member to be deleted.
+  * At least one membership ID must be provided.
+<br><br>
 * If any `MEMBERSHIP_ID` is invalid, not found or duplicated, no deletions will be performed.
-* Deleted members are listed in ascending order of Membership ID in the message box.
+<br><br>
+* Deleted members will be listed in ascending order of Membership ID in the message box.
 
 </box>
 
 <box type="tip" seamless>
 
 **Tip:**
-* You can delete multiple members in one command by providing multiple IDs after `id/`.<br>
-  e.g. `delete id/1000 1001 1002` deletes members with IDs 1000, 1001 and 1002 in one command.
+* Delete multiple members at once by providing multiple membership IDs after `id/`<br>
+  e.g. `delete id/1000 1001 1002` deletes members with membership IDs 1000, 1001 and 1002 in one command.
 
 </box>
 
@@ -235,26 +231,37 @@ delete id/1000
 ```
 
 **Expected output:**
-* Deleted the member(s) with the specified `MEMBERSHIP_ID`(s), together with a `Deleted member(s): ...` success message listing each deleted member.<br><br>
+* Deleted the member with the specified `MEMBERSHIP_ID` of `1000`, together with a `Deleted member(s): ...` success message.<br><br>
   ![result for 'delete id/1000'](images/deleteResult.png)
 ---
 <br>
 
 ### Editing a Member : `edit`
 
-Edits an existing member among the registered gym members.
+Edits an existing gym member among the registered gym members.
 
 **Format:** `edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]`
 
 <box type="info" seamless>
 
 **Note:**
-* Edits the member at the specified `MEMBERSHIP_ID`.
-* The `MEMBERSHIP_ID` must be provided before the optional fields.
-* The `MEMBERSHIP_ID` cannot be edited.
-* At least one of the optional fields must be provided.
-* Multiple different fields can be provided at once.
-* Existing values will be updated with the provided values.Only specified fields will be updated (if there are changes); all other fields will remain unchanged.
+* `MEMBERSHIP_ID` specifies the membership ID of the member to be edited.
+  * The membership ID must be provided before the optional fields.
+  * The membership ID cannot be edited and, editing other fields will not change the membership ID.
+<br><br>
+* At least one of the optional fields in `[square brackets]` must be provided.
+<br><br>
+* Existing values will be updated with the provided values. 
+  * If some of the provided fields are identical to the original values, those values will remain unchanged.
+  * If all of the provided values are identical to original values, no edits will be performed.
+
+</box>
+
+<box type="tip" seamless>
+
+**Note:**
+* Edit multiple fields at once by providing multiple fields after `MEMBERSHIP_ID` <br>
+  e.g. `edit 1000 p/91234567 e/johndoe@example.com` edits the `PHONE` and `EMAIL` of member with `MEMBERSHIP_ID` of `1000` in one command.
 
 </box>
 
@@ -273,7 +280,7 @@ edit 1000 p/91234567 e/johndoe@example.com
 
 ### Finding Member(s) : `find`
 
-Find member(s) matching any of the given keywords.
+Find gym member(s) matching any of the given keywords.
 
 **Format:** `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 
@@ -292,6 +299,7 @@ Find member(s) matching any of the given keywords.
   e.g. `Ber` will not match `Bernice`
   * Keywords are case-insensitive.<br>
   e.g. `BERNICE` will match any members with a name containing `bernice` regardless of capitalization.
+  * Only enter postal code when finding by address.
 
 </box>
 
@@ -299,7 +307,7 @@ Find member(s) matching any of the given keywords.
 
 **Tip:**
 * Finding by name doesn't require full names.
-  * Any keyword matching part of a member’s first or last name will return that member.<br>
+  * Any keyword matching part of a member’s first or last name will still find that member.<br>
     e.g. `Bernice` will match and find `Bernice Yu`
 
 </box>
@@ -336,7 +344,7 @@ Sorts the list of registered gym members by the specified order.
   (unless `sort none` is used to disable sorting to return to default order ordering – ascending Membership ID).
   * Order can be either `asc` or `desc` to sort members in ascending or descending order respectively. <br><br>
 * Sorting order, regardless of whether it is `asc` or `desc`, will be "turned on" and
-  applied on displayed lists across all commands unless "turned off" by `sort none`.
+  applied on displayed lists across all commands unless "turned off" by `sort none`
 
 </box>
 
@@ -354,19 +362,21 @@ sort n/desc
 
 ### Renewing Membership : `renew`
 
-Renews the membership of an existing member.
+Renews the membership expiry date of an existing gym member.
 
 **Format:** `renew id/MEMBERSHIP_ID d/DAYS`
 
 <box type="info" seamless>
 
 **Note:**
-* The `DAYS` parameter specifies the number of days to extend the membership.
-* Both `MEMBERSHIP_ID` and `DAYS` parameters are required for the command to be valid.
-* If the membership has already expired, the current day is counted as day 1 when renewing. For example, `renew id/1000 d/7` will set the new expiry date to 7 days from today, including today as the first day.
-* If the membership is still valid, the new expiry date is calculated from the current expiry date.
-* `DAYS` must be an integer between `1` and `730` (2 years).
-
+* Both `MEMBERSHIP_ID` and `DAYS` fields are required for the command to be valid.<br><br>
+* `MEMBERSHIP_ID` specifies the membership ID of the member to be renewed.<br><br>
+* `DAYS` specifies the number of days to extend the membership expiry date by and, it must be an number between `1` and `730` (2 years).
+    * If the membership has already expired, the current day is counted as day 1 when renewing.<br>
+    e.g. `renew id/1000 d/7` will set the new expiry date to 7 days from today, including today as the first day.
+    * If the membership is still valid, the new expiry date is calculated from the current expiry date.
+<br><br>
+* Renewing a member's membership will not change membership ID of the member.
 </box>
 
 **Example input:**
@@ -375,7 +385,7 @@ renew id/1000 d/7
 ```
 
 **Expected output:**
-* Renews the membership of member with ID of `1000` by `7` days.<br><br>
+* Renews the membership expiry date of member with membership ID of `1000` by `7` days.<br><br>
   ![result for 'renew id/1000 d/7'](images/renewResult.png)
 
 ---
@@ -390,24 +400,22 @@ Deletes all registered gym members after confirmation.
 <box type="info" seamless>
 
 **Note:**
-* A warning window will pop up to confirm the deletion of all data. <br><br>
+* A warning window will pop up to confirm the deletion of all data. 
+<br><br>
 * To confirm the deletion:
-    * Click the `Yes` button <br>
-  OR
-    * Type the `Y` key. <br><br>
-
+    * Click the `Yes` button. <br>
+    * Press the `Y` key. <br><br>
 * To cancel the deletion:
-    * Click the `No` button <br>
-  OR 
-    * type the `N` key <br>
-  OR
+    * Click the `No` button. <br>
+    * Press the `N` key. <br>
     * Close the warning window.
 </box>
 
-
-**Expected output:** <br><br>
-![result for 'successfully delete'](images/clearSuccess.png)<br><br>
-
+**Expected output:**
+* A warning window pops up to ask for deletion confirmation.<br><br>
+  ![warning window](images/warningWindow.png)<br><br>
+* After confirmation, all data will be deleted, together with a `All data has been deleted successfully` success message.<br>
+* If the user decides to cancel the deletion, no data will be deleted and, a `Deletion has been cancelled` success message will be shown instead.<br>
 
 ---
 <br>
@@ -421,16 +429,14 @@ Shows a help window containing the URL of the User Guide and a summary of execut
 <box type="tip" seamless>
 
 **Tip:**
-<br>
 * Alternative ways to open the help window:
-    * Clicking the `Help F1` button in the `Help` menu <br>
-  OR
-    * Typing the `Fn + F1` keys. <br><br>
-
-* You can close the help window by hitting the `esc` key.
-
+  * Clicking the `Help F1` button in the `Help` menu.
+  * Pressing the `Fn + F1` keys.
+<br><br>
+* Alternative ways to close the help window:
+    * Pressing the `esc` key.
+    * Closing the window.
 </box>
-
 
 **Expected output:**
 <br><br>
@@ -448,7 +454,9 @@ Exits the app.
 <box type="tip" seamless>
 
 **Tip:**
-* You can click the `Exit` button in the `File` menu to exit as well
+* Alternative ways to exit the app:
+    * Clicking the `Exit` button in the `File` menu.
+    * Closing the app window.
 </box>
 
 ---
@@ -463,6 +471,7 @@ There is no need to save manually.
 
 **Note:**
 * Data is saved to `[JAR file location]/data/addressbook.json`
+<br><br>
 * Saving is typically very fast and completes within milliseconds.
 
 </box>
@@ -507,7 +516,7 @@ Action     | Format, Examples
 **Delete** | `delete id/MEMBERSHIP_ID`<br> e.g., `delete id/1000`
 **Edit**   | `edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]`<br> e.g.,`edit 1000 p/91234567 e/johndoe@example.com`
 **Find**   | `find PREFIX/KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/bernice`
-**Sort**   | `sort PREFIX/ORDER` & `sort none`<br> e.g., `sort n/desc`
+**Sort**   | `sort PREFIX/ORDER` OR `sort none`<br> e.g., `sort n/desc`
 **Renew**  | `renew id/MEMBERSHIP_ID d/DAYS`<br> e.g., `renew id/1000 d/7`
 **Clear**  | `clear`
 **Help**   | `help`
