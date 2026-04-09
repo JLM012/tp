@@ -13,6 +13,7 @@ It combines a **clean visual interface** with **command-based input**, allowing 
 If you value **speed, accuracy, and efficiency** in your daily operations, GymContactsPro is built for you — download it and get started today!
 
 ---
+<br>
 
 ## Table of Contents
 - [Quick Start](#quick-start)
@@ -35,6 +36,7 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<br>
 
 ## Quick Start
 
@@ -42,32 +44,89 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+   * The folder containing the downloaded `GymContactsPro.jar` is your _home folder_ for GymContactsPro.
+<br><br>
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. On your respective Operating System (OS), open a terminal to launch GymContactsPro.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar GymContactsPro.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)<br><br>
-Alternatively you could simply double click GymContactsPro.jar file.
+   <tabs>
+      <tab header="Windows">
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+   Open **Command Prompt** or **PowerShell** and run:
 
-  * `list` : Lists all members.
+      ```bash
+      cd PATH_TO_HOME_FOLDER
+      java -jar GymContactsPro.jar
+      ```
 
-  * `add n/John Doe p/98765432 e/johnd@example.com a/John Street, Block 123, #01-01 138601 m/2026-11-12` : Adds a member named `John Doe` to the list of Registered Members.
+      <box type="info" seamless>
 
-  * `find n/John` : Finds members whose names contain "John".
+   PATH_TO_HOME_FOLDER is the path to the folder where you placed the `GymContactsPro.jar` file in. If your _home folder_
+   was your Downloads folder, the command would be `cd C:\Users\<YOUR_USERNAME>\Downloads`.
 
-  * * `renew id/1000 d/7` : Renews the membership of the member with ID 1000 by 7 days.
+      </box>
 
-  * `sort n/asc` : Sorts the list of members by name in ascending order.
+      </tab>
+      <tab header="Mac">
 
-  * `delete id/1006` : Deletes the member with membership ID 1006 from the list.
+   Open **Terminal** and run:
 
-  * `clear` : Deletes all members.
+      ```bash
+      cd PATH_TO_HOME_FOLDER
+      java -jar GymContactsPro.jar
+      ```
 
-  * `exit` : Exits the app.
+      <box type="info" seamless>
+
+   PATH_TO_HOME_FOLDER is the path to the folder where you placed the `GymContactsPro.jar` file in. If your _home folder_
+   was your Downloads folder, the command would be `cd ~/Downloads`.
+
+      </box>
+
+      </tab>
+      <tab header="Linux">
+
+   Open **Terminal** and run:
+
+      ```bash
+      cd PATH_TO_HOME_FOLDER
+      java -jar GymContactsPro.jar
+      ```
+
+      <box type="info" seamless>
+
+   PATH_TO_HOME_FOLDER is the path to the folder where you placed the `GymContactsPro.jar` file in. If your _home folder_
+   was your Downloads folder, the command would be `cd ~/Downloads`.
+
+      </box>
+
+      </tab>
+   </tabs>
+
+   An interface shown below should appear in a few seconds. The app comes preloaded with some sample data.<br><br>
+   ![Ui](images/Ui.png =1000x) <br><br>
+
+4. Alternatively you could simply double-click the `GymContactsPro.jar` file.<br>
+
+5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+open the help window.<br> 
+Some example commands you can try:
+
+   * `list` : Lists all members.
+
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John Street, Block 123, #01-01 138601 m/2026-11-12` : Adds a member named `John Doe` to the list of Registered Members.
+
+   * `find n/John` : Finds members whose names contain "John".
+
+   * `renew id/1000 d/7` : Renews the membership of the member with ID 1000 by 7 days.
+
+   * `sort n/asc` : Sorts the list of members by name in ascending order.
+
+   * `delete id/1006` : Deletes the member with membership ID 1006 from the list.
+
+   * `clear` : Deletes all members.
+
+   * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -75,13 +134,14 @@ Alternatively you could simply double click GymContactsPro.jar file.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<br>
+
 ## Features
 
 ### Before We Begin . . .
 <box type="info" seamless>
 
-**These are some notes about the command formats.<br>
-Notes here apply to all features introduced below (where applicable), and will not be repeated**
+**Notes here apply to all features introduced below (unless otherwise specified)**
 <br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -96,10 +156,17 @@ Notes here apply to all features introduced below (where applicable), and will n
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Formats for the fields are:
+  * **Phone:** Must be exactly 8 digits long and start with 8 or 9.
+  * **Email:** Must be a properly formatted email address (e.g., `johndoe@example.com`).
+  * **Address:** must end with a valid 6-digit postal code.
+  * **Expiry Date:** Must be a valid date in the format `YYYY-MM-DD` and **cannot be before the current date**.
+<br><br>
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
 ---
+<br>
 
 ### Adding a Member : `add`
 
@@ -110,32 +177,23 @@ Adds a new gym member to the list of registered gym members.
 <box type="info" seamless>
 
 **Note:**
+* All five fields are required: `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS`, and `EXPIRY_DATE`.
 
-To ensure data accuracy, the information provided must follow these rules:
-* **Name:** Must not be blank.
-* **Phone:** Must be exactly 8 digits long and start with 8 or 9.
-* **Email:** Must be a properly formatted email address (e.g., `johndoe@example.com`).
-* **Address:** Must not be blank and **must end with a valid 6-digit postal code**.
-* **Expiry Date:** Must be a valid date in the format `YYYY-MM-DD` and **cannot be before the current date**.
+</box> 
 
-</box>
-<box type="tip" seamless>
-
-**Tip:**
-* Attributes following the `add` command can be provided in any order
-**Tip:**
-* Fields following the `add` command can be provided in any order
-</box>
+<br>
 
 **Example input:**
-* `add n/Alfred Goh p/88574393 a/Blk 886 Waterloo Street, #03-514, 736886 e/gohfred@gmail.com m/2028-01-01`<br><br>
-![command for 'add'](images/addMemberCommand.png)
+```
+add n/Alfred Goh p/88574393 a/Blk 886 Waterloo Street, #03-514, 736886 e/gohfred@gmail.com m/2028-01-01
+```
 
-**Example output:**
-* Added `Alfred Goh` with his personal details to the list of registered gym members, together with a `New person added: ...` success message.<br><br>
+**Expected output:**
+* Added `Alfred Goh` with his personal details to the list of registered gym members, together with a `New member added: ...` success message.<br><br>
 ![result for 'add'](images/addMemberResult.png)
 
 ---
+<br>
 
 ### Listing All Members : `list`
 
@@ -143,14 +201,8 @@ Displays the list of all registered gym members.
 
 **Format:** `list`
 
-**Example input:**
-* `list`<br><br>
-
-**Example output:**
-* Displays the list of all registered gym members.<br><br>
-![result for 'list'](images/listResult.png)
-
 ---
+<br>
 
 ### Deleting Member(s) : `delete`
 
@@ -178,13 +230,15 @@ Deletes the specified member(s) from the list of registered gym members.
 </box>
 
 **Example input:**
-* `delete id/1000`<br><br>
-  ![result for 'delete id/1000'](images/deleteCommand.png)
+```
+delete id/1000
+```
 
-**Example output:**
-* Deleted the member(s) with the specified `MEMBERSHIP_ID`(s), together with a `Deleted member(s): ...` success message listing each deleted member.<br> e.g Deleted person: Alex Yeoh; Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40, 388066; Membership ID: 1000; Membership Expiry Date: 2027-01-15 <br>
+**Expected output:**
+* Deleted the member(s) with the specified `MEMBERSHIP_ID`(s), together with a `Deleted member(s): ...` success message listing each deleted member.<br><br>
   ![result for 'delete id/1000'](images/deleteResult.png)
 ---
+<br>
 
 ### Editing a Member : `edit`
 
@@ -196,29 +250,26 @@ Edits an existing member among the registered gym members.
 
 **Note:**
 * Edits the member at the specified `MEMBERSHIP_ID`.
+* The `MEMBERSHIP_ID` must be provided before the optional fields.
+* The `MEMBERSHIP_ID` cannot be edited.
 * At least one of the optional fields must be provided.
 * Multiple different fields can be provided at once.
-* Existing values will be updated to the input values.Only changed fields will be updated, 
-and unchanged fields will remain unchanged.
+* Existing values will be updated with the provided values.Only specified fields will be updated (if there are changes); all other fields will remain unchanged.
 
 </box>
 
-<box type="tip" seamless>
-
-**Tip:**
-* Fields following the `edit` command can be provided in any order
-
-</box>
 
 **Example input:**
-*  `edit 1000 p/91234567 e/johndoe@example.com`<br><br>
-![command for 'edit 1000 p/91234567 e/johndoe@example.com'](images/editPhoneEmailCommand.png)
+```
+edit 1000 p/91234567 e/johndoe@example.com
+```
 
-**Example output:**
+**Expected output:**
 * Edited the `PHONE` and `EMAIL` of member with `MEMBERSHIP_ID` of `1000`, together with a `Edited person: ...` success message.<br><br>
-![result for 'edit 1000 p/91234567 e/johndoe@example.com'](images/editPhoneEmailResult.png)
+![result for 'edit 1000 p/91234567 e/johndoe@example.com'](images/editResult.png)
 
 ---
+<br>
 
 ### Finding Member(s) : `find`
 
@@ -235,12 +286,12 @@ Find member(s) matching any of the given keywords.
     * Prefix `p/` finds by Phone number.
     * Prefix `e/` finds by Email.
     * Prefix `a/` finds by Address (Postal Code).
-    * Prefix `m/` finds by Membership Expiry Date.
+    * Prefix `m/` finds by Membership Expiry Date. <br><br>
 * At least 1 `KEYWORD` must be provided.
   * Only full keywords will be matched<br>
   e.g. `Ber` will not match `Bernice`
   * Keywords are case-insensitive.<br>
-  e.g `BERNICE` will match any members with a name containing `bernice` regardless of capitalization.
+  e.g. `BERNICE` will match any members with a name containing `bernice` regardless of capitalization.
 
 </box>
 
@@ -254,14 +305,16 @@ Find member(s) matching any of the given keywords.
 </box>
 
 **Example input:**
-* `find n/bernice`<br><br>
-  ![command for 'find n/bernice'](images/findBerniceCommand.png)
+```
+find n/bernice
+```
 
-**Example output:**
+**Expected output:**
 * Found `Bernice Yu`, together with a `1 member(s) found` success message.<br><br>
   ![result for 'find n/bernice'](images/findBerniceResult.png)
 
 ---
+<br>
 
 ### Sorting Members : `sort`
 
@@ -278,30 +331,26 @@ Sorts the list of registered gym members by the specified order.
   * Prefix `p/` sorts by Phone number.
   * Prefix `e/` sorts by Email.
   * Prefix `a/` sorts by Address (Postal Code).
-  * Prefix `m/` sorts by Membership Expiry Date.
+  * Prefix `m/` sorts by Membership Expiry Date.<br><br>
 * Only 1 `ORDER` can be provided<br>
   (unless `sort none` is used to disable sorting to return to default order ordering – ascending Membership ID).
-  * Order can be either `asc` or `desc` to sort members in ascending or descending order respectively.
-
-</box>
-
-<box type="tip" seamless>
-
-**Tip:**
+  * Order can be either `asc` or `desc` to sort members in ascending or descending order respectively. <br><br>
 * Sorting order, regardless of whether it is `asc` or `desc`, will be "turned on" and
-applied on displayed lists across all commands unless "turned off" by `sort none`.
+  applied on displayed lists across all commands unless "turned off" by `sort none`.
 
 </box>
 
 **Example input:**
-* `sort n/desc`<br><br>
-  ![command for 'sort n/desc'](images/sortNameDescCommand.png)
+```
+sort n/desc
+```
 
-**Example output:**
-* Sorted `NAME` of members in `desc` order.<br><br>
+**Expected output:**
+* Sorted `NAME` of members in descending order.<br><br>
   ![result for 'sort n/desc'](images/sortNameDescResult.png)
 
 ---
+<br>
 
 ### Renewing Membership : `renew`
 
@@ -315,26 +364,22 @@ Renews the membership of an existing member.
 * The `DAYS` parameter specifies the number of days to extend the membership.
 * Both `MEMBERSHIP_ID` and `DAYS` parameters are required for the command to be valid.
 * If the membership has already expired, the current day is counted as day 1 when renewing. For example, `renew id/1000 d/7` will set the new expiry date to 7 days from today, including today as the first day.
-* A maximum of 730 days (2 years) can be added to the current expiry date.
-
-</box>
-
-<box type="tip" seamless>
-
-**Tip:**
-* The `DAYS` and `MEMBERSHIP_ID` parameters can be provided in any order.
+* If the membership is still valid, the new expiry date is calculated from the current expiry date.
+* `DAYS` must be an integer between `1` and `730` (2 years).
 
 </box>
 
 **Example input:**
-* `renew id/1000 d/7`<br><br>
-  ![command for 'renew id/1000 d/7'](images/renewCommand.png)
+```
+renew id/1000 d/7
+```
 
-**Example output:**
+**Expected output:**
 * Renews the membership of member with ID of `1000` by `7` days.<br><br>
   ![result for 'renew id/1000 d/7'](images/renewResult.png)
 
 ---
+<br>
 
 ### Clearing All Data : `clear`
 
@@ -345,72 +390,54 @@ Deletes all registered gym members after confirmation.
 <box type="info" seamless>
 
 **Note:**
-* A warning window will pop up to confirm the deletion of all data.
+* A warning window will pop up to confirm the deletion of all data. <br><br>
+* To confirm the deletion:
+    * Click the `Yes` button <br>
+  OR
+    * Type the `Y` key. <br><br>
 
+* To cancel the deletion:
+    * Click the `No` button <br>
+  OR 
+    * type the `N` key <br>
+  OR
+    * Close the warning window.
 </box>
 
-<box type="tip" seamless>
 
-**Tip:**
-* These are the possible ways to confirm the deletion of all data:
-  * Clicking the `Yes` button.
-  * Hitting the `Y` key.
-* These are the possible ways to cancel the deletion of all data:
-  * Clicking the `No` button.
-  * Hitting the `N` key.
-  * Closing the warning window.
-
-</box>
-
-**Example input:**
-* `clear`<br>
-
-**Example output:**
-* A warning window pops up to ask for deletion confirmation.<br><br>
-![warning window](images/warningWindow.png)<br><br>
-* After confirmation, all data will be deleted, together with a `All data has been deleted successfully` success message.<br>
-Thereafter, the warning window will close after a short delay.<br><br>
+**Expected output:** <br><br>
 ![result for 'successfully delete'](images/clearSuccess.png)<br><br>
-* If the user decides to cancel the deletion, no data will be deleted and, a `Deletion has been cancelled` success message will be shown instead.<br>
 
 
 ---
+<br>
 
 ### Getting Help : `help`
 
-Shows a help message.
+Shows a help window containing the URL of the User Guide and a summary of executable commands.
 
 **Format:** `help`
-
-<box type="info" seamless>
-
-**Note:**
-* A help window pops up with the User Guide URL and, a summary of executable commands.<br>
-  The URL can be copied by clicking on the `Copy URL` button.<br>
-  Paste this URL on your preferred internet browser to view the User Guide.<br><br>
-
-</box>
 
 <box type="tip" seamless>
 
 **Tip:**
-* These are the alternative ways to open the help window:
-  * Clicking the `Help F1` button in the `Help` menu.
-  * Hitting `Fn+ F1` keys.
-* There are two possible ways that to close the help window:
-  * Hitting the `esc` key.
-  * Closing the help window.
+<br>
+* Alternative ways to open the help window:
+    * Clicking the `Help F1` button in the `Help` menu <br>
+  OR
+    * Typing the `Fn + F1` keys. <br><br>
+
+* You can close the help window by hitting the `esc` key.
 
 </box>
 
-**Example input:**
-* `help`<br>
 
-**Example output:**
-* A help window pops up with the User Guide URL and, a summary of executable commands.<br><br>
+**Expected output:**
+<br><br>
 ![result for 'help'](images/helpResult.png)
 
 ---
+<br>
 
 ### Exiting the App : `exit`
 
@@ -421,18 +448,11 @@ Exits the app.
 <box type="tip" seamless>
 
 **Tip:**
-* These are the alternative ways to exit the app:
-  * Clicking the `Exit` button in the `File` menu.
-  * Closing the app window.
+* You can click the `Exit` button in the `File` menu to exit as well
 </box>
 
-**Example input:**
-* `exit`<br>
-
-**Example output:**
-* App window gradually disappears from view and the application exits.
-
 ---
+<br>
 
 ### Saving Data
 
@@ -466,6 +486,8 @@ There is no need to save manually.
 **Q**: What happens if the application freezes or is forcibly closed?<br>
 **A**: If the application freezes (but is not forcefully closed), all your previous changes are safely saved. However, if the application is forcibly closed while saving data (e.g., force quit, system crash, power loss), the data file may become corrupted. In such cases, the application will start with empty member data on the next run. To prevent data loss, it is recommended to regularly back up your `addressbook.json` file.
 
+**Q**: Why am I getting a permission error when trying to run the app on Linux?<br>
+**A**: If you get a permission error, you should make the file executable. Try typing in the terminal: `chmod +x GymContactsPro.jar`
 
 --------------------------------------------------------------------------------------------------------------------
 
