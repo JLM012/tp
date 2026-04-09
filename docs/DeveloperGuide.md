@@ -324,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Gym manager | I want to search for a member                                 | So that I can retrieve their information                                    |
 | `* *`    | Gym manager | I want to edit member's personal information                  | So that my records can stay updated with the latest information             |
 | `* *`    | Gym manager | I want to know which member's membership is close to expiring | So that I can contact members to remind them of their membership validity   |
-| `*`      | Gym manager | I renew gym member's membership expiry date                   | So that they can continue using the gym                                     |
+| `*`      | Gym manager | I want to renew gym member's membership expiry date           | So that they can continue using the gym                                     |
 | `*`      | Gym manager | I want to sort member's membership expriy date                | So that I can know which members have expired or soon to expire memberships |
 
 
@@ -560,76 +560,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-**AB3 (AddressBook Level-3)**
+**AB3 (AddressBook Level-3)**  
 The baseline codebase from which GymContactsPro is developed. Refers to the SE-EDU AddressBook-Level3 project.
 
-**Command**
+**AddressBook**  
+The internal data structure that stores all member records in GymContactsPro.
+
+**Command**  
 A text instruction entered by the Gym Manager to perform an operation in GymContactsPro.
 
-**Command Format**
+**Command Format**  
 The required structure for entering a valid command in GymContactsPro.
 
-**Command Line Interface (CLI)**
+**Command Line Interface (CLI)**  
 A text-based interface that allows the Gym Manager to interact with GymContactsPro by typing commands instead of using graphical buttons.
 
-**Duplicate Member**
-A situation where a member being added or edited has the same identifying fields as an existing member.
+**Duplicate Member**  
+A situation where a member being added or edited has the same identifying fields (phone number or email) as an existing member.
 
-**Error Message**
+**Error Message**  
 A system-generated message displayed when the requested operation cannot be completed.
 
-**Front-Desk Staff**
-Personnel working at the gym reception who manage member registrations, check-ins, and membership records using GymContactsPro.
-
-**Gym Manager**
+**Gym Manager**  
 The primary user of GymContactsPro who manages gym member records and memberships.
 
-**GymContactsPro**
+**GymContactsPro**  
 A command-line based gym member management application designed to help gym managers efficiently manage member records and memberships.
 
-**JavaFX**
+**JavaFX**  
 A Java GUI framework used to render the visual interface of GymContactsPro, displaying member records in a structured layout.
 
-**JSON (JavaScript Object Notation)**
+**JSON (JavaScript Object Notation)**  
 A human-readable file format used by GymContactsPro to store member data persistently.
 
-**Mainstream Operating Systems**
+**Mainstream Operating Systems**  
 Widely used operating systems such as Windows, macOS, and Linux that GymContactsPro is designed to run on.
 
-**Member**
+**Member**  
 An individual registered in GymContactsPro with personal and membership information.
 
-**Member Lookup**
-The process of searching for and retrieving a member's record from the system using fields such as name, phone number, or membership ID.
-
-**Member Record**
+**Member Record**  
 A stored set of information about a gym member, including personal details and membership information.
 
-**Membership Expiry Date**
+**Membership Expiry Date**  
 The date on which a member's membership becomes invalid.
 
-**Membership ID**
+**Membership ID**  
 A unique identifier assigned to each gym member.
 
-**Membership Validity**
+**Membership Validity**  
 The period during which a member's gym membership is considered active.
 
-**Offline Usage**
+**Offline Usage**  
 The ability to use GymContactsPro without an Internet connection after installation.
 
-**Persistent Storage**
+**Persistent Storage**  
 The method used by GymContactsPro to store member data so that it remains available after the application is closed and reopened.
 
-**Prefix**
+**Prefix**  
 A short identifier used before a value in a command to indicate the type of data being entered (for example, `n/`, `p/`, `e/`).
 
-**Search Field**
+**Sample Data**  
+A set of pre‑loaded member records provided with GymContactsPro for demonstration and testing purposes.
+
+**Search Field**  
 A specific field (such as name, phone number, or email) used to locate members in the system.
 
-**Sorting**
+**Sorting**  
 The process of arranging members in a specific order.
 
-**Success Message**
+**Staff**  
+Personnel working at the gym reception who manage member registrations, check-ins, and membership records using GymContactsPro.
+
+**Success Message**  
 A confirmation message shown after a command has been executed successfully.
 
 <div style="page-break-after: always;"></div>
@@ -663,12 +666,48 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. 1. Shutdown via command
+
+    1. Test case: `exit`<br>
+   Expected: The application window closes immediately and gracefully without any error dialogues.
 
 <br>
 
 ### Adding a member
 
+1. Adding a member
+
+    1. Prerequisites: Ensure there is no existing member with the exact phone number or email address.
+
+    1. Test case: `ad`<br>
+       Expected: An `Unknown command` error message shown
+
+    1. Test case: `add`<br>
+       Expected: An `Invalid command format` error message shown
+
+    1. Test case: `add n/John Doe p/98765432`<br>
+       Expected: An `Invalid command format` error message shown (due to missing mandatory fields like email, address, and expiry date)
+
+    1. Test case: `add n/ p/98765432 e/johndoe@example.com a/Blk 123 138671 m/2099-12-31`<br>
+       Expected: A name validation error message shown (Name should not be blank)
+
+    1. Test case: `add n/John Doe p/12345678 e/johndoe@example.com a/Blk 123 138671 m/2099-12-31`<br>
+       Expected: A phone number validation error message shown (Phone must start with 8 or 9)
+
+    1. Test case: `add n/John Doe p/98765432 e/johndoe@example.com a/Blk 123 m/2099-12-31`<br>
+       Expected: An address validation error message shown (Address must end with a valid 6-digit postal code)
+
+    1. Test case: `add n/John Doe p/98765432 e/johndoe@example.com a/Blk 123 138671 m/2000-01-01`<br>
+       Expected: An expiry date validation error message shown (Date cannot be before the current date)
+
+    1. Test case: `add n/John Doe n/Jane Doe p/98765432 e/johndoe@example.com a/Blk 123 138671 m/2099-12-31`<br>
+       Expected: A `Multiple values specified for the following single-valued field(s): n/` error message shown
+
+    1. Test case: `add n/John Doe p/98765432 e/johndoe@example.com a/Blk 123, #01-01 138671 m/2099-12-31`<br>
+       Expected: A new member named `John Doe` is added to the list, together with a `New person added: ...` success message shown
+
+    1. Test case: `add n/John Doe p/98765432 e/johndoe@example.com a/Blk 123, #01-01 138671 m/2099-12-31` (run the exact same command again)<br>
+       Expected: A `This person already exists in the address book` error message shown
 <br>
 
 ### Listing members
@@ -904,9 +943,45 @@ testers are expected to do more *exploratory* testing.
 
 ### Clearing all members
 
+1. Clearing all contacts when the members is not empty
+
+   1. Prerequisites: members contains the sample contacts
+
+   2. Test case: `clea`<br>
+      Expected: No change in displayed list, together with a `Unknown command` message shown
+   4. Test case: `clear`<br>
+      Expected: A warning window pops ups, no members are deleted yet, and `Opened warning window` message is shown
+   5. Test case: `clear`, then press `N`<br>
+      Expected: Warning window shows `Deletion has been cancelled.` and closes after 2 seconds. No change in displayed list, together with a `Clear command cancelled`. message shown
+   6. Test case: `clear`, then press `Y`<br>
+      Expected: Warning window shows `All the data has been deleted successfully.` and closes after 2 seconds. All members are removed from the displayed list, together with a `All the data has been deleted successfully.` success message shown
+   7. Test case: `clear`, then click `No`<br>
+      Expected: Warning window shows `Deletion has been cancelled.` and closes after 2 seconds. No change in displayed list, together with a `Clear command cancelled`. message shown
+   8. Test case: `clear`, then click `Yes`<br>
+      Expected: Warning window shows `All the data has been deleted successfully.` and closes after 2 seconds. All members are removed from the displayed list, together with a `All the data has been deleted successfully.` success message shown
+   9. Test case: `clear`, then close the warning window<br>
+      Expected: Warning window closes. No change in displayed list, together with a `Closed warning window` message shown
+
+2. Clearing all members when the address book is already empty
+   1. Prerequisites: member is empty
+   2. Test case: `clear`<br>
+      Expected: No warning window is opened. No change in displayed list, together with a `No data to clear` message shown
+
 <br>
 
 ### Viewing help
+1. Opening the help window when the application is running
+   1. Prerequisites: Application is launched successfully
+   2. Test case: `hel`<br>
+      Expected: No help window pops up, together with a `Unknown command` error message shown
+   4. Test case: `help`<br>
+      Expected: Help window opens, together with a `Opened help window`. success message
+2. Closing the help window after it has been opened
+   1. Prerequisites: Help window is open
+   2. Test case: Close the help window<br>
+      Expected: Help window closes, together with a `Closed help window` message shown in the result display
+   3. Test case: Press `ESC`<br>
+      Expected: Help window closes, together with a `Closed help window` message shown in the result display
 
 <br>
 
