@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import java.time.format.DateTimeParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipExpiryDate;
@@ -101,6 +102,18 @@ public class ParserUtil {
     public static MembershipExpiryDate parseMembershipExpiryDate(String expiryDate) throws ParseException {
         requireNonNull(expiryDate);
         String trimmedExpiryDate = expiryDate.trim();
+
+        // Check for non-existent dates
+        try {
+            MembershipExpiryDate.DATE_FORMATTER.parse(trimmedExpiryDate);
+        } catch (DateTimeParseException e) {
+            // Check if it's a valid format but non-existent date (like April 31)
+            // with DateTimeFormatter in STRICT mode
+            if (trimmedExpiryDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                throw new ParseException(MembershipExpiryDate.MESSAGE_CONSTRAINTS);
+            }
+        }
+
         if (!MembershipExpiryDate.isValidExpiryDate(trimmedExpiryDate)) {
             throw new ParseException(MembershipExpiryDate.MESSAGE_CONSTRAINTS);
         }

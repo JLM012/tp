@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEMBERSHIP_EXPIRY_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MALFORMED_MEMBERSHIP_EXPIRY_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MEMBERSHIP_EXPIRY_DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MEMBERSHIP_EXPIRY_DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -84,7 +85,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1001" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1001" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1001" + INVALID_MEMBERSHIP_EXPIRY_DATE_DESC,
-                MembershipExpiryDate.MESSAGE_CONSTRAINTS); // invalid expiry date
+                MembershipExpiryDate.MESSAGE_CONSTRAINTS); // non-existent date
+        assertParseFailure(parser, "1001" + MALFORMED_MEMBERSHIP_EXPIRY_DATE_DESC,
+                MembershipExpiryDate.MESSAGE_CONSTRAINTS); // malformed date
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1001" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
