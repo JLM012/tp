@@ -834,19 +834,19 @@ testers are expected to do more *exploratory* testing.
       Expected: No change in displayed list, together with a `Invalid command format` error message shown
    
    1. Test case: `find n/alex`<br>
-      Expected: Members whose names contain `alex` in any capitalization are displayed in a list, together with a `1 member(s) listed` success message shown
+      Expected: Members whose names contain `alex` in any capitalization are displayed in a list, together with a `1 member(s) found` success message shown
 
    1. Test case: `find n/alex alex`<br>
-      Expected: Members whose names contain `alex` in any capitalization are displayed in a list, together with a `1 member(s) listed` success message shown
+      Expected: Members whose names contain `alex` in any capitalization are displayed in a list, together with a `1 member(s) found` success message shown
    
    1. Test case: `find n/alex n/yu`<br>
       Expected: No change in displayed list, together with a `Multiple values specified for the following single-valued field(s): n/` error message shown
 
    1. Test case: `find n/alex yu`<br>
-      Expected: Members whose names contain `alex` or `yu` in any capitalization are shown in a list, together with a `2 member(s) listed` success message shown
+      Expected: Members whose names contain `alex` or `yu` in any capitalization are shown in a list, together with a `2 member(s) found` success message shown
 
    1. Test case: `FIND N/ALEX YU`<br>
-      Expected: Members whose names contain `alex` or `yu` in any capitalization are shown in a list, together with a `2 member(s) listed` success message shown
+      Expected: Members whose names contain `alex` or `yu` in any capitalization are shown in a list, together with a `2 member(s) found` success message shown
    
    1. Test case: `find n/alex p/87438807`<br>
       Expected: No change in displayed list, together with a `Invalid command format` error message shown
