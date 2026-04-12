@@ -317,7 +317,7 @@ Find gym member(s) matching any of the given keywords.
 <box type="tip" seamless>
 
 **Tip:**
-* When finding by name `n/`, you can use either first or last name as keywords. 
+* When finding by name `n/`, you can use either the first or last name as keywords. 
   * For example, if the member's name is `Bernice Yu`, searching for `n/Bernice` will find `Bernice Yu`. Similarly, searching for `n/Yu` will also find `Bernice Yu`.
 
 </box>
@@ -389,7 +389,7 @@ Renews the membership expiry date of an existing gym member.
 **Note:**
 * Both `MEMBERSHIP_ID` and `DAYS` fields are required for the command to be valid.<br><br>
 * `MEMBERSHIP_ID` specifies the membership ID of the member to be renewed.<br><br>
-* `DAYS` specifies the number of days to extend the membership expiry date by and, it must be an number between `1` and `730` (2 years).
+* `DAYS` specifies the number of days to extend the membership expiry date by and, it must be a number between `1` and `730` (2 years).
     * If the membership has already expired, the current day is counted as day 1 when renewing.<br>
     e.g. `renew id/1000 d/7` will set the new expiry date to 7 days from today, including today as the first day.
     * If the membership is still valid, the new expiry date is calculated from the current expiry date.
