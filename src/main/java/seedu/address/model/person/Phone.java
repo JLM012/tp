@@ -25,7 +25,7 @@ public class Phone {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
-        normalizedValue = phone.trim();
+        normalizedValue = phone;
     }
 
     /**
