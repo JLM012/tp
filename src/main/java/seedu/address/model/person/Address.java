@@ -76,12 +76,15 @@ public class Address {
         }
 
         Address otherAddress = (Address) other;
-        return normalizedValue.equals(otherAddress.normalizedValue);
+        return value.equals(otherAddress.value);
     }
 
     @Override
     public int hashCode() {
-        return normalizedValue.hashCode();
+        return value.hashCode();
     }
 
+    public String getNormalizedValue() {
+        return normalizedValue;
+    }
 }

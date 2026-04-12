@@ -57,14 +57,18 @@ public class AddressTest {
         // different values -> returns false
         assertFalse(address.equals(new Address("Other Valid Address 654321")));
 
-        // same address with and without commas -> returns true
-        assertTrue(new Address("123 Main St, City 123456").equals(new Address("123 Main St City 123456")));
+        // different comma placement -> returns false (equals uses raw value)
+        assertFalse(new Address("123 Main St, City 123456").equals(new Address("123 Main St City 123456")));
 
-        // same address with different comma placement -> returns true
-        assertTrue(new Address("Blk 456, Den Road, #01-355, 123456")
+        // different comma placement -> returns false (equals uses raw value)
+        assertFalse(new Address("Blk 456, Den Road, #01-355, 123456")
                 .equals(new Address("Blk 456 Den Road #01-355 123456")));
 
-        // same address with extra spaces and commas -> returns true
-        assertTrue(new Address("123  Main St,  City 756452").equals(new Address("123 Main St City 756452")));
+        // extra spaces are normalized in constructor -> same raw value -> returns true
+        assertTrue(new Address("123  Main St,  City 756452").equals(new Address("123 Main St, City 756452")));
+
+        // case-insensitive comparison is in isSameNormalizedAddress(), not equals()
+        assertFalse(address.equals(new Address("valid address 123456")));
     }
+
 }

@@ -17,8 +17,8 @@ public class PostalCodeContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        String addressValue = person.getAddress().value;
-        String postalCode = addressValue.substring(addressValue.length() - 6);
+        String normalizedAddress = person.getAddress().getNormalizedValue();
+        String postalCode = normalizedAddress.substring(normalizedAddress.length() - 6);
 
         return keywords.stream()
                 .anyMatch(keyword -> postalCode.equals(keyword));

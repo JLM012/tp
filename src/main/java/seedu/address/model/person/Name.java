@@ -61,12 +61,15 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return normalizedFullName.equals(otherName.normalizedFullName);
+        return fullName.equals(otherName.fullName);
     }
 
     @Override
     public int hashCode() {
-        return normalizedFullName.hashCode();
+        return fullName.hashCode();
     }
 
+    public String getNormalizedFullName() {
+        return normalizedFullName;
+    }
 }
