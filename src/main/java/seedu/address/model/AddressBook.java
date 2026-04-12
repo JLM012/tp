@@ -97,8 +97,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return nextMembershipId <= MembershipId.MAX_ID;
     }
 
-    //// person-level operations
-
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */

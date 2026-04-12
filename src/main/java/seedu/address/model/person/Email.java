@@ -129,12 +129,20 @@ public class Email {
         }
 
         Email otherEmail = (Email) other;
-        return normalizedValue.equals(otherEmail.normalizedValue);
+        return value.equals(otherEmail.value);
     }
 
     @Override
     public int hashCode() {
-        return normalizedValue.hashCode();
+        return value.hashCode();
+    }
+
+    public String getNormalizedValue() {
+        return normalizedValue;
+    }
+
+    public boolean isSameNormalizedEmail(Email other) {
+        return normalizedValue.equals(other.normalizedValue);
     }
 
 }

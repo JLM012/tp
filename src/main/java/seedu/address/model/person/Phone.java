@@ -14,6 +14,7 @@ public class Phone {
             "Phone numbers should only contain numbers, be exactly 8 digits long, and start with 8 or 9";
     public static final String VALIDATION_REGEX = "^[89]\\d{7}$";
     public final String value;
+    private final String normalizedValue;
 
     /**
      * Constructs a {@code Phone}.
@@ -24,6 +25,7 @@ public class Phone {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
+        normalizedValue = phone.trim();
     }
 
     /**
@@ -56,6 +58,14 @@ public class Phone {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public String getNormalizedValue() {
+        return normalizedValue;
+    }
+
+    public boolean isSameNormalizedPhone(Phone other) {
+        return normalizedValue.equals(other.normalizedValue);
     }
 
 }

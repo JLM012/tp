@@ -307,18 +307,16 @@ public class EditCommandTest {
     /**
      * Returns a membership ID that is valid by constraints but not present in the model.
      */
-    private MembershipId getValidButNonExistentMembershipId(Model model) {
-        Set<Integer> usedIds = new HashSet<>();
+    private static MembershipId getValidButNonExistentMembershipId(Model model) {
+        Set<Integer> ids = new HashSet<>();
         for (Person person : model.getAddressBook().getPersonList()) {
-            usedIds.add(person.getMembershipId().value);
+            ids.add(person.getMembershipId().value);
         }
 
-        for (int id = MembershipId.MIN_ID; id <= MembershipId.MAX_ID; id++) {
-            if (!usedIds.contains(id)) {
-                return new MembershipId(id);
-            }
+        int candidate = MembershipId.MIN_ID;
+        while (ids.contains(candidate) && candidate <= MembershipId.MAX_ID) {
+            candidate++;
         }
-
-        throw new AssertionError("Test fixture exhausted all membership IDs.");
+        return new MembershipId(candidate);
     }
 }

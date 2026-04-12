@@ -97,9 +97,9 @@ public class EmailTest {
         // same values -> returns true
         assertTrue(email.equals(new Email("valid@email.com")));
 
-        // case-insensitive -> returns true
-        assertTrue(email.equals(new Email("Valid@Email.Com")));
-        assertTrue(email.equals(new Email("VALID@EMAIL.COM")));
+        // case-sensitive (raw equality) -> returns false
+        assertFalse(email.equals(new Email("Valid@Email.Com")));
+        assertFalse(email.equals(new Email("VALID@EMAIL.COM")));
 
         // same object -> returns true
         assertTrue(email.equals(email));
@@ -117,10 +117,19 @@ public class EmailTest {
     @Test
     public void hashCode_sameValue_returnsSameHashCode() {
         Email email1 = new Email("valid@email.com");
-        Email email2 = new Email("VALID@EMAIL.COM");
+        Email email2 = new Email("valid@email.com");
 
         assertTrue(email1.equals(email2));
         assertTrue(email1.hashCode() == email2.hashCode());
+    }
+
+    @Test
+    public void isSameNormalizedEmail_caseInsensitive_returnsTrue() {
+        Email email = new Email("valid@email.com");
+
+        // case-insensitive normalized comparison -> returns true
+        assertTrue(email.isSameNormalizedEmail(new Email("Valid@Email.Com")));
+        assertTrue(email.isSameNormalizedEmail(new Email("VALID@EMAIL.COM")));
     }
 
     @Test

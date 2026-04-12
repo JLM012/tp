@@ -76,8 +76,8 @@ public class Person {
             return false;
         }
 
-        return otherPerson.getPhone().toString().equals(getPhone().toString())
-                || otherPerson.getEmail().equals(getEmail());
+        return otherPerson.getPhone().isSameNormalizedPhone(getPhone())
+                || otherPerson.getEmail().isSameNormalizedEmail(getEmail());
     }
 
 
