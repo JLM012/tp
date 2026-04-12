@@ -44,6 +44,7 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
     * Full guide for installation [here](https://se-education.org/guides/tutorials/javaInstallation.html). If you are familiar with the process, you can download Java directly [here](https://www.oracle.com/asean/java/technologies/downloads/).<br>
       **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).<br><br>
 
+
 2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-W08-4/tp/releases).
    * The folder containing the downloaded `GymContactsPro.jar` is your _home folder_ for GymContactsPro.
    * For the best experience, move the `GymContactsPro.jar` file to a dedicated and easily accessible folder, such as: <br>
