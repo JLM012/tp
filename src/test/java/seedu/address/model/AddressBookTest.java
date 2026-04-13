@@ -81,7 +81,7 @@ public class AddressBookTest {
 
         assertEquals(source.peekNextMembershipId(), copy.peekNextMembershipId());
     }
-    
+
     @Test
     public void resetData_withMaxMembershipId_cannotGenerateMoreIds() {
         Person maxIdPerson = new PersonBuilder(ALICE).withMembershipId(MembershipId.MAX_ID).build();
@@ -149,6 +149,15 @@ public class AddressBookTest {
 
         assertEquals(first, second);
         assertEquals(first.hashCode(), second.hashCode());
+    }
+
+    @Test
+    public void equals_differentNextMembershipId_returnsFalse() {
+        AddressBook first = getTypicalAddressBook();
+        AddressBook second = new AddressBook(first);
+        second.getNextMembershipId();
+
+        assertFalse(first.equals(second));
     }
 
     @Test
