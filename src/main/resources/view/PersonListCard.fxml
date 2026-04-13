@@ -27,8 +27,13 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" />
-        <Label fx:id="membershipStatus" />
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" HBox.hgrow="ALWAYS" />
+        <Label fx:id="membershipStatus">
+          <minWidth>
+            <!-- Ensures that the label width is never changed -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
       </HBox>
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
