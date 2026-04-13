@@ -508,7 +508,7 @@ There is no need to save manually.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app on the new computer, then move the `data` folder from the home folder of `GymContactsPro.jar` on your previous computer to the home folder of `GymContactsPro.jar` on the new computer.
 
 **Q**: What happens if the application freezes or is forcibly closed?<br>
 **A**: If the application freezes (but is not forcefully closed), all your previous changes are safely saved. However, if the application is forcibly closed while saving data (e.g., force quit, system crash, power loss), the data file may become corrupted. In such cases, the application will start with empty member data on the next run. To prevent data loss, it is recommended to regularly back up your `addressbook.json` file.
@@ -521,7 +521,7 @@ There is no need to save manually.
 ## Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+   * The `preferences.json` file is located in the home folder of `GymContactsPro.jar`
 
 --------------------------------------------------------------------------------------------------------------------
 
