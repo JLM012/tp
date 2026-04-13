@@ -12,13 +12,22 @@ import java.util.Locale;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Only valid names that are 1-50 characters long, start with a letter, "
+        + "and may only contain letters (including international characters), "
+        + "spaces, apostrophes ('), hyphens (-), forward slashes (/) and periods (.)\n"
+        + "e.g. John Doe, Mary-Jane, O'Brien, Dr. Lim, Thor s/o Odin, 小明\n"
+        + "Names must be valid names, invalid names will be rejected.\n"
+        + "e.g. Mary-, Mary  -  Jane, O', 'O, Dr., .Dr, Thor s/";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String MESSAGE_FIND_CONSTRAINTS =
+        "Name keywords for find must be non-empty and may contain letters and "
+        + "name punctuation such as ('), (-), (/), (.)\n"
+        + "You may use either the first, middle, or last name (in full) to find a member.";
+
+    public static final String VALIDATION_REGEX = "^[\\p{L}]+(?:[.'/ -]\\s*[\\p{L}]+)*$";
+
+    private static final int MIN_LENGTH = 1;
+    private static final int MAX_LENGTH = 50;
 
     public final String fullName;
     private final String normalizedFullName;
@@ -32,17 +41,24 @@ public class Name {
         requireNonNull(name);
         String trimmedName = name.trim().replaceAll("\\s+", " ");
         checkArgument(isValidName(trimmedName), MESSAGE_CONSTRAINTS);
-        fullName = trimmedName;
-        normalizedFullName = trimmedName.toLowerCase(Locale.ROOT);
+        this.fullName = trimmedName;
+        this.normalizedFullName = normalize(trimmedName);
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        requireNonNull(test);
+        String trimmedTest = test.trim().replaceAll("\\s+", " ");
+        return trimmedTest.length() >= MIN_LENGTH
+                && trimmedTest.length() <= MAX_LENGTH
+                && trimmedTest.matches(VALIDATION_REGEX);
     }
 
+    private static String normalize(String name) {
+        return name.toLowerCase(Locale.ROOT);
+    }
 
     @Override
     public String toString() {

@@ -153,7 +153,10 @@ e.g. typing `help` and pressing Enter will open the help window.<br>
 
 * Rules for the fields are:
   * `MEMBERSHIP_ID`: Must be a 4-digit number from `1000` to `9999`
-  * `NAME`: Must be non-empty.
+  * `NAME`: Valid names that are 1-50 characters long, start with a letter, and may only contain letters (including international characters), spaces, apostrophes ('), hyphens (-), forward slashes (/) and periods (.)<br>
+   e.g. `John Doe`, `Mary-Jane`, `O'Brien`, `Dr. Lim`, `Thor s/o Odin`, `小明`."<br>
+   Invalid names will be rejected.<br>
+   e.g. `Mary-`, `Mary  -  Jane`, `O'`, `'O`, `Dr.`, `.Dr`, `Thor s/,`.
   * `PHONE`: Must be exactly 8 digits long and start with 8 or 9.
   * `EMAIL`: Must be a properly formatted email address (e.g. `johndoe@example.com`).
   * `ADDRESS`: Must end with a valid 6-digit postal code.
@@ -231,7 +234,7 @@ Deletes the specified member(s) from the list of registered gym members.
 
 **Tip:**
 * Delete multiple members at once by providing multiple membership IDs after `id/`<br>
-  e.g. `delete id/1000 1001 1002` deletes members with membership IDs 1000, 1001 and 1002 in one command.
+  e.g. `delete id/1000 1001 1002` deletes members with membership IDs 1000, 1001, and 1002 in one command.
 
 </box>
 
@@ -317,7 +320,7 @@ Find gym member(s) matching any of the given keywords.
 <box type="tip" seamless>
 
 **Tip:**
-* When finding by name `n/`, you can use either the first or last name as keywords. 
+* When finding by name `n/`, you can use either the first, middle, or last name (in full) as keywords. 
   * For example, if the member's name is `Bernice Yu`, searching for `n/Bernice` will find `Bernice Yu`. Similarly, searching for `n/Yu` will also find `Bernice Yu`.
 
 </box>

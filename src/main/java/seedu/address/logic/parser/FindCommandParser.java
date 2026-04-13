@@ -56,10 +56,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         switch (usedPrefix.getPrefix()) {
         case "n/":
             if (tokens.length == 0) {
-                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-            }
-            for (String token : tokens) {
-                ParserUtil.parseName(token);
+                throw new ParseException(Name.MESSAGE_FIND_CONSTRAINTS);
             }
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(tokens)));
         case "p/":
