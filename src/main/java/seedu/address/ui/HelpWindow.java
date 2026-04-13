@@ -37,7 +37,7 @@ public class HelpWindow extends UiPart<Stage> {
                     + "Format: edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]\n\n"
 
                     + "find\n"
-                    + "Format: find KEYWORD [MORE_KEYWORDS]\n\n"
+                    + "Format: find n/KEYWORD [MORE_KEYWORDS]\n\n"
 
                     + "sort\n"
                     + "Format: sort PREFIX/ORDER\n"
