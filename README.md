@@ -21,6 +21,8 @@ GymContactsPro is built for gym managers who need a fast, reliable way to:
 - Edit member details
 - Find specific members
 - Sort members by different fields
+- Renew memberships
+- _and many more!_
 
 Our users are comfortable with command line interface (CLI) commands and value speed and efficiency in their daily operations.
 
