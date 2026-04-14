@@ -62,9 +62,9 @@ public class NameTest {
         // minimum length
         assertTrue(Name.isValidName("a")); // 1 character
         // maximum length
-        assertTrue(Name.isValidName("a".repeat(50))); // 50 characters
+        assertTrue(Name.isValidName("a".repeat(70))); // 70 characters
         // exceeds maximum length
-        assertFalse(Name.isValidName("a".repeat(51))); // 51 characters
+        assertFalse(Name.isValidName("a".repeat(71))); // 71 characters
     }
 
     @Test
@@ -99,18 +99,18 @@ public class NameTest {
         Name name = new Name("Valid Name");
 
         // same values -> returns true
-        assertEquals(name, new Name("Valid Name"));
+        assertEquals(new Name("Valid Name"), name);
 
         // same object -> returns true
         assertEquals(name, name);
 
         // null -> returns false
-        assertFalse(name.equals(null));
+        org.junit.jupiter.api.Assertions.assertNotEquals(name, null);
 
         // different types -> returns false
-        assertFalse(name.equals(5.0f));
+        org.junit.jupiter.api.Assertions.assertNotEquals(name, 5.0f);
 
         // different values -> returns false
-        assertFalse(name.equals(new Name("Other Valid Name")));
+        org.junit.jupiter.api.Assertions.assertNotEquals(name, new Name("Other Valid Name"));
     }
 }

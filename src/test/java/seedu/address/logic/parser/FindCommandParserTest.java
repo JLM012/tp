@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -235,19 +236,15 @@ public class FindCommandParserTest {
     @Test
     public void parse_membershipExpiryDateMultipleKeywordWithInvalid_throwsParseException() {
         // If any expiry date keyword is invalid, should throw exception
-        assertParseFailure(parser, " m/2026-12-31 invalid",
-            MembershipExpiryDate.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " m/2026-12-31 invalid-date",
+            MembershipExpiryDate.MESSAGE_FIND_CONSTRAINTS);
     }
 
     @Test
     public void parse_nameKeywordWithPunctuation_returnsFindCommand() {
         // Names with punctuation should be accepted
         FindCommand expectedFindCommand =
-            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Mary-Jane")));
-        assertParseSuccess(parser, " n/Mary-Jane", expectedFindCommand);
-
-        FindCommand expectedFindCommandWithApostrophe =
-            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("O'Brien")));
-        assertParseSuccess(parser, " n/O'Brien", expectedFindCommandWithApostrophe);
+            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Mary-Jane", "O'Brien")));
+        assertParseSuccess(parser, " n/Mary-Jane O'Brien", expectedFindCommand);
     }
 }
