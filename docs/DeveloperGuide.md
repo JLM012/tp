@@ -44,8 +44,11 @@
 
 ## **Acknowledgements**
 
-Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
+* **AI Assistance:** We used AI tools (like ChatGPT / Gemini / GitHub Copilot) during the development of this project.
+    * **Who used it:** [e.g., All team members / specific team members]
+    * **Extent of use:** We used AI widely as an interactive tutor and pair-programming assistant to help troubleshoot logic bugs (e.g., the `EditCommand` duplicate bug and `Comparator` tie-breaking), write regex constraints, and format Markdown for our User and Developer Guides. All AI-assisted logic was manually reviewed, tested, and integrated by the team.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
