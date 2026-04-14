@@ -110,7 +110,6 @@ If you value **speed, accuracy, and efficiency** in your daily operations, GymCo
       </tab>
    </tabs>
 
-<div style="page-break-after: always;"></div>
 
    An interface shown below should appear in a few seconds. The app comes preloaded with some sample data.<br><br>
    ![Ui](images/Ui.png =1000x) <br>
@@ -291,11 +290,14 @@ edit 1000 p/91234567 e/johndoe@example.com
 ```
 
 **Expected output:**
-* Edited the `PHONE` and `EMAIL` of member with `MEMBERSHIP_ID` of `1000`, together with a `Edited member: ...` success message.<br><br>
+* Edited the `PHONE` and `EMAIL` of member with `MEMBERSHIP_ID` of `1000`, together with a `Edited member: ...` success message.
+<br><br>
 ![result for 'edit 1000 p/91234567 e/johndoe@example.com'](images/editResult.png)
 
 ---
 <br>
+<div style="page-break-after: always;"></div>
+
 
 ### Finding Member(s) : `find`
 
