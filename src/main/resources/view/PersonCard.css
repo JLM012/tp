@@ -22,3 +22,6 @@
     -fx-font-weight: bold;
 }
 
+.cell_small_label {
+    -fx-text-overrun: CLIP;
+}
