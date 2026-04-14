@@ -647,7 +647,7 @@ A confirmation message shown after a command has been executed successfully.
 Team Size: 5
 
 1. **Smart Duplicate Detection via Identity Hashing:** To better handle real-world edge cases (such as family members sharing a single contact number or email address), we plan to transition from strict uniqueness blocking to a "Smart Duplicate" warning system. The application will generate a composite hash of a person's core identity fields (Name, Phone, Email) when evaluating new entries. If an `add` command results in a hash collision with an existing member, the system will pause execution and prompt the user for explicit confirmation (e.g., `"This contact info is already in use. Are you sure you want to add them as a separate member? (Y/N)"`). Because the system automatically generates unique Membership IDs that can never be reused, the application can safely store these duplicate-identity members while keeping their underlying database records perfectly distinct.
-2. We plan to remove the current hard cap on membership IDs. Membership IDs will continue to be unique and auto-generated. This will make the system more robust against extreme add-delete usage patterns that could otherwise exhaust the available IDs over time.
+2. We plan to remove the current hard cap on membership IDs. Membership IDs will continue to be unique and auto-generated, and never reuse old IDs from deleted members. This will make the system more robust against extreme add-delete usage patterns that could otherwise exhaust the available IDs over time.
 
 <div style="page-break-after: always;"></div>
 
