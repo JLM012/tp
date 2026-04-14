@@ -25,7 +25,7 @@ public class HelpWindow extends UiPart<Stage> {
                     + "Command Summary:\n\n"
 
                     + "add\n"
-                    + "Format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/EXPIRY_DATE\n\n"
+                    + "Format: add n/NAME p/PHONE e/EMAIL a/ADDRESS m/EXPIRY_DATE\n\n"
 
                     + "list\n"
                     + "Format: list\n\n"
