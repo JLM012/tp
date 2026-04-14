@@ -25,13 +25,13 @@ public class HelpWindow extends UiPart<Stage> {
                     + "Command Summary:\n\n"
 
                     + "add\n"
-                    + "Format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/EXPIRY_DATE\n\n"
+                    + "Format: add n/NAME p/PHONE e/EMAIL a/ADDRESS m/EXPIRY_DATE\n\n"
 
                     + "list\n"
                     + "Format: list\n\n"
 
                     + "delete\n"
-                    + "Format: delete id/MEMBERHSIP_ID [MORE_MEMBERSHIP_IDS]\n\n"
+                    + "Format: delete id/MEMBERSHIP_ID [MORE_MEMBERSHIP_IDS]\n\n"
 
                     + "edit\n"
                     + "Format: edit MEMBERSHIP_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/EXPIRY_DATE]\n\n"

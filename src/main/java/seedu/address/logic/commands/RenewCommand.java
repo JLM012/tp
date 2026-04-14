@@ -38,7 +38,7 @@ public class RenewCommand extends Command {
             "Renewed membership ID: %1$s\nOld expiry date: %2$s\nNew expiry date: %3$s";
 
     public static final String MESSAGE_INVALID_DAYS =
-            "Days to add must be an number from " + MIN_RENEW_DAYS + " to " + MAX_RENEW_DAYS + " (2 years)";
+            "Days to add must be a number from " + MIN_RENEW_DAYS + " to " + MAX_RENEW_DAYS + " (2 years)";
 
     private static final Logger logger = LogsCenter.getLogger(RenewCommand.class);
 
