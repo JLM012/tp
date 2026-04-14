@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_MEMBERSHIP_EXPIRY_DATE + "EXPIRY_DATE]\n"
             + "Existing values will be overwritten by the input values "
-            + "(unless all values are the same)\n"
+            + "(unless all values are the same).\n"
             + "Example: " + COMMAND_WORD + " 1001 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
