@@ -11,8 +11,11 @@ import java.util.Locale;
  */
 public class Name {
 
+    private static final int MIN_LENGTH = 1;
+    private static final int MAX_LENGTH = 70;
+
     public static final String MESSAGE_CONSTRAINTS =
-        "Only valid names that are 1-50 characters long, start with a letter, "
+        "Only valid names that are " + MIN_LENGTH + " - " + MAX_LENGTH + " characters long, start with a letter, "
         + "and may only contain letters (including international characters), "
         + "spaces, apostrophes ('), hyphens (-), forward slashes (/) and periods (.)\n"
         + "e.g. John Doe, Mary-Jane, O'Brien, Dr. Lim, Thor s/o Odin, 小明\n"
@@ -22,12 +25,9 @@ public class Name {
     public static final String MESSAGE_FIND_CONSTRAINTS =
         "Name keywords for find must be non-empty and may contain letters and "
         + "name punctuation such as ('), (-), (/), (.)\n"
-        + "You may use either the first, middle, or last name (in full) to find a member.";
+        + "Tip: You may use either the first, middle, or last name (in full) to find a member.";
 
     public static final String VALIDATION_REGEX = "^[\\p{L}]+(?:[.'/ -]\\s*[\\p{L}]+)*$";
-
-    private static final int MIN_LENGTH = 1;
-    private static final int MAX_LENGTH = 50;
 
     public final String fullName;
     private final String normalizedFullName;

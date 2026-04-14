@@ -825,7 +825,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No change in displayed list, together with a `Invalid command format` error message shown
 
    1. Test case: `find n/`<br>
-      Expected: No change in displayed list, together with a `Names should only contain alphanumeric characters and spaces, and it should not be blank` error message shown
+      Expected: No change in displayed list, together with a `Name keywords for find must be non-empty...` error message shown
    
    1. Test case: `find n/ale`<br>
       Expected: Displayed list is empty, together with a `0 member(s) found` message shown
