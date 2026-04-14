@@ -15,7 +15,9 @@ import java.time.format.ResolverStyle;
 public class MembershipExpiryDate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Membership expiry date must be in the format YYYY-MM-DD and and must be today or a future date";
+            "Membership expiry date must be in the format YYYY-MM-DD and must be today or a future date";
+    public static final String MESSAGE_FIND_CONSTRAINTS =
+            "Membership expiry date must be in the format YYYY-MM-DD and must be a valid date";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd")
             .withResolverStyle(ResolverStyle.STRICT);
 
