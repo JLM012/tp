@@ -150,8 +150,8 @@ public class FindCommandParserTest {
         assertParseFailure(parser, " id/", MembershipId.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, " id/    ", MembershipId.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser, " m/", MembershipExpiryDate.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, " m/    ", MembershipExpiryDate.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " m/", MembershipExpiryDate.MESSAGE_FIND_CONSTRAINTS);
+        assertParseFailure(parser, " m/    ", MembershipExpiryDate.MESSAGE_FIND_CONSTRAINTS);
     }
 
     @Test
@@ -198,6 +198,6 @@ public class FindCommandParserTest {
     @Test
     public void parse_invalidMembershipExpiryDateKeyword_throwsParseException() {
         assertParseFailure(parser, " m/2020-13-01",
-            MembershipExpiryDate.MESSAGE_CONSTRAINTS);
+            MembershipExpiryDate.MESSAGE_FIND_CONSTRAINTS);
     }
 }
