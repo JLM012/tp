@@ -27,6 +27,7 @@
     - [Use cases](#use-cases)
     - [Non-Functional Requirements](#non-functional-requirements)
     - [Glossary](#glossary)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     - [Launch and shutdown](#launch-and-shutdown)
     - [Adding a member](#adding-a-member)
@@ -636,6 +637,16 @@ Personnel working at the gym reception who manage member registrations, check-in
 
 **Success Message**  
 A confirmation message shown after a command has been executed successfully.
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+Team Size: 5
+
+1. **Smart Duplicate Detection via Identity Hashing:** To better handle real-world edge cases (such as family members sharing a single contact number or email address), we plan to transition from strict uniqueness blocking to a "Smart Duplicate" warning system. The application will generate a composite hash of a person's core identity fields (Name, Phone, Email) when evaluating new entries. If an `add` command results in a hash collision with an existing member, the system will pause execution and prompt the user for explicit confirmation (e.g., `"This contact info is already in use. Are you sure you want to add them as a separate member? (Y/N)"`). Because the system automatically generates unique Membership IDs that can never be reused, the application can safely store these duplicate-identity members while keeping their underlying database records perfectly distinct.
 
 <div style="page-break-after: always;"></div>
 
