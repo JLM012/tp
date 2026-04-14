@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25, 120311 "
             + PREFIX_MEMBERSHIP_EXPIRY_DATE + "2026-12-31";
 
     public static final String MESSAGE_SUCCESS = "New member added: %1$s";
